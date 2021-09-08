@@ -1,0 +1,5 @@
+ git commands 
+git add .
+git commit - m "commit message"
+git remote add (name of origin) (the https link to the origin)
+git push (name of origin) main
