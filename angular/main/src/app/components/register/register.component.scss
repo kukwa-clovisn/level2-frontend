@@ -1,0 +1,113 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,400&family=Ubuntu:wght@300&display=swap);
+
+#register{
+	width: 150px;
+	height: 40px;
+	border: 0 10px 0 10px;
+	text-align: center;
+	margin: auto;
+	background: inherit;
+	color: white;
+	position: relative;
+	left: 30%;
+}
+.form{
+	width: 80vw;
+	height: auto;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	margin: 5vh auto;
+	font-family: sans-serif;
+
+	form{
+		width: 50%;
+		height: 100%;
+		display: inline-block;
+		background: white;
+		padding: 10px;
+
+		h1{
+			text-align: center;
+			text-transform: uppercase;
+			font-size: 40px;
+			margin: 3% auto;
+		}
+
+		h2{
+			width: 50px;
+			height: 50px;
+			border-radius:50%;
+			background: rgb(115,54,230);
+			margin: auto;
+			span{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+				width: 100%;
+				height: 100%;
+				color: white;
+				text-transform: uppercase;
+				font-size: 50%;
+				margin: auto;
+			}
+		}
+
+		p{
+			text-align: center;
+			font-size: 15px;
+			text-transform: capitalize;
+			margin: 2% 0 0 0;
+
+			a{
+				color: rgb(115,54,230);
+				text-decoration: underline;
+			}
+		}
+
+		div{
+			width: 70%;
+			height: 15%;
+			margin:  auto;
+
+			label{
+				text-transform: capitalize;
+			}
+			input{
+				width: 100%;
+				border: none;
+				border-bottom: 1px solid black;
+				outline: none;
+				font-size: 100%;
+				opacity: 0.7;
+
+				&:hover{
+				opacity: 1;
+				}
+			}
+
+		}
+
+		button{
+			width: 50%;
+			height: 40px;
+			border-radius: 15px;
+			display: block;
+			margin: 5% auto;
+			background: rgb(115,54,230);
+			a{
+					width: 100%;
+				height: 100%;
+				color: white;
+				border-radius: 15px;
+				display: block;
+				transition: all 0.5s ease-out;
+				text-decoration: none;
+				padding-top: 3%;
+			}
+				&:hover{
+					background: rgb(65,14,230);
+			}
+		}
+	}
+}

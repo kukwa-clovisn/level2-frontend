@@ -1,0 +1,48 @@
+.user-class{
+	width: 100%;
+	padding: 10px;
+	display: flex;
+	flex-wrap: wrap;
+
+
+.container{
+	width: 45%;
+	height: auto;
+	background: white;
+	color: black;
+	margin: 1vh auto;
+	padding: 5px;
+	display: flex;
+	flex-wrap: wrap;
+	box-shadow: 0 3px 3px black;
+
+	section{
+		width: 45%;
+		display: block;
+
+		div{
+			width: 100%;
+			display: flex;
+			justify-content: space-evenly;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+		ul{
+			li{
+				list-style-background: white;
+				list-style-type: bullet;
+			}
+		}
+		span{
+			color: black;
+			font-size: 20px;
+			display: inline-block;
+			text-transform: capitalize;
+			width: 100%;
+
+		}
+		
+	}
+	
+}
+}

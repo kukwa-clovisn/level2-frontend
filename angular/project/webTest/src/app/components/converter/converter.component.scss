@@ -1,0 +1,55 @@
+.converter-body{
+    background: linear-gradient(rgb(0,82,132), rgb(0,168,106));
+    width: 100vw;
+    height: 80vh;
+    color: white;
+    padding: 10px;
+    
+        h1{
+            text-align: center;
+            text-transform: capitalize;
+            font-size: 2em;
+        }
+
+        .main{
+            width: 100vw;
+            height: 80vh;
+            display: inline-block;
+            margin-left: -10px;
+
+            form{
+                width: 50%;
+                height: 60%;
+                color: black;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
+                left: 35%;
+                top:-65%;
+                padding: 10px;
+
+                    .to{
+                        width: 10%;
+                    }
+                    div{
+                        padding: 10px;
+                        display: block;
+                        width: 40%;
+
+                        label{
+                            display: block;
+                            color: gold;
+                            font-size: 120%;
+                        }
+
+                        input{
+                            outline: none;
+                            width: 90%;
+                            margin: 2px;
+                            height: 30px;
+                        }
+                    }
+            }
+        }
+}

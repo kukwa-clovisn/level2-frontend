@@ -1,0 +1,24 @@
+<div class="converter-body">
+    <h1>all currency converter</h1>
+    <app-navbar></app-navbar>
+    <div class="main">
+         <app-sidebar></app-sidebar>
+         <form>
+             <div>
+                  <label for="currency">currency</label>
+            <input type="text" id="currency" placeholder="currency" [(ngModel)]="currencyName">
+            <input type="number" placeholder="amount" min="0" [(ngModel)]="currencyAmount">
+            <p>{{ currencyAmount }}</p>
+             </div>
+             <div class="to">To</div>
+             <div>
+                 <label for="Tocurrency">currency</label>
+                 <input type="text" id="Tocurrency" [placeholder]="response.from">
+                 <input type="number" [placeholder]="response.amount" min="0">
+                 
+             </div>
+           
+         </form>
+    </div>
+   
+</div>

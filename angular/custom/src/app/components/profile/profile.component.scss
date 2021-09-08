@@ -1,0 +1,177 @@
+@import url(https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,400&family=Ubuntu:wght@300&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;1,100&family=Roboto:ital,wght@0,100;0,300;1,400&family=Ubuntu:wght@300&display=swap);
+.container-fluid{
+    background: white;
+    width: 100%;
+    height: 100vh;
+    margin-top: -1%;
+    padding-top: 20px;
+
+
+    .profile{
+        width: 40%;
+        height: auto;
+        display: block;
+        background: linear-gradient(rgb(118, 58, 238), rgb(141,18,193));
+        margin: auto;
+        border: none;
+        font-family: 'Poppins', sans-serif;
+
+        .content{
+            width: 100%;
+            height: 100%;
+
+            h1{
+                text-align: center;
+                color: white;
+                margin: 3% auto;
+                font-size: 20px;
+            }
+
+            .heading{
+                position: relative;
+                top: 10px;
+                left: -15px;
+                color: white;
+                font-size: 20px;
+                text-align: center;
+                padding: 10px;
+                margin: 3% 0 1% 0;
+                font-size: 2em;
+                font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+                text-transform: capitalize;
+                //  color: tomato;
+
+                 &:first-letter{
+                     font-size: 2em;
+                    //  color: gold/;
+                 }
+                span{
+                   position: relative;
+                   top: -60px;
+                   right: -85%;
+                   display: flex;
+                   justify-content: center;
+                   align-items: center;
+                   border: none;
+                   background: white;
+                   width: 20%;
+                   height: 30px;
+                   padding: 5px;
+                   text-align: center;
+                    font-family: "Ubuntu", sans-serif;
+                    font-size: 12px;
+                    border-radius: 10px;
+                    color: black;
+                    fa-icon{
+                        animation: download 1s infinite 3s alternate forwards;
+                        color:blue;
+                        position: relative;
+                    }
+                }
+                i{
+                    color: yellow;
+                    font-family: 'Ubuntu';
+                }
+            }
+
+            p{
+                text-align: center;
+                color: white;
+            }
+
+            .profile-img{
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                margin: auto;
+                background-color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                fa-icon{
+                    // display: block;
+                    font-size: 500%;
+                    opacity: 0.6;
+                    
+            }
+        }
+
+        
+        .buttons{
+            width: 60%;
+            height:20%;
+            margin: 5% auto;
+
+            button{
+                width: 40%;
+                height: 40px;
+                border: none;
+                border-radius: 20px;
+                margin-left: 5%;
+                .return, .next{
+                position: relative;
+                }
+
+                
+                a{
+                    width: 100%;
+                    height: 100%;
+                    border:none;
+                    border-radius: 20px;
+                    margin: 0;
+                    text-decoration: none;
+                    color: black;
+                }
+
+                .return{
+                     animation: return 1s infinite linear alternate forwards;
+                }
+
+                .next{
+                    animation: next 1s infinite linear alternate forwards;
+                }
+
+                &:hover{
+                    .return{
+                        color:blue;
+                    }
+                    .next{
+                        color: blue;
+                    }
+                }
+            }
+        }
+
+      
+    }
+}
+}
+
+@keyframes download{
+    0%{
+        top: -4px;
+    }
+    100%{
+        top: 4px;
+    }
+}
+
+@keyframes return{
+    0%{
+        left: -15px;
+    }
+    100%{
+        left: 0;
+    }
+}
+
+@keyframes next{
+    0%{
+        right: -15px;
+    }
+    100%{
+    right: 0;
+    }
+}

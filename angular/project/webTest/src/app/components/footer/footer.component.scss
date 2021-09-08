@@ -1,0 +1,17 @@
+footer{
+    width: 100vw;
+    height: 7%;
+    // text-align: center;
+    font-size: 110%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span{
+        color:teal;
+
+        i{
+            color:tomato;
+        }
+    }
+}

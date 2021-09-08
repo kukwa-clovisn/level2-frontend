@@ -1,0 +1,69 @@
+<!-- 
+<div class="fullstack container-fluid">
+  <form class="container">
+    <h1 class="text-capitalize text-center">fullstack application</h1>
+    <div class="input-form">
+      <label for="firstName" class="text-capitalize">firstName:</label>
+      <input type="text" name="firstName" id="firstName" [placeholder]="firstName">
+    </div>
+    <div class="input-form">
+      <label for="lastName" class="text-capitalize">lastName:</label>
+      <input type="text" name="lastName" id="lastName" [placeholder]="lastName">
+    </div>
+    <div class="input-form">
+      <label for="email" class="text-capitalize">email-address:</label>
+      <input type="email" name="email" id="email" [placeholder]="emailAddress">
+    </div>
+    <div class="input-form">
+      <label for="contact" class="text-capitalize">contact:</label>
+      <input type="text" name="contact" id="contact" [placeholder]="contact">
+    </div>
+    <div class="input-form">
+      <label for="gender" class="text-capitalize">gender:</label>
+      <input type="radio" name="gender" id="male" [placeholder]="male"><span>male</span>
+      <input type="radio" name="gender" id="female" [placeholder]="female"><span>female</span>
+    </div> --> 
+   <!--  <button type="button" name="button" class="btn border rounded p-2">submit</button>
+  </form> -->
+<!-- </div> -->
+<h1 class="text-center text-capitalize display-3 seven">seven <span>accademy</span> institute</h1> <br>
+<h3 class="text-center">sign in for a course below</h3>
+<form class="form_selection">
+  <div>
+    <input type="checkbox" name="cyber_security" id="cyber_security" (change) = "show_cyber_security_form()">
+    <label for="cyber_security">cyber security form</label>
+
+  </div>
+   <div>
+    <input type="checkbox" name="digital_marketing" id="digital_marketing" (change) = "show_digital_marketing_form()">
+    <label for="digital_marketing">digital marketing form</label>
+  </div>
+   <div>
+    <input type="checkbox" name="fullstack" id="fullstack" (change) = "show_fullstack_form()">
+    <label for="fullstack">fullstack web dev form</label>
+  </div>
+</form>
+<div class="cyber_security" *ngIf = "cyber_security">
+  <form>
+    <h1>cyber security</h1>
+    <input type="text" name="name" id="cyber_security_name" placeholder="Enter full name">
+    <input type="text" name="field" id="cyber_security_field" placeholder="Enter your field">
+    <input type="number" name="age" id="cyber_security_age" min="18" max="80" placeholder="Enter your age">
+    <input type="text" name="gender" id="cyber_security_gender" placeholder="choose your gender" list="gender">
+    <datalist id="gender">
+      <option>Male</option>
+      <option>Female</option>
+    </datalist> <br>
+    <button>submit</button>
+  </form>
+</div>
+<div class="digital_marketing">
+  <form class="digital_marketing">
+    
+  </form>
+</div>
+
+<!-- <div class="image">
+  <img class="img-fluid" src="{{ image }}" alt="my background image">
+  <img [src]="image" alt="">same stuff as above
+</div> -->

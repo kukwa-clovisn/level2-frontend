@@ -1,0 +1,36 @@
+<h1 class="text-center text-capitalize display-3 seven">seven <span>accademy</span> institute</h1> <br>
+<h3 class="text-center">sign in for a course below</h3>
+<form class="form_selection">
+  <div>
+    <input type="checkbox" name="cyber_security" id="cyber_security" (change) = "show_cyber_security_form()">
+    <label for="cyber_security">cyber security form</label>
+
+  </div>
+   <div>
+    <input type="checkbox" name="digital_marketing" id="digital_marketing" (change) = "show_digital_marketing_form()">
+    <label for="digital_marketing">digital marketing form</label>
+  </div>
+   <div>
+    <input type="checkbox" name="fullstack" id="fullstack" (change) = "show_fullstack_form()">
+    <label for="fullstack">fullstack web dev form</label>
+  </div>
+</form>
+<div class="cyber_security" *ngIf = "cyber_security">
+  <form>
+    <h1>cyber security</h1>
+    <input type="text" name="name" id="cyber_security_name" placeholder="Enter full name">
+    <input type="text" name="field" id="cyber_security_field" placeholder="Enter your field">
+    <input type="number" name="age" id="cyber_security_age" min="18" max="80" placeholder="Enter your age">
+    <input type="text" name="gender" id="cyber_security_gender" placeholder="choose your gender" list="gender">
+    <datalist id="gender">
+      <option>Male</option>
+      <option>Female</option>
+    </datalist> <br>
+    <button>submit</button>
+  </form>
+</div>
+<div class="digital_marketing">
+  <form class="digital_marketing">
+    
+  </form>
+</div>

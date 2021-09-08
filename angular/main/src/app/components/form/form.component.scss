@@ -1,0 +1,197 @@
+
+// .image{
+//   width: 100vw;
+//   height: 100vh;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+//   overflow: hidden;
+//   z-index: 0.5;
+//   img{
+//     width: 100%;
+//     z-index: 0.5;
+//     opacity: 1;
+//   }
+// }
+
+h1, h3, label{
+  color: white;
+}
+
+.seven{
+  margin: 3%;
+  color: tomato;
+  span{
+  color: mediumseagreen;
+  }
+}
+.form_selection{
+position: relative;
+  width:90%;
+  height: 20%;
+  margin: 2% auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  div{
+  width: 25%;
+  margin: 1% auto;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+   input{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  animation: input 5s linear infinite alternate forwards;
+  }
+
+  @keyframes input{
+  0%{
+   transform: scale(0.7) rotateY(360deg);
+   border-radius: 50%;
+  }
+  100%{
+  transform: scale(1.0);
+  }
+  }
+
+  label{
+  margin-left: 3%;
+  text-transform: capitalize;
+  font-size: 20px;
+  padding: 5px;
+  position: relative;
+  animation: label 3s linear infinite alternate forwards;
+  }
+
+  @keyframes label{
+  0%{
+      transform: scale(0.7);
+  }
+  100%{
+  transform: scale(1.2);
+  }
+  }
+  }
+ 
+}
+
+.fullstack{
+  position: relative;
+  opacity: 1;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  form{
+    width: 80%;
+    height: 90%;
+    padding: 20px;
+    margin: 2vh auto;
+    background: inherit;
+    padding: 10px;
+    box-shadow: 0 13px 11px gray, 0 5px 5px black;
+
+    div{
+      position: relative;
+      width: 80%;
+      display: block;
+      margin:auto;
+      label{
+        text-align: left;
+        padding: 4px;
+        font-size: 25px;
+        text-transform: capitalize;
+        display: block;
+      }
+      input{
+        width: 80%;
+        height: 40px;
+        padding-left: 16px;
+        margin: auto;
+        outline: none;
+      }
+
+    }
+    button{
+      width: 100px;
+      height: 40px;
+      padding: 5px;
+      position: relative;
+      left: 30%;
+      margin: 3vh auto;
+      color: white;
+      background: linear-gradient(rgba(83, 83, 238,0.5),rgba(73, 73, 233,0.5), rgba(48, 103, 223,0.6));
+      // opacity: 0.5;
+      transition: all 0.5s ease;
+      &:hover{
+      opacity: 1;
+      transform: scale(1.1);
+      }
+      &:first-child{
+      opacity:1;
+      font-size: 25px;
+      }
+      }
+  } 
+}
+
+.cyber_security{
+position: relative;
+  width: 70vw;
+  height: 80vh;
+  margin: 2vh auto;
+  padding: 10px;
+  background: rgba(200, 200, 200, 0.2);
+  border-radius: 10px;
+  
+  form{
+   width: 100%;
+  height: 100%;
+  margin: auto;
+  background: white;
+  display: block;
+  box-shadow: 0 8px 9px black, 0 6px 6px gray;
+  h1{
+  width: 100%;
+  height: 20%;
+  padding: 5px;
+  vertical_align: bottom;
+  font-size: 25px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: rgba(80, 80, 235,0.8);
+  }
+  input{
+  width: 70%;
+  height: 10%;
+  padding:  3px 3px 3px 16px;
+  margin: 1% auto;
+  font-size: 120%;
+  position: relative;
+  left: 10%;
+  }
+  button{
+  width: 15%;
+  height: 10%;
+  margin: 2% auto;
+  position: relative;
+  left: 35%;
+  border-radius: 5px 0 5px 0;
+  transition: all 0.5s ease;
+   color: white;
+   background: linear-gradient( gray, rgba(59, 55, 55, 0.6), rgb(80, 79, 79));
+  &:hover{
+  transform: scale(0.8);
+  color: crimson;
+  background: wheat;
+  }
+  }
+  }
+}
+

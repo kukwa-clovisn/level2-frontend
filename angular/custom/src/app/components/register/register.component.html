@@ -1,0 +1,27 @@
+
+<div class="form">
+	<form [action]="['/profile']" >
+		<h1>register</h1>
+		<h2><span>kcn</span></h2>
+		<p>fill in registration info  <a href="">log in</a></p>  <br>
+
+		<div>
+			<label for="name">Name:</label>
+			<input type="text" required name="firstname" id="name" [(ngModel)] = "name">
+		</div>
+		<div>
+			<label for="email">email:</label>
+			<input type="email" required name="email" id="email" value="{{ email }}"[(ngModel)] = "email">
+		</div>
+
+		<div>
+			<label for="lastname">password:</label>
+			<input type="password" name="password" id="password" [(ngModel)] = "password">
+		</div>
+		<div>
+			<label for="lastname">confirm password:</label>
+			<input type="password" required name="confirm_password" id="confirm_password" [(ngModel)] = "confirm_password">
+		</div>
+		<button type="submit" (click) = "register()"><a [routerLink] = "['/profile']" type="submit">register  <fa-icon [icon]="faArrowRight"></fa-icon></a> </button>
+	</form>
+</div>
