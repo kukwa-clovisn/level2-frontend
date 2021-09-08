@@ -1,0 +1,208 @@
+*,
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+nav {
+  width: 100vw;
+  height: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav div {
+  width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  font-size: 120%;
+}
+
+nav .left-content i {
+  font-size: 130%;
+  margin: 0 3%;
+}
+
+nav .left-content div {
+  /* font-size: 150%; */
+  color: red;
+  /* background-color: red; */
+  margin: 0 5%;
+}
+
+nav .left-content div span {
+  color: teal;
+  text-transform: capitalize;
+}
+
+/* styling the div with the input search field */
+nav .middle-content {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 55%;
+}
+
+nav .middle-content div {
+  width: 90%;
+}
+
+nav .middle-content div input {
+  width: 80%;
+  height: 30px;
+  outline: none;
+  border: 1px solid rgba(107, 106, 106, 0.5);
+  border-right: none;
+  padding-left: 10px;
+}
+
+nav .middle-content div button {
+  width: 20%;
+  border: 1px solid rgba(107, 106, 106, 0.5);
+  background: #ececec;
+  height: 30px;
+}
+
+nav .middle-content div button i {
+  margin: auto;
+  font-size: 130%;
+}
+
+nav .middle-content i {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ececec;
+}
+
+.home {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.home section {
+  width: 10%;
+  display: block;
+}
+
+.home section div {
+  width: 50%;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.home section div i {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.home section div p {
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.home .main {
+  width: 90vw;
+  display: block;
+  margin: auto;
+  background: #f9f9f9;
+}
+
+.home .main .video-content {
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin: 1% auto;
+}
+
+.home .main .video-content a {
+  display: block;
+  width: 35vw;
+  height: auto;
+  margin: auto;
+}
+
+.home .main .video-content a video {
+  width: 35vw;
+  height: auto;
+  margin: auto;
+}
+
+.home .main .video-content .about-video {
+  margin: 1%;
+  padding: 1%;
+}
+
+.home .main .video-content .about-video h1 {
+  font-size: 110%;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin: 0% 0 1%;
+}
+
+.home .main .video-content .about-video span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.home .main .video-content .about-video span img {
+  width: 4%;
+  border-radius: 50%;
+  margin-right: 1%;
+}
+
+.home .main .video-content .about-video a {
+  text-decoration: none;
+  display: block;
+  width: 5%;
+  height: 20px;
+  border: none;
+  text-align: center;
+  background: #ececec;
+  color: black;
+  border-radius: 5px;
+  margin: 2% 0;
+}
+/*# sourceMappingURL=youtube.css.map */
