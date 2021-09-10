@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fontawesome/css/all.css">
+    <link rel="stylesheet" href="./styles.css">
+    <title>my Dairy</title>
+</head>
+<body>
+    <main>
+        <div class="dairy">
+            <h1>my Dairy <i class="fa fa-arrow-right"></i></h1>
+            <form>
+                <textarea name="text" id="input" cols="30" rows="10" placeholder="Add Todo Item Here!" required></textarea>
+                <i class="far fa-laugh"></i>
+                <button type="submit" onclick="addTodo();">save</button>
+            </form>
+             
+             <br> <br> <br> <br>
+            <p></p> <br>
+            <ul id="todos">
+                <li class="items"> <i class="fa fa-ellipsis-v" aria-hidden="true"></i></li>
+                <li class="items"> <i class="fa fa-ellipsis-v" aria-hidden="true"></i></li>
+                <li class="items"> <i class="fa fa-ellipsis-v" aria-hidden="true"></i></li>
+                <li class="items"> <i class="fa fa-ellipsis-v" aria-hidden="true"></i></li>
+                <li class="items"> <i class="fa fa-ellipsis-v" aria-hidden="true"></i></li>
+            </ul>
+
+        </div>
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+</html>
