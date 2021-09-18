@@ -1,1 +1,7 @@
 node_modules
+videos/
+images/
+.vscode/
+*.scss
+*.css.map
+fontawesome/

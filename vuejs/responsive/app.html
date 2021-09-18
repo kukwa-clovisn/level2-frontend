@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<script src="./vue.js"></script>
+<body>
+    <div id="myApp">
+        <p>{{ greeting }}</p>
+        <a V-bind:href="link">{{ google }}</a>
+        <button V-on:click="startCount">start count</button>
+        <span>{{ counter }}</span>
+        <span V-html="nom"></span>
+    </div>
+    <div>
+        <h1>bindings</h1>
+        <p>interpolation {{}}</p>
+        <p>attribute binding V-bind</p>
+        <p>event binding V-on</p>
+        <h1>directives</h1>
+        <p>v-bind</p>
+        <p>v-on</p>
+        <p>v-html</p>
+
+    </div>
+
+
+    <script>
+
+        new Vue({
+            el:"#myApp",
+            data:{
+                greeting:"this is cool mehn",
+                link:"https://google.com",
+                google: "Google",
+                counter: 0,
+                nom:"<h2> mr Kambang and his friends</h2>"
+            },
+            methods:{
+                startCount: function() {
+                    setInterval(() => {
+                       this.counter++;
+                    }, 1000);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

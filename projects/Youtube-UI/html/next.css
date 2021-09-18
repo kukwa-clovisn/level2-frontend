@@ -1,0 +1,7 @@
+#play{
+    width: 80vw;
+    margin:5% auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}

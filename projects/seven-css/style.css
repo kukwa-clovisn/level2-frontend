@@ -1,0 +1,165 @@
+*, body {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#seven {
+  width: 100vw;
+  height: 85vh;
+  background-color: #1a291a;
+  margin: 15vh 0 0 0;
+  position: relative;
+}
+
+#seven svg {
+  background-color: red;
+  position: relative;
+  left: 25vw;
+  top: -36vh;
+}
+
+#seven svg polygon {
+  background-color: brown;
+  margin: auto;
+}
+
+#seven .side-bar {
+  width: 25vw;
+  height: 80%;
+  border: 1px solid white;
+  position: absolute;
+  top: 3vh;
+  display: block;
+}
+
+#seven .side-bar .container {
+  width: 100%;
+  height: 25%;
+  border: 1px solid blue;
+}
+
+#seven .side-bar .one {
+  background-color: blue;
+}
+
+#seven .side-bar .two {
+  background-color: #e97f59;
+}
+
+#seven .side-bar .three {
+  background-color: green;
+}
+
+#seven .side-bar .four {
+  background-color: yellow;
+}
+
+#seven .wbg {
+  width: 87vw;
+  height: 200px;
+  background-color: white;
+  border-radius: 50%;
+  position: relative;
+  left: 3vw;
+  bottom: -27vh;
+}
+
+.seven {
+  width: 200px;
+  height: 200px;
+  margin: 5vh auto;
+  background-color: #e97f59;
+  position: relative;
+  border-radius: 50%;
+}
+
+.seven .logo {
+  width: 150px;
+  height: 150px;
+  border: 4px solid green;
+  border-radius: 50%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  top: 15%;
+  left: 16%;
+  opacity: 0.9;
+  background-color: white;
+}
+
+.seven .logo .span0 {
+  font-size: 100px;
+  color: #034b03;
+  position: relative;
+  left: -30px;
+}
+
+.seven .logo p {
+  text-transform: capitalize;
+  position: relative;
+  left: -105px;
+  top: 26px;
+  font-size: 20px;
+  color: #034b03;
+}
+
+.seven .logo p::first-letter {
+  font-size: 130px;
+  position: relative;
+}
+
+.seven .logo p .span1 {
+  position: absolute;
+  top: 60px;
+  left: 65px;
+  text-transform: lowercase;
+  -webkit-transform: rotateZ(-7deg);
+          transform: rotateZ(-7deg);
+}
+
+.seven .logo p .span2 {
+  position: absolute;
+  top: 88px;
+  left: 84px;
+  text-transform: lowercase;
+  -webkit-transform: rotateZ(-7deg);
+          transform: rotateZ(-7deg);
+}
+
+@-webkit-keyframes seven {
+  0% {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateZ(360deg);
+            transform: rotateZ(360deg);
+  }
+}
+
+@keyframes seven {
+  0% {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateZ(360deg);
+            transform: rotateZ(360deg);
+  }
+}
+
+#canvas {
+  border: 1px solid black;
+  margin: 0 10%;
+}
+/*# sourceMappingURL=style.css.map */
