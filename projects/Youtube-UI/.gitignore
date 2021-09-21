@@ -1,5 +1,6 @@
 node_modules
 videos
-*.scss
-*.map
+fontawesome/
 .vscode
+more.html
+next.css
