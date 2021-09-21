@@ -6,33 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vue js</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./fontawesome/css/all.min.css">
 </head>
+<script src="./vue.js"></script>
 <body>
-    <div class="time">
-        <p>time left</p>
-        <p>2:00</p>
-    </div>
-    <div class="main">
-        <div class="levels">
-            <div class="buttons">
-                 <button>easy</button>
-            <button>medium</button>
-            <button>difficult</button>
+    <div id="App">
+        <div class="time">
+            <p>time left</p>
+            <p>{{ counter }}</p>
+        </div>
+        <div id="profile">
+            <div class="profile">
+                <i class="fa fa-user-circle"></i>
+                <p>profile</p>
+            </div>
+            <div class="bars">
+                <i class="fa fa-bars" V-on:click="toggleMenu"></i>
+            </div>
+           <div class="category">
+               <p>category</p>
+               <p>standard</p>
+           </div>
+        </div>
+        <i class="fa fa-user-circle profile-icon"></i>
+       
+        <div class="main">
+            <div class="levels">
+                <div class="buttons">
+                     <button>easy</button>
+                <button>medium</button>
+                <button>difficult</button>
+                </div>
+            </div>
+            <div class="question">
+                <h2>question</h2>
+                <!-- <input type="text" name="answer" id="answer" placeholder="your answer"> -->
+                <textarea name="text" id="answer" cols="30" rows="10" placeholder="your answer"></textarea>
+            </div>
+            <div class="timing">
+                <button V-on:click="counting">start</button>
             </div>
         </div>
-        <div class="question">
-            <h2>question</h2>
-            <!-- <input type="text" name="answer" id="answer" placeholder="your answer"> -->
-            <textarea name="text" id="answer" cols="30" rows="10" placeholder="your answer"></textarea>
-        </div>
-        <div class="timing">
-            <button>start/stop</button>
-        </div>
+        <div class="result"> 
+            <span>results:</span>
+            <span>trials:</span>
+            <span>score:</span>
+         </div>
     </div>
-    <div class="result"> 
-        <span>results:</span>
-        <span>trials:</span>
-        <span>score:</span>
-     </div>
+
+
+    <script src="./main.js"></script>
 </body>
 </html>

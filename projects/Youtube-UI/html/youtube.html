@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.min.css"> -->
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="/css/youtube.css">
     <title>Youtube channel</title>
 </head>
@@ -20,8 +21,9 @@
             </div>
             <div class="middle-content">
                 <div>
+                    <i class="fa fa-arrow-left" id="hide-search-box"></i>
                     <input type="search" name="search" id="search" placeholder="Search">
-                    <button><i title="search" class="fas fa-search"></i></button>
+                    <button id="search-icon"><i title="search" class="fas fa-search"></i></button>
                 </div>
                 <i class="fa fa-microphone" id="microphone"></i>
             </div>
@@ -44,7 +46,7 @@
             <li><i class="fa fa-caret-square-right" aria-hidden="true"></i><a href="">your videos</a></li>
             <li><i class="fa fa-clock" aria-hidden="true"></i><a href="">watch later</a></li>
             <li><img src="/assets/images/like.png" alt=""><a href="">liked videos</a></li>
-            <li><i class="fa fa-align-left" aria-hidden="true"></i><a href="">KCN.TJ4L</a></li>
+            <li><i class="fa fa-outdent" aria-hidden="true"></i><a href="">KCN.TJ4L</a></li>
        <hr>
             <h2>subscriptions</h2>
             <li><img src="/assets/images/images.png" alt=""><a href="">koko bass TV</a></li>
@@ -118,235 +120,13 @@
                 <!-- <a href=""><i class="fa fa-arrow-right"></i></a> -->
             </nav>
             <div class="content">
-                <div class="video-content">
-                    <video id="video1" class="video" onclick="func()" src="/assets/videos/How to Improve UI_UX Design Skills - 5 Quick Tips.mp4#t=50" preload="metadata" ></video>
-                    <div class="about-video">
-                        <div class="image">
-                            <img class="img" src="/assets/images/images.png" alt="">
-                        </div>
-                        <div class="title">
-                            <h1>how to improve UI_UX design skills - 5 quick tips</h1> <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                            <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                            <p>4.5k views &bullet; 3 years ago</p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="video-content">
-                  <video id="video2" class="video" onclick="func()" src="/assets/videos/JSON Crash Course.mkv" ></video>
-                    <div class="about-video">
-                        <div class="image">
-                            <img class="img" src="/assets/images/images.png" alt="">
-                        </div>
-                        <div class="title">
-                            <h1>let me revive your weak or dead prayer life in 12 minutes - apostle JOSHUA SELMAN</h1>
-                            <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                            <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                        <p>9.5k views &bull; 1 years ago</p>
-                        
-                        </div>
-                    </div>
-                </div>
-                <div class="video-content">
-                    <video id="video3" class="video" onclick="func()" src="/assets/videos/O NO! IT'S TOO HOT IN HERE! KOKO BASS _ BAND CAM @TimGodfreyWorld @Church BoiTV @Showgear Records.mp4#t=40" preload="metadata" ></video>
-                    <div class="about-video">
-                        <div class="image">
-                            <img class="img" src="/assets/images/images.png" alt="">
-                        </div>
-                        <div class="title">
-                            <h1>O NO! it's TOO HOT IN HERE! KOKO BASS _ BAND CAM @TimGodfreyWorld @Church BoiTV @Showgear Records.</h1>
-                            <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                            <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                        <p>9.5k views &bullet; 1 years ago</p>
-                        
-                        </div>
-                    </div>
-                </div>
-                <div class="video-content">
-                    <video id="video4" class="video" onclick="func()" src="/assets/videos/Vanilla Javascript Text Animation Tutorial.mp4#t=20" preload="metadata" ></video>
-                    <div class="about-video">
-                        <div class="image">
-                            <img class="img" src="/assets/images/images.png" alt="">
-                        </div>
-                        <div class="title">
-                            <h1>THE BEST CHRISTMAS CAROL YOU WOULD WATCH IN 2020 ! FEATURING MK STIXX __ MUST WATCH!!! __ KOKO BASS.mkv</h1>
-                            <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                            <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                            <p>9.5k views &bullet; 1 years ago</p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="video-content">
-                    <video id="video5" class="video" onclick="func()" src="/assets/videos/The Person You Should Not Marry - mildred kingsley Okonkwo.mp4#t=100" preload="metadata" ></video>
-                   <div class="about-video">
-                       <div class="image">
-                           <img src="/assets/images/images.png" alt="">
-                       </div>
-                       <div class="title">
-                           <h1>the person you should not marry - mildred kingsley Okonkwo</h1>
-                           <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                           <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                       <p>9.5k views &bullet; 1 years ago</p>
-                       
-                       </div>
-                   </div>
-               </div>
-               <div class="video-content">
-                   <video id="video6" class="video" onclick="func()" src="/assets/videos/Vanilla Javascript Text Animation Tutorial.mp4"  ></video>
-                   <div class="about-video">
-                       <div class="image">
-                           <img src="/assets/images/images.png" alt="">
-                       </div>
-                       <div class="title">
-                           <h1>when you feel reluctant to pray do this! - ask pastor chris - pastor chris teaching</h1>
-                           <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                           <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                       <p>9.5k views &bullet; 1 years ago</p>
-                        
-                       </div>
-                   </div>
-               </div>
-               <div class="video-content">
-                <video class="video" onclick="func()" src="/assets/videos/Learn DOM Manipulation In 18 Minutes_2.mp4"  ></video>
-                <div class="about-video">
-                    <div class="image">
-                        <img src="/assets/images/images.png" alt="">
-                    </div>
-                    <div class="title">
-                        <h1>when you feel reluctant to pray do this! - ask pastor chris - pastor chris teaching</h1>
-                        <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                        <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                    <p>9.5k views &bullet; 1 years ago</p>
-                     
-                    </div>
-                </div>
-            </div>
-            <div class="video-content">
-                <video class="video" onclick="func()" src="/assets/videos/How to Improve UI_UX Design Skills - 5 Quick Tips.mp4"  ></video>
-                <div class="about-video">
-                    <div class="image">
-                        <img src="/assets/images/images.png" alt="">
-                    </div>
-                    <div class="title">
-                        <h1>when you feel reluctant to pray do this! - ask pastor chris - pastor chris teaching</h1>
-                        <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                        <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                    <p>9.5k views &bullet; 1 years ago</p>
-                     
-                    </div>
-                </div>
-            </div>
-            <div class="video-content">
-                <video class="video" onclick="func()" src="/assets/videos/The Person You Should Not Marry - mildred kingsley Okonkwo.mp4"  ></video>
-               <div class="about-video">
-                   <div class="image">
-                       <img src="/assets/images/images.png" alt="">
-                   </div>
-                   <div class="title">
-                       <h1>the person you should not marry - mildred kingsley Okonkwo</h1>
-                       <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                       <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                   <p>9.5k views &bullet; 1 years ago</p>
-                   
-                   </div>
-               </div>
-           </div>
-           <div class="video-content">
-            <video class="video" onclick="func()" src="/assets/videos/How to Improve UI_UX Design Skills - 5 Quick Tips.mp4"  ></video>
-            <div class="about-video">
-                <div class="image">
-                    <img src="/assets/images/images.png" alt="">
-                </div>
-                <div class="title">
-                    <h1>how to improve UI_UX design skills - 5 quick tips</h1> <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                    <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                    <p>4.5k views &bullet; 3 years ago</p>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="video-content">
-            <video class="video" onclick="func()" src="/assets/videos/JSON Crash Course.mkv" ></video>
-            <div class="about-video">
-                <div class="image">
-                    <img src="/assets/images/images.png" alt="">
-                </div>
-                <div class="title">
-                    <h1>let me revive your weak or dead prayer life in 12 minutes - apostle JOSHUA SELMAN</h1>
-                    <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                    <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                <p>9.5k views &bull; 1 years ago</p>
                 
-                </div>
-            </div>
-        </div>
-        <div class="video-content">
-            <video class="video" onclick="func()" src="/assets/videos/O NO! IT'S TOO HOT IN HERE! KOKO BASS _ BAND CAM @TimGodfreyWorld @Church BoiTV @Showgear Records.mp4"  ></video>
-            <div class="about-video">
-                <div class="image">
-                    <img src="/assets/images/images.png" alt="">
-                </div>
-                <div class="title">
-                    <h1>O NO! it's TOO HOT IN HERE! KOKO BASS _ BAND CAM @TimGodfreyWorld @Church BoiTV @Showgear Records.</h1>
-                    <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                    <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                <p>9.5k views &bullet; 1 years ago</p>
-                
-                </div>
-            </div>
-        </div>
-           <div class="video-content">
-               <video class="video" onclick="func()" src="/assets/videos/Vanilla Javascript Text Animation Tutorial.mp4#T=11" preload="metadata" ></video>
-               <div class="about-video">
-                   <div class="image">
-                       <img src="/assets/images/images.png" alt="">
-                   </div>
-                   <div class="title">
-                       <h1>when you feel reluctant to pray do this! - ask pastor chris - pastor chris teaching</h1>
-                       <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                       <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                   <p>9.5k views &bullet; 1 years ago</p>
-                    
-                   </div>
-               </div>
-           </div>
-           <div class="video-content">
-            <video class="video" onclick="func()" src="/assets/videos/Learn DOM Manipulation In 18 Minutes_2.mp4#t=10" preload="metadata" ></video>
-            <div class="about-video">
-                <div class="image">
-                    <img src="/assets/images/images.png" alt="">
-                </div>
-                <div class="title">
-                    <h1>when you feel reluctant to pray do this! - ask pastor chris - pastor chris teaching</h1>
-                    <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                    <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                <p>9.5k views &bullet; 1 years ago</p>
-                 
-                </div>
-            </div>
-        </div>
-        <div class="video-content">
-            <video class="video" onclick="func()" src="/assets/videos/How to Improve UI_UX Design Skills - 5 Quick Tips.mp4#t=10" preload="metadata" ></video>
-            <div class="about-video">
-                <div class="image">
-                    <img src="/assets/images/images.png" alt="">
-                </div>
-                <div class="title">
-                    <h1>when you feel reluctant to pray do this! - ask pastor chris - pastor chris teaching</h1>
-                    <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
-                    <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                <p>9.5k views &bullet; 1 years ago</p>
-                 
-                </div>
-            </div>
-        </div>
             </div>
         </div>
     </div>
     <div class="load"></div>
-   
-
+    <!-- <script src="/js/next.js"></script> -->
+    <script src="/js/dom.js"></script>
     <script src="/js/youtube.js"></script>
 </body>
 </html>

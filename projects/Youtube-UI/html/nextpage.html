@@ -44,7 +44,7 @@
             <li><i class="fa fa-caret-square-right" aria-hidden="true"></i><a href="">your videos</a></li>
             <li><i class="fa fa-clock" aria-hidden="true"></i><a href="">watch later</a></li>
             <li><img src="/assets/images/like.png" alt=""><a href="">liked videos</a></li>
-            <li><i class="fa fa-align-left" aria-hidden="true"></i><a href="">KCN.TJ4L</a></li>
+            <li><i class="fa fa-outdent" aria-hidden="true"></i><a href="">KCN.TJ4L</a></li>
        <hr>
             <h2>subscriptions</h2>
             <li><img src="/assets/images/images.png" alt=""><a href="">koko bass TV</a></li>
@@ -78,19 +78,68 @@
     </div>
     <div id="content">
         <div class="vid">
-            <video id="nextpage" src="/assets/videos/Learn DOM Manipulation In 18 Minutes_2.mp4"  controls autoplay></video>
+            <video id="nextpage"  controls></video>
             <h4><a href="">#Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, deserunt.</a></h4>
-            <h1>Lorem ipsum dolor sit amet.</h1>
-            <p>55,432views &bullet; June 3, 2018</p>
+            <h1 id="main-video-title">learn DOM manipulation in 18 minutes_2.mp4</h1>
+            <div class="vid-social">
+                <p id="main-video-views">55,432views &bullet; June 3, 2018</p>
+                <div class="vid-social-icons">
+                    <div>
+                        <i class="fa fa-thumbs-up like" onclick="thumbLike()" aria-hidden="true"></i>
+                        <span id="like"></span>
+                    </div>
+                    <div>
+                        <i class="fa fa-thumbs-down like" onclick="thumbDislike()" aria-hidden="true"></i>
+                        <span id="dislike"></span>
+                    </div>
+                    <div>
+                        <i class="fa fa-share"></i>
+                        <span>share</span>
+                    </div>
+                    <div>
+                        <i class="fa fa-outdent" aria-hidden="true"></i>
+                        <span>save</span>
+                    </div>
+                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                    <!-- <i class="fa fa-indent" aria-hidden="true"></i> -->
+                </div>
+            </div>
             <hr>
             <div id="comments">
-                <img src="/assets/images/k.jpg" alt="">
+                <img src="/assets/images/images.png" alt="">
                 <div class="info">
-                    <h2>lorem tv</h2> <br>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit distinctio ipsam tenetur tempore laboriosam! Ullam, numquam quibusdam laboriosam exercitationem ab dicta earum sit consectetur corporis eaque. Est ea ut dolorem. Quia quod omnis error. Repellat facilis error blanditiis amet dolorum.</p>
+                    <h2>kcn tv</h2>
+                    <h3>30.3k subscibers</h3> <br>
+                    <a href="">#Lorem #ipsum #dolor #sit #amet #consectetur</a>
                 </div>
                 <div class="subscribe">
                     <button>subscribe</button>
+                </div>
+            </div>
+            <div class="reply">
+                <h2>95 comments</h2>
+                <span><i class="fa fa-outdent"></i> sort by</span>
+            </div>
+            <div class="reply-logo">
+                <!-- <img src="/assets/images/images.png" alt=""> -->
+                <span>k</span>
+                <input type="text" name="text" id="comment" placeholder="Add a public comment...">
+                <div class="input">
+                    <span class="add-comment cancel">cancel</span>
+                    <span class="add-comment submit">comment</span>
+                </div>
+            </div>
+            <div class="comment-output">
+                <img src="/assets/images/images.png" alt="">
+                <div>
+                    <h3>kukwa clovis  <span>5 months ago</span></h3>
+                    <p><span id="bind"></span>  <i class="fa fa-ellipsis-v"></i></p>
+                    <h4>
+                        <span><i class="fa fa-thumbs-up"></i> 54</span>
+                        <span><i class="fa fa-thumbs-down"></i> 54</span>
+                        <span>reply</span>
+                    </h4>
+                    <h2><a href=""><i class="fa fa-caret-down"></i> view reply</a></h2>
                 </div>
             </div>
         </div>
@@ -100,22 +149,22 @@
                  <video id="video1" class="video" onclick="fun()" src="/assets/videos/JSON Crash Course.mkv" ></video>
                 <div class="about-video">
                     <div class="title">
-                        <h1>let me revive your weak or dead prayer life in 12 minutes - apostle JOSHUA SELMAN</h1>
+                        <h1 class="video-title">JSON CRASH COURSE.mkv</h1>
                         <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
                         <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                    <p>9.5k views &bull; 1 years ago</p>
+                    <p class="video-views">9.5k views &bull; 1 years ago</p>
                     
                     </div>
                 </div>
             </div>
             <div class="vid-content">
-                <video id="video2" class="video" onclick="fun()" src="/assets/videos/Vanilla Javascript Text Animation Tutorial.mp4" ></video>
+                <video id="video2" class="video" onclick="fun();"  src="/assets/videos/Vanilla Javascript Text Animation Tutorial.mp4" ></video>
                <div class="about-video">
                    <div class="title">
-                       <h1>let me revive your weak or dead prayer life in 12 minutes - apostle JOSHUA SELMAN</h1>
+                       <h1 class="video-title">Vanilla javascript Text animation tutorial.mp4</h1>
                        <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
                        <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-                   <p>9.5k views &bull; 1 year ago</p>
+                   <p class="video-views">10k views &bull; 2 years ago</p>
                    
                    </div>
                </div>
@@ -124,10 +173,10 @@
             <video id="video3" class="video" onclick="fun()" src="/assets/videos/LET ME REVIVE YOUR WEAK OR DEAD PRAYER LIFE IN 12 MINUTES - APOSTLE JOSHUA SELMAN.mp4#t=10" preload="metadata"></video>
            <div class="about-video">
                <div class="title">
-                   <h1>let me revive your weak or dead prayer life in 12 minutes - apostle JOSHUA SELMAN</h1>
+                   <h1 class="video-title">let me revive your weak or dead prayer life in 12 minutes - apostle JOSHUA SELMAN</h1>
                    <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
                    <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-               <p>9.5k views &bull; 1 years ago</p>
+               <p class="video-views">5k views &bull; 5 months ago</p>
                
                </div>
            </div>
@@ -136,10 +185,10 @@
         <video id="video4" class="video" onclick="fun()" src="/assets/videos/O NO! IT'S TOO HOT IN HERE! KOKO BASS _ BAND CAM @TimGodfreyWorld @Church BoiTV @Showgear Records.mp4" ></video>
        <div class="about-video">
            <div class="title">
-               <h1>let me revive your weak or dead prayer life in 12 minutes - apostle JOSHUA SELMAN</h1>
+               <h1 class="video-title">o no it's too hot in here KOKO BASS_BAND CAM@TIMGODFREYWorld@Church BoiTV @Showgear</h1>
                <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
                <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-           <p>9.5k views &bull; 1 years ago</p>
+           <p class="video-views">20k views &bull; 6 months ago</p>
            
            </div>
        </div>
@@ -148,34 +197,34 @@
     <video id="video5" class="video" onclick="fun()" src="/assets/videos/When You Feel Reluctant to Pray Do This! - Ask Pastor Chris - Pastor Chris teaching.mp4#t=10" preload="metadata"></video>
    <div class="about-video">
        <div class="title">
-           <h1>let me revive your weak or dead prayer life in 12 minutes - apostle JOSHUA SELMAN</h1>
+           <h1 class="video-title">when you feel reluctant to pray do this! -ask  pastor chris -pastor chris teaching.mp4</h1>
            <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
            <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-       <p>9.5k views &bull; 1 years ago</p>
+       <p class="video-views">95k views &bull; 5 years ago</p>
        
        </div>
    </div>
 </div>
 <div class="vid-content">
-    <video id="video6" class="video" onclick="fun()" src="/assets/videos/The Person You Should Not Marry - mildred kingsley Okonkwo.mp4#t=20" preload="metadata"></video>
+    <video id="video6" class="video" onclick="fun()" src="/assets/videos/The Person You Should Not Marry - mildred kingsley Okonkwo.mp4"></video>
    <div class="about-video">
        <div class="title">
-           <h1>let me revive your weak or dead prayer life in 12 minutes - apostle JOSHUA SELMAN</h1>
+           <h1 class="video-title">the person you should not marry -mildred kingsley okonkwo.mp4</h1>
            <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
            <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-       <p>9.5k views &bull; 1 years ago</p>
+       <p class="video-views">15k views &bull; 3 years ago</p>
        
        </div>
    </div>
 </div>
 <div class="vid-content">
-    <video id="video7" class="video" onclick="fun()" src="/assets/videos/JSON Crash Course.mkv" ></video>
+    <video id="video7" class="video" onclick="fun()" src="/assets/videos/JSON Crash Course.mkv" preload="auto"></video>
    <div class="about-video">
        <div class="title">
-           <h1>let me revive your weak or dead prayer life in 12 minutes - apostle JOSHUA SELMAN</h1>
+           <h1 class="video-title">JSON CRASH COURSE.mkv</h1>
            <i class="fa fa-ellipsis-v" id="i" aria-hidden="true"></i>
            <span>kcn tv <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-       <p>9.5k views &bull; 1 years ago</p>
+       <p class="video-views">25k views &bull; 1 years ago</p>
        
        </div>
    </div>
@@ -184,7 +233,7 @@
 </div>
 <div id="blur"></div>
     </div>
-   
+    <!-- <script src="/js/dom.js"></script> -->
     <script src="/js/next.js"></script>
     <!-- <script src="/js/youtube.js"></script> -->
 </body>
