@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vue</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        input{
+            display: block;
+            border: 1px solid black;
+            margin: 1% 4%;
+            white-space: pre-line;
+        }
+        p{
+            white-space: pre-line;
+        }
+    </style>
 </head>
 <script src="./vue.js"></script>
 <body>
@@ -15,8 +26,27 @@
         <button V-on:click="startCount">start count</button>
         <span>{{ counter }}</span>
         <span V-html="nom"></span>
+        <p v-if='seen'>this is for v-if directive if the seen is true it will display</p>
+        <p v-else>this is for v-else directiv if seen is false this will show</p>
+
     </div>
-    <div>
+    <div id="for">
+        <button @click = 'fruit'>fruits</button><button @click = 'persons'>names</button>
+        <h1>list of fruits</h1>
+        <ul v-if='fruits'>
+            <li v-for = 'item in items' :key = 'item.id'>{{ item.id }}</li>
+        </ul>
+        <ol v-else>
+            <li v-for="name of names" :key="name.id">{{ name.id }}</li>
+        </ol>
+    </div>
+    <div id="form">
+        <p>{{ message }}</p>
+        <label for="name">name:</label>
+        <input type="text" name="name" id="name" v-model="message" placeholder="enter message">
+        
+    </div>
+    <!-- <div>
         <h1>bindings</h1>
         <p>interpolation {{}}</p>
         <p>attribute binding V-bind</p>
@@ -28,7 +58,9 @@
         <p>V-html</p>
         <p>V-if</p>
         <p>V-for</p>
-    </div>
+    </div> -->
+
+    
 
 
     <script>
@@ -36,6 +68,7 @@
         new Vue({
             el:"#myApp",
             data:{
+                seen: false,
                 greeting:"this is cool mehn",
                 link:"https://google.com",
                 google: "Google",
@@ -48,6 +81,38 @@
                        this.counter++;
                     }, 1000);
                 }
+            }
+        })
+
+        new Vue({
+            el: "#for",
+            data :{
+                    fruits:Boolean,
+                    check:Boolean,
+                    items : [ {id:'pear'}, {id:'apple'}, {id:'mango'}, {id:'pineaple'}, {id:'orange'}],
+                    names : [
+                        {
+                            id: "paul"
+                        },
+                        {id: 'Marie'}, {id: 'peter'}, {id: 'james'}, {id: 'sophia'}
+                    ]
+            },
+            methods : {
+                fruit: function () {
+                    this.fruits = true;
+                    this.check = false;
+                },
+                persons: function () {
+                    this.fruits = false;
+                    this.check = true;
+                }
+            }
+        })
+
+        new Vue({
+            el: "#form",
+            data: {
+                message: ""
             }
         })
     </script>

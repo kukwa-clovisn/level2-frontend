@@ -69,18 +69,18 @@ let video_channel = [
 ]
 
 let video_channel_likes = [
+    "30.5k views &bull; 1 years ago",
+    "9.5k views &bull; 5 years ago",
+    "5k views &bull; 2 years ago",
+    "95k views &bull; 1 years ago",
+    "9.5k views &bull; 3 years ago",
     "9.5k views &bull; 1 years ago",
     "9.5k views &bull; 1 years ago",
+    "9.5k views &bull; 7 years ago",
     "9.5k views &bull; 1 years ago",
+    "9.5k views &bull; 3 years ago",
     "9.5k views &bull; 1 years ago",
-    "9.5k views &bull; 1 years ago",
-    "9.5k views &bull; 1 years ago",
-    "9.5k views &bull; 1 years ago",
-    "9.5k views &bull; 1 years ago",
-    "9.5k views &bull; 1 years ago",
-    "9.5k views &bull; 1 years ago",
-    "9.5k views &bull; 1 years ago",
-    "9.5k views &bull; 1 years ago",
+    "9.5k views &bull; 3 years ago",
     "9.5k views &bull; 1 years ago"
 ]
 // for(let i = 0; i < src.length; i++) {
@@ -108,8 +108,8 @@ let video_channel_likes = [
 // creating a for loop that  loops through the source array and creates a video and contents of the html page
 for(let i = 0; i < src.length; i++) {
 
-    let count = src.length;
-let shuffle,lastCount;
+//     let count = src.length;
+// let shuffle,lastCount;
    
    
 
@@ -205,7 +205,7 @@ let shuffle,lastCount;
     
 }
 
-console.log(src)
+// console.log(src)
 // console.log(linkArr)
 
 

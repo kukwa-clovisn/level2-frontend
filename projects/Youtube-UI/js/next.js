@@ -21,7 +21,6 @@ let bind = document.querySelector('#bind')
 
 
 window.onload = ()=> {
-    
         let src = localStorage.getItem('src')
         let heading = localStorage.getItem('heading')
         let views = localStorage.getItem('views')
@@ -53,14 +52,12 @@ function clearLocalStorage() {
         localStorage.setItem('views','')
 }
 let videoArr = [];
-
 function fun() {
     for(let j = 0; j < video.length; j++){
      videoArr.push(video[j]);
         video[j].addEventListener('click', (e) => {
             mainVideoTitle.innerText = videoTitle[j].innerText;
             mainVideoviews.innerText = videoViews[j].innerText;
-         //    video[j].src = nextpage.src;
             e.target.removeEventListener;
             nextpage.src = video[j].src;
          
@@ -100,7 +97,7 @@ blurred.addEventListener('click', ()=> {
 })
 
 // function that increments the count on the like and dislike buttons
-let countUp = '30.4k';
+let countUp = 25000;
 let countDown = 20;
 like.innerHTML = countUp;
 dislike.innerHTML = countDown;
