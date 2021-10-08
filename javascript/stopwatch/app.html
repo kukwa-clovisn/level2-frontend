@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./app.css">
+</head>
+
+<body>
+    <div class="stopwatch">
+        <div class="display">
+            <p id="time">
+                <span id="hour">00</span>:
+                <span id="min">00</span>:
+                <span id="sec">00</span>:
+                <span id="milisec">00</span>
+            </p>
+        </div>
+        <div class="box">
+            <div class="set">
+
+                <input type="number" name="number" id="number" min="1" max="10" value="1" placeholder="Enter interval here!" required>
+
+                <button id="add">set interval</button>
+
+            </div>
+            <div class="btn">
+
+                <button id="start" onclick="start()">start</button>
+
+                <button id="stop" onclick="stop()">stop</button>
+
+            </div>
+        </div>
+    </div>
+    <div id="canva"></div>
+    <script src="./app.js"></script>
+</body>
+
+</html>

@@ -119,6 +119,7 @@ for(let i = 0; i < src.length; i++) {
     let video_title = document.createElement('div');
     let logo_image = document.createElement('div');
     let image = document.createElement('img')
+    let hover_div = document.createElement('div')
 
     // append the videoContent to the content
     content.append(videoContent)
@@ -135,11 +136,36 @@ for(let i = 0; i < src.length; i++) {
     // adding video attribute of preload
     video.setAttribute('preload', 'metadata');
 
+    let hover_icon1 = document.createElement('i')
+    let hover_save = document.createElement('span')
+    let hover__div1 = document.createElement('div')
+    let hover__div2 = document.createElement('div')
+    
+    // hover_save.innerText = 'save'
+    // let hover_queue = document.createElement('span')
+    // hover_queue.innerText = 'save to watch later'
+    // hover_icon1.classList.add('fa')
+    // hover_icon1.classList.add('fa-outdent')
+    // hover_icon1.classList.add('watch-later')
+    // let hover_icon2 = document.createElement('i')
+    // hover_icon2.classList.add('fa')
+    // hover_icon2.classList.add('fa-compass')
+    // hover_icon2.classList.add('queue')
+    // hover_div.append( hover__div1, hover__div2)
+    // hover_div.classList.add('hover-div')
+    // hover__div1.append(hover_save, hover_icon2)
+
+    // hover__div2.append(hover_queue, hover_icon1)
+
     // adding to every video a class of video 
     video.classList.add('video');
+    // video.addEventListener('onmouseover', () => {
+    //     hover_div.classList.toggle('show_hover')
+    // })
 
     // appending the video element to the video_content div
     videoContent.append(video);
+    videoContent.append(hover_div)
 
     // next we append the aboutVideo to the videoContent div and add a class of about-video to the aboutVideo
     videoContent.append(aboutVideo);

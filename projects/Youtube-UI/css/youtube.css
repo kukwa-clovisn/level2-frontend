@@ -752,6 +752,7 @@ html ::-webkit-scrollbar-thumb {
 
 .home .main .content .video-content {
   margin: 1%;
+  position: relative;
 }
 
 .home .main .content .video-content video {

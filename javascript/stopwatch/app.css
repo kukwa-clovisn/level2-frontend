@@ -1,0 +1,278 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* background: linear-gradient(to bottom left, rgb(123,57,185) 0%, gold 20%,rgb(177, 109, 194) 40%,rgb(123,57,185) 80%, gold 90%, rgb(123,57,185) 100%); */
+    background: linear-gradient(to bottom left, rgba(33, 128, 5, 0.692) 0%, rgba(123, 224, 7, 0.596) 100%);
+    /* /* background: url(./dubai1.jpg); */
+    /* background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    overflow: hidden;
+    overflow-y: scroll; */
+}
+
+.stopwatch {
+    width: 29vw;
+    min-height: 80vh;
+    margin: 7vh auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: radial-gradient(rgb(218, 218, 218), teal);
+    border-radius: 50% 50% 10px 10px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 5px 5px teal, 0 2px 2px teal;
+}
+
+
+@media screen and (max-width: 900px) {
+    .stopwatch {
+        width: 40vw;
+    }
+}
+
+
+
+
+.set {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 1%;
+}
+
+.set input {
+    width: 75%;
+    height: 45px;
+    padding: 2px 20px 2px 15px;
+    text-align: center;
+    outline: none;
+    border-radius: 40px;
+    border: none;
+    margin: 4% 0;
+    font-size: 15px;
+}
+
+
+
+.set button {
+    width: 85%;
+    height: 45px;
+    padding: 2px;
+    border-radius: 40px;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    border: 1px solid white;
+    color: #606060;
+    text-transform: capitalize;
+    font-size: 20px;
+    transition: all 0.2s ease;
+}
+
+.set button:hover {
+    background: white;
+    color: crimson;
+}
+
+#time {
+    width: 90%;
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border: 3px solid rgb(206, 203, 203); */
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
+    outline: none;
+    font-size: 25px;
+    margin: 15% 0 0 0;
+}
+
+#time span {
+    padding: 0 5px;
+    display: block;
+    margin: 0 2%;
+    /* width: 20%; */
+}
+
+.display {
+    width: 70%;
+    height: 230px;
+    /* background: radial-gradient(rgb(231, 230, 230), whitesmoke); */
+    /* background: inherit; */
+    /* opacity: 0.5; */
+    border-radius: 50% 50% 5px 5px;
+    display: flex;
+    box-shadow: 0 1px 1px teal, 0 1px 1px teal;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    /* flex-direction: column; */
+    /* border: 5px solid teal; */
+    position: absolute;
+    top: 3%;
+}
+
+/* @media screen and (max-width: 1000px) {
+    .stopwatch{
+        width: 50%;
+    }
+} */
+
+@media screen and (max-width: 768px) {
+    .stopwatch {
+        width: 60%;
+    }
+
+    .display {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:430px) {
+    .stopwatch {
+        width: 90%;
+    }
+}
+
+.box {
+    width: 90%;
+    height: 40%;
+    /* border: 1px solid white; */
+    margin: 0 auto;
+    position: absolute;
+    bottom: 5%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.btn {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+@media screen and (max-width:1080px) {
+    .btn {
+        flex-direction: column;
+        margin: 3% auto;
+    }
+}
+
+.btn button {
+    width: 150px;
+    height: 45px;
+    border-radius: 30px;
+    background: teal;
+    color: white;
+    border: none;
+    transition: 0.2s ease;
+    cursor: pointer;
+    display: inline-block;
+    margin: 5% auto;
+    text-transform: uppercase;
+}
+
+.btn button:last-child {
+    background: crimson;
+    color: white;
+}
+
+.btn button:hover {
+    background: transparent;
+    color: white;
+    font-weight: 900;
+    border: 2px dashed #d6d5d5;
+}
+
+button:active {
+    transform: scale(0.8);
+}
+
+#canva {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 95%;
+    margin: 2% auto;
+}
+
+.canvas {
+    width: 80px;
+    height: 80px;
+    background: tomato;
+    border-radius: 50%;
+    animation: canva 5s infinite linear alternate forwards;
+    position: relative;
+}
+
+.canvas:nth-child(odd) {
+    background: gold;
+    animation: gold 5s infinite linear alternate forwards;
+}
+
+.canvas:nth-child(3n) {
+    background: green;
+    animation: green 5s infinite linear alternate forwards;
+}
+
+@keyframes canva {
+    0% {
+        top: -50vh;
+        background: green;
+    }
+
+    50% {
+        background: red;
+    }
+
+    100% {
+        top: 0;
+        background: yellow;
+    }
+}
+
+@keyframes gold {
+    0% {
+        top: 0vh;
+        background: purple;
+    }
+
+    50% {
+        background: rgb(94, 17, 218);
+    }
+
+    100% {
+        top: -50vh;
+        background: orange;
+    }
+}
+
+@keyframes green {
+    0% {
+        top: -10vh;
+        background: gold;
+    }
+
+    50% {
+        top: -50vh;
+        background: teal;
+    }
+
+    100% {
+        top: 0;
+        background: silver;
+    }
+}

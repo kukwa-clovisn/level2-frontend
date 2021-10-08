@@ -27,7 +27,11 @@ window.onload = ()=> {
         if(src == '') {
             nextpage.src = "/assets/videos/Learn DOM Manipulation In 18 Minutes_2.mp4";
         }else{
+            
             nextpage.src = JSON.parse(src)
+            mainVideoviews.innerText = JSON.parse(views)
+            
+            
         }
         clearLocalStorage()
     
