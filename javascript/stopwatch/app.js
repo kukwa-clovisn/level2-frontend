@@ -14,30 +14,40 @@ let min = 0;
 let ms = 0
 let interval;
 let value = 0;
+
 function start() {
 
     hour.innerText = h;
     minutes.innerText = min;
     seconds.innerText = sec;
     mili.innerText = ms;
-    
+
 
     clearInterval(interval)
-    ms += 1;
-    if (ms == 100 && num.value !== NaN) {
-        sec = sec + parseInt(num.value) ;
-        
-        ms = 1;
+    // if (num.value !== NAN) {
+    ms = ms + parseInt(num.value);
+
+
+    if (ms >= 100) {
+        // sec = sec + parseInt(num.value) ;
+        sec += 1;
+
+        ms = parseInt(num.value);
         if (sec == 60 || sec > 60) {
             min += 1;
             sec = 0;
+            ms = parseInt(num.value);
 
             if (min == 60) {
                 h += 1;
                 min = 0;
+                sec = 0;
+                ms = parseInt(num.value);
             }
         }
     }
+    // }
+
 
     interval = setInterval(start, 10);
 
@@ -53,13 +63,9 @@ function stop() {
 let canva = document.querySelector('#canva')
 let canvas = []
 
-for(let i = 0; i<10; i++) {
-   let circle =  document.createElement('canvas');
-   circle.classList.add('canvas')
+for (let i = 0; i < 10; i++) {
+    let circle = document.createElement('canvas');
+    circle.classList.add('canvas')
     canva.append(circle)
 
 }
-
-
-
-

@@ -1,0 +1,370 @@
+@mixin flex($just, $align, $direct) {
+    display: flex;
+    justify-content: $just;
+    align-items: $align;
+    flex-direction: $direct;
+}
+
+@mixin ux {
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(0.9);
+    }
+
+    &:active {
+        transform: scale(0.8);
+    }
+}
+
+@mixin ui($deco, $textAlign, $transform, $color) {
+    text-decoration: $deco;
+    text-align: $textAlign;
+    cursor: pointer;
+    text-transform: $transform;
+    color: $color;
+}
+
+$w : white;
+$p : pointer;
+
+*,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow: hidden;
+    overflow-y: scroll;
+    background: linear-gradient(to bottom, rgba(57, 10, 117, 0.993) 0%, rgb(43, 42, 42) 100%);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    header {
+        width: 100%;
+        height: 30vh;
+        @include flex(space-between, baseline, column);
+        background: transparent;
+
+        .top-nav {
+            @include flex(space-evenly, center, row);
+            width: 95%;
+            border-radius: 30px;
+            height: 5vh;
+            margin: 2% auto;
+            background: rgba(0, 98, 128, 0.904);
+            transition: all 0.3s ease;
+            cursor: pointer;
+
+            &:hover {
+                background: $w
+            }
+
+            a {
+                @include ui(none, center, uppercase, $w);
+            }
+        }
+
+        .header-nav {
+            width: 100%;
+            height: 23vh;
+            @include flex(space-between, flex-start, row);
+
+            .logo {
+                width: 35%;
+                height: 100%;
+                color: $w;
+                margin: auto;
+                @include flex(center, center, row);
+                @include ux;
+                transition: all 0.3s ease;
+                text-align: center;
+                font-size: 40px;
+                text-transform: capitalize
+            }
+
+            .nav {
+                @include flex(space-evenly, center, row);
+                width: 80%;
+                height: 100%;
+
+                a {
+                    @include ui(none, center, capitalize, $w);
+                    @include flex(center, center, column);
+                    @include ux();
+                    width: 18%;
+                    height: 45%;
+                    background: tomato;
+                    border-radius: 30px;
+                    transition: all 0.3s ease;
+                    margin: 4% auto;
+                    font-weight: 800;
+                }
+            }
+
+        }
+    }
+
+    .main {
+        width: 100%;
+        height: 70vh;
+        @include flex(space-evenly, flex-start, row);
+        padding: 5%;
+
+        .left-landing-div {
+            width: 50%;
+            height: 100%;
+            @include flex(space-evenly, center, column);
+
+            h1 {
+                @include ui(none, center, uppercase, $w);
+                @include ux();
+                transition: all 0.3s ease;
+                padding: 10px
+            }
+
+            h3 {
+                @extend h1;
+                font-size: 22px;
+            }
+
+            h5 {
+                @extend h3;
+                @include ux();
+                background: white;
+                color: tomato;
+                text-transform: capitalize;
+                opacity: 0.8;
+                width: 35%;
+                border-radius: 3px;
+            }
+        }
+
+        .right-landing-div {
+            width: 45%;
+            position: relative;
+
+            img {
+                width: 70%;
+                border-radius: 50%;
+                transition: all 0.1s ease;
+                @include ux();
+
+            }
+
+            canvas {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: red;
+                z-index: 0.5;
+                display: block;
+                position: absolute;
+                cursor: pointer;
+                top: 300px;
+                left: 0;
+                animation: canva 5s infinite alternate forwards;
+            }
+
+            @keyframes canva {
+                0% {
+                    top: 0;
+                    left: 0;
+                    opacity: 1;
+                }
+
+                100% {
+                    opacity: 0;
+                }
+            }
+
+            .canva0 {
+                background: green;
+                top: 200px;
+            }
+
+            .canva1 {
+                background: yellow;
+                left: -300px;
+            }
+
+            .canva2 {
+                background: tomato;
+                left: -500px;
+                top: 500px;
+            }
+
+            .canva3 {
+                background: white;
+                top: 800px;
+                left: -250px;
+            }
+
+            .canva4 {
+                background: pink;
+                top: -100px;
+            }
+
+            .canva5 {
+                background: orange;
+                top: -200px;
+                left: -600px;
+            }
+
+            .canva6 {
+                background: gray;
+                top: 0;
+                left: 350px;
+            }
+
+            .canva7 {
+                background: purple;
+                left: 300px;
+                top: 700px;
+            }
+        }
+    }
+
+    .second-landing-page {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        background: linear-gradient(to bottom, rgb(62, 15, 119) 0%, rgb(48, 30, 68) 100%);
+        @include flex(space-between, center, row);
+
+        .side-info {
+            width: 37%;
+            padding: 5px;
+            position: relative;
+            left: 2%;
+            z-index: 1;
+
+            h1 {
+                @include ui(none, center, uppercase, gold);
+            }
+
+            button {
+                @include ux;
+                transition: all 0.3s ease;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                border: none;
+                display: block;
+                margin: 3% auto;
+
+                &:hover {
+                    background: rgb(69, 59, 48);
+                    color: white;
+                }
+            }
+
+            .btn {
+                background: tomato;
+                color: white;
+            }
+
+            p {
+                color: $w;
+                text-align: center;
+                font-size: 23px;
+                padding: 10px;
+                width: 100%
+            }
+        }
+
+        .side-info1 {
+            @extend .side-info;
+            left: -3%;
+
+        }
+
+        img {
+            height: 75%;
+            display: block;
+            margin: 0 auto;
+            position: absolute;
+            left: 33%
+        }
+
+        .img {
+            @extend img;
+            left: 40%;
+        }
+    }
+
+    #contacts {
+        width: 100%;
+        height: 100vh;
+        background-color: white;
+        @include flex(space-evenly, center, row);
+
+        img {
+            height: 50%;
+            box-shadow: 0 4px 4px black;
+            position: relative;
+            // left: 15%;
+            top: -5%;
+            z-index: 0.6;
+            border-radius: 50%;
+        }
+
+        div {
+            width: 40%;
+            height: 90%;
+            background: white;
+            z-index: 1;
+            box-shadow: 0 3px 3px black, 0 10px 10px white;
+
+            h1 {
+                text-align: center;
+                text-transform: capitalize;
+                padding: 15px;
+                margin: 2% auto;
+                font-size: 50px;
+            }
+
+            input {
+                width: 70%;
+                height: 50px;
+                padding: 4px 10px 4px 5px;
+                display: block;
+                margin: 5% auto;
+                font-size: 15px;
+                border: none;
+                color: #606060;
+                border-bottom: 3px solid black;
+                outline: none;
+            }
+
+            #message {
+                @extend input;
+                min-height: 20%;
+                white-space: pre-wrap;
+                text-overflow: inherit;
+                overflow: auto;
+                word-wrap: break-word;
+            }
+
+            button {
+                width: 80px;
+                height: 80px;
+                display: block;
+                margin: 2% auto;
+                background: black;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                transition: all 0.3s ease;
+                @include ux();
+            }
+        }
+    }
+}

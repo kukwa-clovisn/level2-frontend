@@ -1,13 +1,22 @@
 <template>
   <div>
-      <br>
+    <br />
     <Logo />
-    <br>
+    <br />
     <form>
       <label for="username">username:</label>
-      <input type="text" name="username" id="username" placeholder="What should we call you?" required v-model="text" />
-      <!-- <router-link to="/quiz">--><Button Btnname="continue" @click="login" /><!--</router-link> -->
-      
+      <input
+        type="text"
+        name="username"
+        id="username"
+        placeholder="What should we call you?"
+        required
+        v-model="text"
+      />
+      <!-- <router-link to="/quiz">--><Button Btnname="continue" @click="login"
+        ><router-link v-if="done" to="/about.vue"></router-link>
+      </Button>
+
       <p><a href="">already have an account?</a></p>
       <!-- <p>{{ text }}</p> -->
     </form>
@@ -28,25 +37,27 @@ export default {
   components: {
     Button,
     Logo,
-    Footer
+    Footer,
     // quiz
   },
-  data () {
-    return{
-      text: ""
-    }
+  data() {
+    return {
+      text: "",
+      done: Boolean,
+    };
   },
   methods: {
-    login(e) {
-      e.preventDefault();
-      if(this.text !== '') {
-        console.log('it is correct')
-        localStorage.setItem("username", JSON.stringify(this.text))
-      }else{
-        console.log('no name')
+    login() {
+      // e.preventDefault();
+      if (this.text !== "") {
+        localStorage.setItem("username", JSON.stringify(this.text));
+        this.done == true;
+      } else {
+        alert("hey no name");
+        this.done == false;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -66,7 +77,7 @@ div {
   }
 
   form {
-    wdith: 100%;
+    // wdith: 100%;
     label {
       display: block;
       text-align: left;
@@ -118,22 +129,22 @@ div {
           border-bottom: 2px solid rgb(5, 165, 228);
         }
         @media screen and (max-width: 768px) {
-            font-size: 12px;
+          font-size: 12px;
         }
       }
     }
   }
 
   @keyframes load {
-      0%{
-          opacity: 0;
-      }
-      50%{
-          opacity: 0.5;
-      }
-      100%{
-          opacity: 1;
-      }
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
   }
   footer {
     width: 100%;
