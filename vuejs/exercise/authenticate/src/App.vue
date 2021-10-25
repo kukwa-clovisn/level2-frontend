@@ -3,14 +3,14 @@
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <Parent @sound="show()" />
   <!-- <Child :list="items[Math.floor(Math.random() * items.length)].name" /> -->
-  <Child :list="this.item" />
+  <!-- <Child :list="this.item" /> -->
   <!-- <Child :list="items.email" /> -->
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
 import Parent from "@/components/Parent.vue";
-import Child from "@/components/Child.vue";
+// import Child from "@/components/Child.vue";
 
 export default {
   name: "App",
@@ -18,7 +18,7 @@ export default {
   components: {
     // HelloWorld
     Parent,
-    Child,
+    // Child,
   },
   emits: ["work"],
   data() {
@@ -65,6 +65,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

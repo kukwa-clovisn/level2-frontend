@@ -7,21 +7,21 @@
 
 		<div>
 			<label for="name">Name:</label>
-			<input type="text" required name="firstname" id="name" [(ngModel)] = "name">
+			<input type="text" required name="firstname" id="name">
 		</div>
 		<div>
 			<label for="email">email:</label>
-			<input type="email" required name="email" id="email" value="{{ email }}" [(ngModel)] = "email">
+			<input type="email" required name="email" id="email" value="{{ email }}" >
 		</div>
 
 		<div>
 			<label for="lastname">password:</label>
-			<input type="password" name="password" id="password" [(ngModel)] = "password">
+			<input type="password" name="password" id="password">
 		</div>
 		<div>
 			<label for="lastname">confirm password:</label>
-			<input type="password" required name="confirm_password" id="confirm_password" [(ngModel)] = "confirm_password">
+			<input type="password" required name="confirm_password" id="confirm_password" >
 		</div>
-		<button type="submit" (click) = "register()"><a [routerLink] = "['/profile']" type="submit">register  <fa-icon [icon]="faArrowRight"></fa-icon></a> </button>
+		<button type="submit" (click) = "register()"><a  type="submit">register</a> </button>
 	</form>
 </div>

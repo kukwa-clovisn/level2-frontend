@@ -1,3 +1,71 @@
-header{
-    background: linear-gradient(rgb(0,82,132), rgb(0,168,106));
+header {
+  background: linear-gradient(rgb(0, 82, 132), rgb(0, 168, 106));
+  padding: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  h1 {
+    color: white;
+    text-align: center;
+    line-height: 10vh;
+  }
+
+  p {
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+
+  input {
+    width: 250px;
+    height: 40px;
+    padding: 5px;
+    display: block;
+    margin: 3% auto;
+    outline: none;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      outline: 3px solid skyblue;
+    }
+  }
+
+  button {
+    width: 150px;
+    height: 40px;
+    padding: 3px;
+    cursor: pointer;
+    display: block;
+    margin: 1% auto;
+    background: crimson;
+    color: white;
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 10px;
+
+    &:active {
+      transform: scale(0.8);
+    }
+  }
+
+  ol li {
+    color: white;
+    // border: 1px solid whitesmoke;
+    padding: auto 5px;
+    margin: 2% auto;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    // list-style-type: decimal;
+    align-self: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

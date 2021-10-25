@@ -1,3 +1,15 @@
 <header>
-    <h1>all currency converter</h1>
+    <div>
+         <h1>{{ this.name }}</h1>
+    <input type="text" name="msg" placeholder="write in something" [(ngModel)]="sentence"> 
+    <button (click) ="done()">done</button>
+    <p *ngIf="status">{{sentence}}</p>
+    <p>{{this.sentence}}</p>
+    </div>
+    <ol>
+        <li type="1" *ngFor="let list of lists" :key="list">{{list}}</li>
+    </ol>
+   <div>
+
+   </div>
 </header>

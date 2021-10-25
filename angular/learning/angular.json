@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "b6ff5cff-43e1-47b6-a070-bfecfb40324f"
+    "analytics": "cd90511e-9724-44b4-9d66-2aa816c23c2c"
   },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-course": {
+    "learning": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-course",
+            "outputPath": "dist/learning",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -75,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-course:build:production"
+              "browserTarget": "learning:build:production"
             },
             "development": {
-              "browserTarget": "angular-course:build:development"
+              "browserTarget": "learning:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -86,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-course:build"
+            "browserTarget": "learning:build"
           }
         },
         "test": {
@@ -110,5 +110,5 @@
       }
     }
   },
-  "defaultProject": "angular-course"
+  "defaultProject": "learning"
 }

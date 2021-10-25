@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConverterComponent } from './components/converter/converter.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ConverterService } from './services/converter.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ConverterService } from './services/converter.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [ConverterService],
   bootstrap: [AppComponent]
