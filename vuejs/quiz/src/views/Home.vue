@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <Form />
+   
     <!-- <div id="slide" V-on="con"></div> -->
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App kcn"/> -->
-    
+     <Form />
   </div>
 </template>
 

@@ -26,7 +26,6 @@ export default {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    // background: rgb(79, 172, 37);
     background: white;
     color: green;
     display: flex;

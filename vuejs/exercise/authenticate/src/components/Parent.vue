@@ -62,12 +62,18 @@ import axios from "axios";
 export default {
   name: "Parent",
   mounted() {
-    axios
-      .get(
-        "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=c1dd6294b37cac85f43c6bcdb2e3f7a2"
-      )
+    axios("https://app.payunit.net/gateway/initailise", {
+      method: "GET",
+      header: {
+        "x-api-key": "6d048470b254dbe77952cb4e5d0b2b6a48c1eaf8",
+      },
+    })
+      // .get(
+      //   // "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=c1dd6294b37cac85f43c6bcdb2e3f7a2"
+      //   "https://app.payunit.net/api"
+      // )
       .then((res) => {
-        this.weather = res.data.city;
+        // this.weather = res.data.city;
 
         console.log(res);
       })

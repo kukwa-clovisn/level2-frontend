@@ -13,12 +13,9 @@
         required
         v-model="text"
       />
-      <!-- <router-link to="/quiz">--><Button Btnname="continue" @click="login"
-        ><router-link v-if="done" to="/about.vue"></router-link>
-      </Button>
+   <Button Btnname="continue" @click="login()" />
 
       <p><a href="">already have an account?</a></p>
-      <!-- <p>{{ text }}</p> -->
     </form>
     <Footer
       footer="by registering you agree to KCN's Terms of Service and Privacy Policy"
@@ -48,17 +45,19 @@ export default {
   },
   methods: {
     login() {
-      // e.preventDefault();
-      if (this.text !== "") {
+      if (this.text.length > 5) {
         localStorage.setItem("username", JSON.stringify(this.text));
-        this.done == true;
-      } else {
-        alert("hey no name");
-        this.done == false;
+ 
+ 
+}
+else {
+        // alert("hey no name");
+      window.confirm('please fill in a name')
       }
+      } 
     },
-  },
-};
+  }
+
 </script>
 
 <style lang="scss" scoped>

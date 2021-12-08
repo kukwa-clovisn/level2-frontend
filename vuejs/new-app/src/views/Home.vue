@@ -3,6 +3,7 @@
     <img alt="Vue logo" src="../assets/logo.png" />
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
     <Login />
+    <div>this is the home component</div>
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
-  <input type="text" />
+  <input type="text" placeholder="dkflkdflakdflkadjfkadlkl" />
+  <p>input component works</p>
 </template>
 
 <script>

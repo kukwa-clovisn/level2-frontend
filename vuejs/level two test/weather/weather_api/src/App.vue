@@ -1,16 +1,23 @@
 <template>
-  <div class="content">
-    <Weather />
-  </div>
+  <HelloWorld />
+  <br />
+  <br />
+  <Weather />
+  <div class="space"></div>
+  <Footer />
 </template>
 
 <script>
 import Weather from "./components/weather.vue";
+import HelloWorld from "./components/HelloWorld.vue";
+import Footer from "./components/footer.vue";
 
 export default {
   name: "App",
   components: {
+    HelloWorld,
     Weather,
+    Footer,
   },
 };
 </script>
@@ -24,11 +31,17 @@ export default {
   text-align: center;
   color: #2c3e50;
   font-weight: 500;
+  background: linear-gradient(
+    to bottom,
+    rgb(0, 128, 49) 0%,
+    rgb(136, 218, 245) 100%
+  );
+  background-attachment: fixed;
 }
 
-.content {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+.space {
+  width: 100%;
+  height: 20vh;
+  background: inherit;
 }
 </style>

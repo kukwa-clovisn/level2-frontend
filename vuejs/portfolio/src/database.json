@@ -1,0 +1,33 @@
+{
+  "Database": [
+    {
+      "id": 0,
+      "name": "Kukwa Clovis",
+      "email": "kukwaclovisngong3@gmail.com",
+      "password": "herald"
+    },
+    {
+      "name": "Kukwa Clovis Ngong",
+      "email": "kcn.123.com@gmail.com",
+      "password": "237@todokcn",
+      "id": 1
+    },
+    {
+      "name": "kukwa emile",
+      "email": "kukwaemile5@gmail.com",
+      "password": "emile55",
+      "id": 2
+    }
+  ],
+  "Bmi": [
+    {
+      "id": 0,
+      "name": "Kukwa Clovis",
+      "Age": 21,
+      "Height": 1.98,
+      "Weight": 75,
+      "BMI": 19.13,
+      "status": "Healthy Weight"
+    }
+  ]
+}
