@@ -27,7 +27,9 @@
     <button class="start" title="sign up to use our apps and products">
       <router-link to="/Page" class="route">get started</router-link>
     </button>
-    <Button btn="demo" id="demo" />
+    <button class="demo" title="Get to know more about ACTA...">
+      <router-link to="/Demo" id="demo">ACTA</router-link>
+    </button>
   </div>
   <br />
   <div class="profile" v-if="remove">
@@ -52,10 +54,7 @@
       </div>
     </div>
   </div>
-  <div class="profile-one card">
-    <div class="d-none d-lg-block d-md-block photo card-body">
-      <img src="../assets/p.jpg" alt="" />
-    </div>
+  <!-- <div class="profile-one card">
     <div class="side-content">
       <img src="../assets/p.jpg" alt="" />
       <h2 class="lead text-center text-capitalize">kukwa clovis ngong</h2>
@@ -67,14 +66,16 @@
       </p>
       <button class="btn btn-success" @click="view()">view my portfolio</button>
     </div>
-  </div>
+    <div class="d-none d-lg-block d-md-block photo card-body">
+      <img src="../assets/p.jpg" alt="" /> 
+    </div>
+  </div> -->
   <br />
   <br />
   <Footer />
 </template>
 
 <script>
-import Button from "./Button.vue";
 import Logo from "./Logo.vue";
 import Footer from "./Footer.vue";
 import Header from "./Header.vue";
@@ -84,7 +85,6 @@ export default {
   components: {
     Block,
     Logo,
-    Button,
     Footer,
     Header,
   },
@@ -213,10 +213,26 @@ export default {
     top: 0;
     animation: bounce 3s infinite alternate forwards;
 
+    &:last-child {
+      background: linear-gradient(
+        to top,
+        rgb(110, 42, 8) 0%,
+        rgb(145, 43, 3) 100%
+      );
+      animation: demo 3s infinite alternate forwards;
+    }
+
     .route {
       text-decoration: none;
       color: white;
       text-transform: capitalize;
+    }
+    #demo {
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      text-transform: capitalize;
+      color: white;
     }
   }
 }
@@ -225,11 +241,6 @@ export default {
   to {
     top: -30px;
   }
-}
-
-#demo {
-  background: linear-gradient(to top, rgb(110, 42, 8) 0%, rgb(145, 43, 3) 100%);
-  animation: demo 3s infinite alternate forwards;
 }
 
 @keyframes demo {
@@ -317,14 +328,14 @@ export default {
 }
 
 .profile-one {
-  width: 80%;
+  width: 90%;
   margin: auto;
-  height: 88vh;
-  background: linear-gradient(
-    to right,
-    rgb(36, 36, 36) 0%,
-    rgb(1, 35, 73) 100%
-  );
+  height: 95vh;
+  // background: linear-gradient(
+  //   to right,
+  //   rgb(36, 36, 36) 0%,
+  //   rgb(1, 35, 73) 100%
+  // );
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -344,9 +355,9 @@ export default {
   }
 
   .side-content {
-    width: 48%;
-    height: 83vh;
-    margin-right: 1vw;
+    width: 50%;
+    height: 95vh;
+    margin-left: 1vw;
     border-radius: 5px;
     background: white;
 
@@ -355,8 +366,8 @@ export default {
     }
 
     img {
-      width: 180px;
-      height: 180px;
+      width: 230px;
+      height: 230px;
       border-radius: 50%;
       display: block;
       margin: 4vh auto;

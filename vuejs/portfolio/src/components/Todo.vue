@@ -130,16 +130,16 @@ export default {
   mounted() {
     this.displayTodo();
   },
-  created() {
-    fetch("http://localhost:3000/Database")
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        for (let i = 0; i < res.length; i++) {
-          console.log(res[i].name.includes("Kukwa Clovis"));
-        }
-      });
-  },
+  // created() {
+  //   fetch("http://localhost:3000/Database")
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       console.log(res);
+  //       for (let i = 0; i < res.length; i++) {
+  //         console.log(res[i].name.includes("Kukwa Clovis"));
+  //       }
+  //     });
+  // },
   methods: {
     validate() {
       fetch("http://localhost:3000/Database")
@@ -148,13 +148,14 @@ export default {
           console.log(res);
 
           for (let i = 0; i < res.length; i++) {
-            console.log(res[i].name.includes("Kukwa Clovis"));
-            console.log(res[i].password.includes("herald"));
-
             if (
               res[i].name.includes(this.username) == true &&
-              res[i].password.includes(this.password) == true
+              res[i].password.includes(this.password) == true &&
+              this.username.length > 4 &&
+              this.password.length > 4
             ) {
+              console.log(this.username);
+              console.log(res[i].name.includes(this.username));
               this.next = false;
               this.app = true;
               this.valid = true;
@@ -424,7 +425,7 @@ Header {
   background-color: #224272;
   color: white;
   cursor: pointer;
-  transition: all 0.5s ease-out;
+  transition: all 0.3s ease-out;
 
   i {
     position: relative;
@@ -443,7 +444,10 @@ Header {
   }
 
   &:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
+  }
+  &:active {
+    transform: scale(0.8);
   }
 }
 

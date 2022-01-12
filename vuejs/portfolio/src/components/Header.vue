@@ -67,9 +67,7 @@
   >
     <nav v-if="toggled" class="sidebar">
       <span class="close" @click="untoggle()">&times;</span>
-      <ul
-        class="nav d-flex justify-content-evenly align-items-center flex-column"
-      >
+      <ul class="nav d-flex justify-content-evenly flex-column">
         <li class="nav-item">
           <router-link to="/Currency" class="nav-link">
             currency converter <i class="fa fa-caret-down"></i>
@@ -182,10 +180,15 @@ header {
     z-index: 1;
     width: 100vw;
     height: 100vh;
+    // background: linear-gradient(
+    //   to top,
+    //   rgb(130, 223, 241) 0%,
+    //   rgb(81, 152, 252) 100%
+    // );
     background: linear-gradient(
-      to top,
-      rgb(130, 223, 241) 0%,
-      rgb(81, 152, 252) 100%
+      to bottom left,
+      rgb(18, 18, 36) 0%,
+      rgb(60, 60, 77) 100%
     );
     position: fixed;
     top: 0;
@@ -218,10 +221,11 @@ header {
 
     ul {
       width: 100%;
-      height: 100%;
+      height: 90%;
+      border: 2px solid red;
 
       li {
-        min-width: 400px;
+        width: 80%;
         text-align: center;
         &:hover {
           .nav-link {
@@ -317,13 +321,14 @@ header {
       text-transform: capitalize;
       background: white;
       padding: 10px 20px;
-      border-radius: 30px;
+      border-radius: 3px;
       transition: all 0.3s ease;
       font-size: 0.7em;
       margin-right: 10px;
       display: flex;
       justify-content: center;
       align-items: center;
+      transition: all 0.3s ease;
 
       &:hover {
         background: rgb(24, 26, 25);
@@ -333,6 +338,11 @@ header {
       }
       &:active {
         transform: scale(0.9) translateX(20px);
+      }
+      @media screen and (max-width: 768px) {
+        &:hover {
+          background: red;
+        }
       }
 
       .a {

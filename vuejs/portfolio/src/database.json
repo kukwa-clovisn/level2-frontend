@@ -28,6 +28,16 @@
       "Weight": 75,
       "BMI": 19.13,
       "status": "Healthy Weight"
+    },
+    {
+      "name": "kukwa clovis ngong",
+      "Age": 21,
+      "email": "Kcn.123.com@gmail.com",
+      "Height": 1.875,
+      "Weight": 69.99,
+      "BMI": "19.91",
+      "status": "Healthy weight",
+      "id": 1
     }
   ]
 }
