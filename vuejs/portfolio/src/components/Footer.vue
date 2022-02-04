@@ -15,7 +15,9 @@
     </div>
     <div>
       <h3>DEVELOPERS</h3>
-      <li class="text-left text-capitalize text-white">Github</li>
+      <li class="text-left text-capitalize text-white">
+        <a href="https://github.com/kukwa-clovisn">Github</a>
+      </li>
       <li class="text-left text-capitalize text-white">Documentation</li>
       <li class="text-left text-capitalize text-white">Bug Bounty</li>
       <li class="text-left text-capitalize text-white">Audits</li>
@@ -23,7 +25,7 @@
     </div>
     <div class="text-white">
       <i class="fa fa-user-circle"></i>
-      <span class="mx-2">pancakeSwap</span>
+      <span class="mx-2">CodingHerald</span>
     </div>
     <div class="text-white">
       <h2>online</h2>
@@ -65,6 +67,10 @@ footer {
     list-style-type: none;
     text-align: left;
     margin: 3% 0;
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
   }
   div {
     min-width: 230px;

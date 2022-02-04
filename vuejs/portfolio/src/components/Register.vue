@@ -346,7 +346,7 @@ h2 {
 }
 
 div {
-  animation: load 5s 1 linear alternate forwards;
+  animation: load 1s 1 linear alternate forwards;
   width: 40%;
   margin: 3vh auto;
   border-radius: 10px;
@@ -456,9 +456,6 @@ div {
   @keyframes load {
     0% {
       opacity: 0;
-    }
-    50% {
-      opacity: 0.5;
     }
     100% {
       opacity: 1;

@@ -1,5 +1,5 @@
 <template>
-  <header class="d-none d-lg-flex justify-content-between align-items-center">
+  <header class="d-none d-lg-flex justify-content-center align-items-center">
     <nav
       class="
         logo
@@ -10,10 +10,22 @@
       "
     >
       <router-link to="/" class="logoName" title="go to home"
-        >KCN empire/codingHerald</router-link
+        >CodingHerald.com</router-link
       >
     </nav>
-    <nav class="nav d-flex justify-content-between align-items-center">
+    <nav class="nav d-flex justify-content-evenly align-items-center">
+      <li>
+        <router-link to="/Directory" class="route-to-directories"
+          >directories</router-link
+        >
+      </li>
+      <li>
+        <router-link to="/Register" class="route-to-directories"
+          >sign up</router-link
+        >
+      </li>
+    </nav>
+    <!-- <nav class="nav d-flex justify-content-between align-items-center">
       <li>
         <router-link to="/Currency" class="a"
           >Currency converter<i class="fa fa-caret-down"></i
@@ -55,7 +67,7 @@
         </router-link>
       </li>
       <span class="scroll">></span>
-    </nav>
+    </nav> -->
   </header>
   <header
     class="
@@ -66,44 +78,71 @@
     "
   >
     <nav v-if="toggled" class="sidebar">
-      <span class="close" @click="untoggle()">&times;</span>
-      <ul class="nav d-flex justify-content-evenly flex-column">
-        <li class="nav-item">
-          <router-link to="/Currency" class="nav-link">
-            currency converter <i class="fa fa-caret-down"></i>
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/Exchange" class="nav-link">
-            currency exchange <i class="fa fa-caret-down"></i>
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/Todo" class="nav-link">
-            todo app <i class="fa fa-caret-down"></i>
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/User" class="nav-link">
-            random user api <i class="fa fa-caret-down"></i>
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/Watch" class="nav-link">
-            stop watch <i class="fa fa-caret-down"></i>
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/Weather" class="nav-link">
-            weather forcast <i class="fa fa-caret-down"></i>
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/BMI" class="nav-link">
-            BMI Calculator <i class="fa fa-caret-down"></i>
-          </router-link>
-        </li>
-      </ul>
+      <div
+        class="sidebar-header d-flex justify-content-between align-items-center"
+      >
+        <h1 class="sidebar-logo">condingHerald.com</h1>
+        <span class="close" title="Close page" @click="untoggle()"
+          >&times;</span
+        >
+      </div>
+      <div
+        class="sidebar-content-div"
+        title="Click to see all Directories"
+        @click="showDirectories = !showDirectories"
+      >
+        <span>directories</span> <i class="fas fa-arrows-alt"></i>
+      </div>
+      <div class="sidebar-content" v-if="showDirectories">
+        <ul class="list-of-directories">
+          <li class="directory">
+            <routerLink to="/Currency" class="route-to-directory"
+              >Currency app</routerLink
+            >
+          </li>
+          <li class="directory">
+            <routerLink to="Todo" class="route-to-directory"
+              >todo app</routerLink
+            >
+          </li>
+          <li class="directory">
+            <routerLink to="/Exchange" class="route-to-directory"
+              >exchange app</routerLink
+            >
+          </li>
+          <li class="directory">
+            <routerLink to="/BMI" class="route-to-directory"
+              >BMI calculator</routerLink
+            >
+          </li>
+          <li class="directory">
+            <routerLink to="/Weather" class="route-to-directory"
+              >weather forcast</routerLink
+            >
+          </li>
+          <li class="directory">
+            <routerLink to="/Watch" class="route-to-directory"
+              >stop watch</routerLink
+            >
+          </li>
+          <li class="directory">
+            <routerLink to="/User" class="route-to-directory"
+              >random user</routerLink
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="sidebar-content-div">sign up</div>
+      <div class="sidebar-content-div">
+        <router-link to="/Demo" class="route-to-sidebar-content"
+          >demo</router-link
+        >
+      </div>
+      <div class="sidebar-content-div">
+        <router-link to="/Page" class="route-to-sidebar-content"
+          >ACTA</router-link
+        >
+      </div>
     </nav>
 
     <nav
@@ -133,6 +172,7 @@ export default {
       toggled: false,
       clicked: true,
       scrolled: true,
+      showDirectories: false,
     };
   },
   updated() {
@@ -171,6 +211,10 @@ header {
 
     #menu-bar {
       transition: all 0.2s ease;
+
+      &:hover {
+        transform: rotateZ(-90deg);
+      }
       &:active {
         font-size: 1.5em;
       }
@@ -179,57 +223,126 @@ header {
   .sidebar {
     z-index: 1;
     width: 100vw;
-    height: 100vh;
-    // background: linear-gradient(
-    //   to top,
-    //   rgb(130, 223, 241) 0%,
-    //   rgb(81, 152, 252) 100%
-    // );
+    height: 101vh;
     background: linear-gradient(
       to bottom left,
       rgb(18, 18, 36) 0%,
       rgb(60, 60, 77) 100%
     );
     position: fixed;
-    top: 0;
+    top: -20px;
     left: 0;
-    padding: 10px 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding-bottom: 30px;
 
-    .nav-link {
-      font-weight: 500;
-      font-size: 18px;
+    .sidebar-header {
+      width: 100vw;
+      height: 20vh;
+
+      padding: 0 10px;
+
+      .sidebar-logo {
+        position: relative;
+        left: 5%;
+        text-transform: capitalize;
+        color: teal;
+        font-weight: 800;
+        font-size: 45px;
+      }
+      .close {
+        color: whitesmoke;
+        font-weight: 700;
+        font-size: 50px;
+        margin-right: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: rotateZ(-90deg);
+        }
+        &:active {
+          font-size: 0.5em;
+        }
+      }
+    }
+
+    .sidebar-content-div {
+      width: 300px;
+      height: 55px;
+      background: whitesmoke;
+      margin: 1vh auto;
+      position: relative;
+      left: -20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
       color: var(--bs-dark);
+      font-weight: 700;
+      font-size: 30px;
+      cursor: pointer;
+      border-radius: 1px;
+      transition: all 0.4s ease;
 
       &:hover {
-        // background: var(--bs-light);
-        color: var(--bs-light);
+        background: #333;
+        color: white;
+      }
+
+      .route-to-sidebar-content {
+        text-decoration: none;
+        color: var(--bs-dark);
       }
     }
 
-    .close {
-      position: absolute;
-      right: 5%;
-      color: white;
-      font-size: 2em;
-      cursor: pointer;
-      transition: all 0.3s ease;
+    .sidebar-content {
+      width: 50vw;
+      height: 55vh;
+      position: relative;
+      left: 30%;
 
-      &:active {
-        font-size: 1.5em;
-      }
-    }
+      .list-of-directories {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
 
-    ul {
-      width: 100%;
-      height: 90%;
-      border: 2px solid red;
+        .directory {
+          list-style-type: none;
+          width: 100%;
+          height: 40px;
+          background: whitesmoke;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          border-radius: 1px;
 
-      li {
-        width: 80%;
-        text-align: center;
-        &:hover {
-          .nav-link {
-            color: var(--bs-light);
+          &:hover {
+            background: transparent;
+            border: 0.5px solid wheat;
+          }
+
+          .route-to-directory {
+            text-decoration: none;
+            text-transform: capitalize;
+            font-weight: 500;
+            width: 100%;
+            height: 100%;
+            align-self: center;
+            padding-left: 20px;
+            padding-top: 6px;
+            color: var(--bs-dark);
+            transition: all 0.3s ease;
+
+            &:hover {
+              color: whitesmoke;
+              font-weight: 600;
+            }
           }
         }
       }
@@ -303,36 +416,23 @@ header {
   }
 
   .nav {
-    width: 70vw;
+    width: 45vw;
     overflow: hidden;
     flex-wrap: nowrap;
-    overflow-x: scroll;
     position: relative;
 
-    &::-webkit-scrollbar {
-      height: 3px;
-      cursor: pointer;
-    }
-
     li {
-      min-width: 170px;
+      min-width: 210px;
+      height: 40px;
       list-style-type: none;
       cursor: pointer;
-      text-transform: capitalize;
       background: white;
-      padding: 10px 20px;
       border-radius: 3px;
-      transition: all 0.3s ease;
-      font-size: 0.7em;
-      margin-right: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       transition: all 0.3s ease;
 
       &:hover {
         background: rgb(24, 26, 25);
-        .a {
+        .route-to-directories {
           color: var(--bs-light);
         }
       }
@@ -345,10 +445,15 @@ header {
         }
       }
 
-      .a {
+      .route-to-directories {
+        width: 100%;
+        height: 100%;
         text-decoration: none;
         color: rgb(2, 158, 62);
-
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: capitalize;
         i {
           padding-right: 10px;
         }
@@ -356,11 +461,6 @@ header {
 
       @media screen and (max-width: 1200px) {
         font-size: 0.5em;
-      }
-      router-link {
-        width: 100%;
-        height: 100%;
-        background: inherit;
       }
     }
     .scroll {

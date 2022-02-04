@@ -56,7 +56,7 @@
         <input
           type="text"
           id="inputItem"
-          v-model="this.userData"
+          v-model="userData"
           name="text"
           placeholder="input new todo item"
           required
@@ -67,15 +67,14 @@
           please add a valid task ❣️KCN❣️
         </p>
         <div class="todoItems">
-          <!-- <ul class="showItems" v-html="showItems"></ul> -->
           <ul>
-            <li v-for="todo in showItems" :key="todo.item">
+            <li v-for="(todo, index) in todoItems" :key="index">
               <p>
                 <i class="fa fa-calendar-alt" id="calendar"></i>
                 {{ todo.date }}
               </p>
 
-              <p>{{ todo.item }}</p>
+              <p>{{ todo.name }}</p>
               <span @click="removeTask(index)">
                 <i
                   class="fa fa-trash"
@@ -97,51 +96,39 @@
     <Footer />
   </div>
 </template>
-   
+
 <script>
 import Footer from "./Footer.vue";
 import Header from "./Header.vue";
+import { ref } from "vue";
 export default {
   name: "Todo",
   components: {
     Footer,
     Header,
   },
-  data() {
-    return {
-      next: true,
-      app: false,
-      valid: false,
-      invalidTask: false,
-      userData: "",
-      username: "",
-      password: "",
-      items: [],
-      todo: "",
-      todos: [],
-      todoCount: 0,
-      invalid: false,
-      todoItems: [],
-      showItems: [],
-      getFromLocalStorage: localStorage.getItem("new todo"),
-      users: [],
-    };
-  },
-  mounted() {
-    this.displayTodo();
-  },
-  // created() {
-  //   fetch("http://localhost:3000/Database")
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       console.log(res);
-  //       for (let i = 0; i < res.length; i++) {
-  //         console.log(res[i].name.includes("Kukwa Clovis"));
-  //       }
-  //     });
-  // },
-  methods: {
-    validate() {
+
+  setup() {
+    let next = ref(true);
+    let app = ref(false);
+    let valid = ref(false);
+    const invalidTask = ref(false);
+    const userData = ref("");
+    const parseData = ref({
+      name: "",
+      date: ``,
+    });
+    const username = ref("");
+    const password = ref("");
+    const items = ref([]);
+    const todo = ref("");
+    const todoCount = ref(0);
+    const invalid = ref(false);
+    const todoItems = ref([]);
+    const showItems = ref([]);
+    let getFromLocalStorage = localStorage.getItem("new todo");
+
+    function validate() {
       fetch("http://localhost:3000/Database")
         .then((res) => res.json())
         .then((res) => {
@@ -149,101 +136,103 @@ export default {
 
           for (let i = 0; i < res.length; i++) {
             if (
-              res[i].name.includes(this.username) == true &&
-              res[i].password.includes(this.password) == true &&
-              this.username.length > 4 &&
-              this.password.length > 4
+              res[i].name.includes(username.value) == true &&
+              res[i].password.includes(password.value) == true &&
+              username.value.length > 4 &&
+              password.value.length > 4
             ) {
-              console.log(this.username);
-              console.log(res[i].name.includes(this.username));
-              this.next = false;
-              this.app = true;
-              this.valid = true;
-              this.invalid = false;
+              console.log(username.value);
+              console.log(res[i].name.includes(username.value));
+              next.value = false;
+              app.value = true;
+              valid.value = true;
+              invalid.value = false;
             } else {
-              this.invalid = true;
+              invalid.value = true;
             }
           }
         });
-    },
+    }
+    function displayTodo() {
+      items.value = [];
+      todo.value = "";
+      getFromLocalStorage = localStorage.getItem("new todo");
+      if (getFromLocalStorage == null) {
+        todoItems.value = [];
+      } else {
+        todoItems.value = JSON.parse(getFromLocalStorage);
+      }
+      items.value.push(parseData.value);
+      showItems.value = items.value;
+      todoCount.value = todoItems.value.length;
+      console.log(showItems.value);
 
-    addTodo() {
-      if (this.userData.trim().length !== 0 && this.userData !== "") {
-        if (this.getFromLocalStorage == null) {
-          this.todoItems = [];
+      console.log(todoItems.value);
+    }
+
+    displayTodo();
+
+    function addTodo() {
+      parseData.value.name = userData.value;
+      parseData.value.date = new Date();
+
+      if (userData.value.trim().length !== 0 && userData.value !== "") {
+        if (getFromLocalStorage == null) {
+          todoItems.value = [];
         } else {
-          this.todoItems = JSON.parse(this.getFromLocalStorage); //coverting the string into json object
+          todoItems.value = JSON.parse(getFromLocalStorage); //coverting the string into json object
         }
 
-        this.todoItems.push(this.userData);
-        localStorage.setItem("new todo", JSON.stringify(this.todoItems)); //transforming the json object into string
-        this.displayTodo();
-        this.userData = "";
-        this.invalidTask = false;
+        todoItems.value.push(parseData.value);
+        localStorage.setItem("new todo", JSON.stringify(todoItems.value)); //transforming the json object into string
+        displayTodo();
+        userData.value = "";
+        invalidTask.value = false;
       } else {
-        this.invalidTask = true;
+        invalidTask.value = true;
       }
 
-      this.todoCount = this.todoItems.length;
-    },
+      todoCount.value = todoItems.value.length;
+    }
 
-    removeAllTodos() {
-      this.todoItems = JSON.parse(this.getFromLocalStorage);
-      this.todoItems = [];
-      localStorage.setItem("new todo", JSON.stringify(this.todoItems)); //updating the local storage
-      this.displayTodo();
-    },
+    function removeAllTodos() {
+      todoItems.value = JSON.parse(getFromLocalStorage);
+      todoItems.value = [];
+      localStorage.setItem("new todo", JSON.stringify(todoItems.value)); //updating the local storage
+      displayTodo();
+    }
 
-    displayTodo() {
-      this.items = [];
-      this.todo = "";
-      // let this.userData = inputItem.value;
-      this.getFromLocalStorage = localStorage.getItem("new todo");
-      if (this.getFromLocalStorage == null) {
-        this.todoItems = [];
-      } else {
-        this.todoItems = JSON.parse(this.getFromLocalStorage);
-      }
-      this.todoItems.forEach(
-        (element, index, day, hour, mins, secs, month, amp, newDate) => {
-          newDate = new Date().toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          });
-          let time = new Date();
-          amp = hour >= 12 ? "PM" : "AM";
-          mins = time.getMinutes();
-          hour = time.getHours();
-          secs = time.getSeconds();
-          month = time.getMonth();
-          day = time.getDay();
+    function removeTask(index) {
+      console.log(index);
 
-          this.items.push({
-            date: `${newDate}, ${hour}: ${mins}:${secs}`,
-            item: `${element}`,
-          });
-        }
-      );
-      this.showItems = this.items;
-      // this.todos = this.todo;
-      this.inputItem = "";
-      this.todoCount = this.todoItems.length;
-      console.log(this.showItems);
-      console.log(this.todoItems);
-    },
-
-    // creating remove task function
-    removeTask(index) {
       if (window.confirm("Are you sure you want to delete this item?")) {
-        this.getFromLocalStorage = localStorage.getItem("new todo");
-        this.todoItems = JSON.parse(this.getFromLocalStorage);
-        this.todoItems.splice(index, 1); //detete that item you've choosen
-        console.log(this.todoItems.indexOf(index));
-        localStorage.setItem("new todo", JSON.stringify(this.todoItems)); //updating the local storage after deleting as item
-        this.displayTodo();
+        getFromLocalStorage = localStorage.getItem("new todo");
+        todoItems.value = JSON.parse(getFromLocalStorage);
+        todoItems.value.splice(index, 1); //detete that item you've choosen
+        console.log(todoItems.value.indexOf(index));
+        localStorage.setItem("new todo", JSON.stringify(todoItems.value)); //updating the local storage after deleting as item
+        displayTodo();
       }
-    },
+    }
+
+    return {
+      next,
+      valid,
+      invalid,
+      username,
+      password,
+      invalidTask,
+      userData,
+      todoCount,
+      showItems,
+      todoItems,
+      todo,
+      removeTask,
+      removeAllTodos,
+      addTodo,
+      validate,
+      displayTodo,
+    };
   },
 };
 </script>

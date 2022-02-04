@@ -11,12 +11,14 @@
       "email": "kcn.123.com@gmail.com",
       "password": "237@todokcn",
       "id": 1
-    },
+    }
+  ],
+  "users": [
     {
-      "name": "kukwa emile",
-      "email": "kukwaemile5@gmail.com",
-      "password": "emile55",
-      "id": 2
+      "name": "kukwaclovisngong",
+      "email": "Kukwaclovisngong3@gmail.com",
+      "password": "chatkcn",
+      "id": 1
     }
   ],
   "Bmi": [

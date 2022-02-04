@@ -1,16 +1,19 @@
 <template>
   <main>
     <header class="d-flex justify-content-between align-items-center">
-      <nav>
-        <h1 class="lead d-sm-none" title="welcome to your world of creativity">
-          kcn empire 2k21
-        </h1>
-        <h1
-          class="lead d-none d-sm-block"
+      <nav class="logo">
+        <div
+          class="d-flex d-sm-none"
           title="welcome to your world of creativity"
         >
-          codingHerald.net
-        </h1>
+          <span>KCN</span>
+        </div>
+        <div
+          class="d-none d-sm-flex"
+          title="welcome to your world of creativity CodingHerald.com"
+        >
+          <span>CH</span>
+        </div>
       </nav>
       <nav class="menu">
         <i class="fa fa-bars menu-bar"></i>
@@ -32,6 +35,11 @@
             ><i class="i fa fa-caret-down"></i> pages</router-link
           >
           <ul class="dropdown-menu drop">
+            <li>
+              <router-link class="dropdown-item" to="/Dashboard">
+                He-chat</router-link
+              >
+            </li>
             <li>
               <router-link class="dropdown-item" to="/Currency">
                 currency converter</router-link
@@ -83,7 +91,14 @@
               <router-link to="" class="dropdown-item">portfolio</router-link>
             </li>
             <li>
-              <router-link to="" class="dropdown-item">academy</router-link>
+              <router-link to="/Demo" class="dropdown-item"
+                >academy</router-link
+              >
+            </li>
+            <li>
+              <router-link to="/Dashboard" class="dropdown-item"
+                >He-Chat</router-link
+              >
             </li>
             <li>
               <router-link to="" class="dropdown-item">sites</router-link>
@@ -95,14 +110,12 @@
           class="nav-item"
           title="register for free and benefit from our numerous applications"
         >
-          <router-link to="/" class="route"> sign up</router-link>
+          <router-link to="/Register" class="route"> sign up</router-link>
         </li>
       </nav>
     </header>
     <div class="content">
-      <div
-        class="info text-center text-white lead d-none d-lg-block d-md-block"
-      >
+      <div class="info text-center d-none d-lg-block d-md-block">
         kcn empire
       </div>
       <div
@@ -115,8 +128,7 @@
           flex-column
         "
       >
-        <div class="blogOne d-none d-lg-block d-md-block">codingHerald.net</div>
-        <!-- <div class="animate">coding...</div> -->
+        <div class="blogOne d-none d-lg-block d-md-block">codingHerald.com</div>
         <div class="canvas">
           <canvas></canvas>
           <canvas></canvas>
@@ -145,27 +157,7 @@
           </div>
         </div>
         <div class="blogTwo text-center display-2 text-capitalize">
-          <span>building</span> professional<span> websites.</span>
-        </div>
-        <div class="right-content">
-          <div id="anim">
-            <img src="../assets/desk.svg" alt="" />
-          </div>
-          <div class="sidebar">
-            <h1 class="text-center">blog post...</h1>
-            <div>
-              <p class="text-center">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Tenetur quas vero atque illo? Accusantium consectetur eius
-                libero totam magnam quo, sint illo atque ullam voluptatem ab
-                impedit cumque quam deserunt dolorem quod quae veniam minus?
-                Laudantium, in vitae expedita repudiandae sequi aspernatur animi
-                at necessitatibus corporis distinctio omnis neque illum minima
-                ipsam maxime eaque incidunt eos, unde cumque? At impedit nulla
-                amet, enim cupiditate
-              </p>
-            </div>
-          </div>
+          Bringing your <span>thoughts</span> into <span> reality.</span>
         </div>
       </div>
     </div>
@@ -175,16 +167,6 @@
 <script>
 export default {
   name: "Page",
-  data() {
-    return {
-      scrolled: false,
-    };
-  },
-  mounted() {
-    if (window.innerWidth < 1000) {
-      console.log("it worked");
-    }
-  },
 };
 </script>
 
@@ -192,42 +174,87 @@ export default {
 main {
   width: 100vw;
   height: auto;
-  background: linear-gradient(
-    to bottom right,
-    lightseagreen 0%,
-    mediumseagreen 50%,
-    teal 100%
-  );
+  background: #fff;
   padding: 0;
   margin: 0;
 
   header {
-    width: 100%;
-    height: 20vh;
+    width: 100vw;
+    height: 15vh;
     padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: white;
     border-radius: 0 0 0 100%;
     @media screen and (max-width: 1000px) {
       width: 100%;
       padding: 20px;
     }
-    nav {
+    .logo {
       width: 40%;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: rgb(214, 252, 2);
       text-transform: capitalize;
-      &:first-child {
-        @media screen and (max-width: 1000px) {
-          width: 70%;
-        }
+
+      @media screen and (max-width: 1000px) {
+        width: 70%;
       }
 
-      h1 {
-        font-size: 40px;
-        font-weight: 600;
+      div {
+        width: 90px;
+        margin-top: 20px;
+        height: 90px;
         cursor: pointer;
+        border: 5px solid teal;
+        border-radius: 50%;
+        background: transparent;
+        display: flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+
+
+        span {
+          display: block;
+          text-transform: uppercase;
+          font-size: 35px;
+          text-align: center;
+          font-weight: 700;
+          color: rgb(250, 133, 112);
+        }
+        &:hover {
+          transform: rotateZ(-90deg);
+          width: 70px;
+          height: 70px;
+          span {
+            font-size: 25px;
+          }
+        }
+
+            &::before{
+          content: '';
+          display:flex;
+          border: 5px solid white;
+          border-radius: 50%;
+        width: 90px;
+        opacity:0.7;
+        height: 90px;
+        position: absolute;
+        top: 0;
+        transition: all 0.3s ease;
+
+        &:hover{
+           transform: rotateZ(-90deg);
+          width: 70px;
+          height: 70px;
+        }
+
+        }
       }
     }
     .menu {
@@ -311,7 +338,7 @@ main {
     .nav {
       width: 60vw;
 
-      justify-content: space-between;
+      justify-content: space-evenly;
 
       @media screen and (max-width: 1000px) {
         display: none;
@@ -323,7 +350,6 @@ main {
         list-style-type: none;
         border-radius: 3px;
         border: none;
-        // background: white;
         transition: all 0.2s ease;
         position: relative;
 
@@ -347,10 +373,11 @@ main {
         .route {
           text-decoration: none;
           color: #f7f5f5;
+          color: teal;
+          font-weight: 600;
           width: 100%;
           height: 100%;
           font-size: 22px;
-          font-weight: 300;
           text-transform: capitalize;
           display: flex;
           justify-content: center;
@@ -410,7 +437,6 @@ main {
           top: 100px;
           left: 10px;
           height: 200px;
-          // background: rgb(205, 243, 248);
         }
       }
     }
@@ -419,10 +445,9 @@ main {
   .content {
     width: 100vw;
     height: auto;
-    background: rgb(0, 30, 43);
-    background: rgb(5, 126, 120);
+    background: teal;
     border-radius: 0 100% 0 0;
-    padding-top: 60px;
+    padding-top: 19vh;
     position: relative;
     @media screen and (max-width: 1000px) {
       height: 80vh;
@@ -438,14 +463,17 @@ main {
       }
 
       .blogOne {
-        color: rgba(177, 221, 218, 0.836);
-        font-size: 0.95em;
-        font-weight: 800;
+        color: rgb(255, 129, 107);
+        font-size: 40px;
+        font-weight: 600;
         cursor: pointer;
         text-transform: capitalize;
         transition: all 0.5s ease;
+        position: relative;
+        top: 40px;
+        left: -30px;
         &:hover {
-          font-size: 1em;
+          font-size: 50px;
         }
       }
 
@@ -633,13 +661,15 @@ main {
   .info {
     width: 20vw;
     height: 7vh;
-    color: teal;
+    color: rgb(253, 120, 97);
     display: flex;
     align-items: center;
+    font-weight: 500;
+    font-size: 22px;
     justify-content: center;
     position: absolute;
-    right: 100px;
-    top: 170px;
+    right: 130px;
+    top: 193px;
     cursor: cell;
     opacity: 1;
     animation: cell 5s infinite linear alternate forwards;
@@ -660,11 +690,6 @@ main {
       justify-content: space-evenly;
       flex-direction: column;
       flex-wrap: wrap;
-      &:hover {
-        .sidebar {
-          left: 0;
-        }
-      }
     }
 
     .btns {
@@ -698,14 +723,23 @@ main {
         &:hover {
           transform: rotate(30deg);
           border-radius: 30px;
+          background: rgb(252, 132, 111);
+          .link {
+            color: var(--bs-light);
+          }
         }
 
         &:last-child {
           background: transparent;
           border: 0.5px solid white;
-          color: white;
           .link {
             color: white;
+          }
+          &:hover {
+            background: white;
+            .link {
+              color: var(--bs-dark);
+            }
           }
         }
 
@@ -724,8 +758,11 @@ main {
       height: 150px;
       margin: 0 auto;
       color: white;
-      font-size: 95px;
+      font-size: 30px;
       cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       opacity: 0.9;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -733,12 +770,12 @@ main {
       transition: all 0.6s ease-in-out;
 
       span {
-        color: rgb(1, 187, 125);
-
-        font-size: 100px;
+        color: rgb(255, 141, 121);
+        font-size: 32px;
+        margin: 0 15px;
+        text-decoration: underline;
         &:last-child {
-          color: tomato;
-          font-size: 90px;
+          color: rgb(1, 187, 125);
         }
       }
 
@@ -758,113 +795,6 @@ main {
         &:hover {
           font-size: 20px;
         }
-      }
-    }
-
-    .left-content {
-      @media screen and (max-width: 1000px) {
-        // background: rgb(0, 30, 43);
-        border-radius: 0 100% 0 0;
-      }
-      @media screen and (max-width: 800px) {
-        background: transparent;
-      }
-    }
-    .right-content {
-      width: 100vw;
-      position: relative;
-      top: 0;
-      background: rgb(153, 143, 3);
-      border-radius: 100%;
-      margin-bottom: 5vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      @media screen and (max-width: 1000px) {
-        width: 60vw;
-        top: 120px;
-        border-radius: 30% 0 0 0;
-        background: linear-gradient(
-          to bottom right,
-          lightseagreen 0%,
-          mediumseagreen 50%,
-          teal 100%
-        );
-      }
-
-      @media screen and (max-width: 800px) {
-        width: 100%;
-        border-radius: 100% 0 0 0;
-        padding-left: 10%;
-      }
-
-      #anim {
-        width: 30vw;
-        margin: 2vh auto;
-        height: auto;
-        position: relative;
-        left: -570px;
-        transition: all 2s ease-in-out;
-        @media screen and (max-width: 800px) {
-          display: none;
-        }
-        img {
-          width: 100%;
-          height: auto;
-          display: block;
-          cursor: pointer;
-          border-radius: 3px;
-        }
-      }
-
-      .sidebar {
-        width: 40vw;
-        height: 430px;
-        position: relative;
-        left: 620px;
-        padding: 10px;
-        background: whitesmoke;
-        border-radius: 3px;
-        transition: all 1s ease;
-        margin-top: 100px;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        @media screen and (max-width: 800px) {
-          width: 600px;
-        }
-        @media screen and (max-width: 700px) {
-          width: 500px;
-        }
-        @media screen and (max-width: 600px) {
-          width: 400px;
-          padding: 5%;
-          margin: 0 auto;
-        }
-
-        h1 {
-          text-transform: capitalize;
-          padding: 10px;
-          color: teal;
-          font-size: 40px;
-        }
-
-        div {
-          width: 95%;
-          margin: 0 auto;
-          p {
-            font-size: 20px;
-            color: rgb(58, 54, 54);
-          }
-        }
-      }
-    }
-
-    &:hover {
-      #anim {
-        left: 0;
-      }
-      .sidebar {
-        left: -50px;
       }
     }
   }

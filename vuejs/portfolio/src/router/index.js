@@ -59,6 +59,20 @@ const routes = [{
         path: '/Dashboard',
         name: 'Dashboard',
         component: () => import( /* webpackChunkName: "Dashboard" */ '../components/Dashboard.vue')
+    },
+    {
+        path: '/Directory',
+        name: 'Directory',
+        component: () => import( /* webpackChunkName: "Directory" */ '../components/Directory.vue')
+    },
+    {
+        path: '/ChatLogic',
+        name: 'ChatLogic',
+        component: () => import( /* webpackChunkName: "ChatLogic" */ '../components/ChatLogic.vue')
+    }, {
+        path: '/Projects',
+        name: 'Projects',
+        component: () => import('../components/Projects.vue')
     }
 ]
 

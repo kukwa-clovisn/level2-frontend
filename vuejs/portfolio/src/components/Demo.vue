@@ -193,6 +193,7 @@ body {
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            font-weight: 700;
 
             a {
               color: rgb(252, 226, 84);
@@ -252,6 +253,10 @@ body {
         text-transform: capitalize;
         cursor: pointer;
 
+        @media screen and (max-width: 1000px) {
+          left: 300px;
+        }
+
         &:hover {
           font-size: 25px;
         }
@@ -281,6 +286,11 @@ body {
         z-index: 0.9;
         position: relative;
         display: block;
+
+        @media screen and (max-width: 1000px) {
+          width: 100vw;
+          padding: 0 20px;
+        }
 
         h1 {
           font-size: 30px;
@@ -347,6 +357,10 @@ body {
         align-items: center;
         z-index: 0.6;
 
+        @media screen and (max-width: 1000px) {
+          display: none;
+        }
+
         img {
           width: 800px;
           border-radius: 50%;
@@ -356,6 +370,10 @@ body {
           z-index: 0.3;
           cursor: pointer;
           outline: 25px solid rgb(89, 152, 160);
+
+          // @media screen and (max-width: 1000px) {
+          //   display: none;
+          // }
         }
       }
     }

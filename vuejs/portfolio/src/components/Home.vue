@@ -32,44 +32,7 @@
     </button>
   </div>
   <br />
-  <div class="profile" v-if="remove">
-    <div class="body">
-      <div class="page" v-if="next">
-        <span class="close" @click="close()">&times;</span>
-        <div class="heading">
-          <img src="../assets/watch.jpg" alt="" />
-          <h4 class="text-center text-capitalize">best watches</h4>
-        </div>
-        <div class="card advert">
-          <p class="lead card-text">
-            check out my bussiness website <i class="fa fa-caret-down"></i>
-            <br />
-            <router-link to="/" class="route">KCN_Enterprise.com</router-link>
-          </p>
-        </div>
-        <button class="btn btn-success" @click="change()">next</button>
-      </div>
-      <div class="page" v-if="back">
-        <button class="btn btn-success" @click="return_back()">back</button>
-      </div>
-    </div>
-  </div>
-  <!-- <div class="profile-one card">
-    <div class="side-content">
-      <img src="../assets/p.jpg" alt="" />
-      <h2 class="lead text-center text-capitalize">kukwa clovis ngong</h2>
-      <h5 class="text-center text-capitalize">codingHerald</h5>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae,
-        tenetur. Nam eveniet laboriosam necessitatibus dolor assumenda in, fuga
-        aut sit.
-      </p>
-      <button class="btn btn-success" @click="view()">view my portfolio</button>
-    </div>
-    <div class="d-none d-lg-block d-md-block photo card-body">
-      <img src="../assets/p.jpg" alt="" /> 
-    </div>
-  </div> -->
+  <Projects />
   <br />
   <br />
   <Footer />
@@ -80,6 +43,7 @@ import Logo from "./Logo.vue";
 import Footer from "./Footer.vue";
 import Header from "./Header.vue";
 import Block from "./Block.vue";
+import Projects from "./Projects.vue";
 export default {
   name: "Home",
   components: {
@@ -87,6 +51,7 @@ export default {
     Logo,
     Footer,
     Header,
+    Projects,
   },
   data() {
     return {

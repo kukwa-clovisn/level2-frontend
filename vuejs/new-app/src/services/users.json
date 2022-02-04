@@ -1,0 +1,48 @@
+{
+    "coders":[
+        {
+            "name": "John Doe",
+            "age": 34,
+            "location": "USA",
+            "sex": "M",
+            "program": "web developement"
+     
+        },
+         {
+            "name": "maxwell kate",
+            "age": 35,
+            "location": "England",
+            "sex": "M",
+            "program": "fullstack web dev"
+        },
+          {
+            "name": "Mary P",
+            "age": 34,
+            "location": "USA",
+            "sex": "F",
+            "program": "digital marketing"
+        },
+         {
+            "name": "Austine Chess",
+            "age": 35,
+            "location": "france",
+            "sex": "M"
+            ,
+            "program": "bussiness entrepreneur"
+        },
+         {
+            "name": "Joy Maker",
+            "age": 35,
+            "location": "England",
+            "sex": "F",
+            "program": "IT professional"
+        },
+         {
+            "name": "felix Mopu",
+            "age": 35,
+            "location": "England",
+            "sex": "M",
+            "program": "web developement"
+        }
+    ]
+}
