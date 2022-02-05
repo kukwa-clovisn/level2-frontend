@@ -40,7 +40,7 @@
       </ul>
     </div>
 
-    <h1 class="head">coders site users</h1>
+    <h1 class="head"> users</h1>
     <div class="content" v-if="parse">
       <div class="user" v-for="(user, id) in users" :key="id">
         <i class="fas fa-user-circle span"></i>
@@ -160,16 +160,8 @@ console.log(res);
 main {
   width: 100vw;
   min-height: 110vh;
-  background: linear-gradient(
-    to right,
-    rgb(70, 72, 73) 0%,
-    rgba(3, 85, 85, 0.815) 50%,
-    rgb(70, 72, 73) 100%
-  );
-  background: url(../assets/bulb.jpg);
-  background-attachment: fixed;
-  background-size: cover;
   position: relative;
+  background: white;
 
   header {
     width: 100vw;
@@ -284,6 +276,7 @@ main {
 
           &:hover {
             transform: scale(0.8);
+            color: rgb(211, 197, 2);
           }
         }
       }
@@ -299,6 +292,7 @@ main {
     z-index: 1;
     background: white;
     color: black;
+    transition: all 0.3s ease-in-out;
 
     h1 {
       width: 100%;
@@ -354,6 +348,7 @@ main {
   }
 
   #menu-div.show {
+    transition: all 0.3s ease-in-out;
     animation: open 1s 1 linear alternate forwards;
   }
 
@@ -386,6 +381,7 @@ main {
     padding-top: 15vh;
     text-align: center;
     color: white;
+    color: rgb(181, 184, 5);
     text-transform: capitalize;
     font-size: 50px;
     font-weight: 600;
@@ -404,8 +400,8 @@ main {
       background: linear-gradient(
         to bottom,
         rgb(18, 60, 98) 0%,
-        rgba(1, 95, 126, 0.632) 60%,
-        rgba(2, 52, 110, 0.632) 90%
+        rgba(1, 95, 126, 0.52) 60%,
+        rgba(2, 52, 110, 0.832) 90%
       );
       border-radius: 4px;
       color: white;
@@ -418,16 +414,16 @@ main {
 
       .span {
         cursor: pointer;
-        color: white;
+        color: rgb(255, 251, 255);
         font-weight: 700;
         font-size: 100px;
         margin: 15px 0;
       }
       h1 {
         text-align: center;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 30px;
-        color: white;
+        color: rgb(210, 233, 5);
       }
       ul {
         width: 90%;
@@ -463,12 +459,12 @@ main {
         display: block;
         height: 45px;
         margin: 0 auto;
-        background: white;
-        color: rgb(70, 66, 66);
+        background: rgb(191, 211, 10);
+        color: rgb(255, 254, 254);
         border-radius: 4px;
         word-spacing: 6px;
         font-weight: 700;
-        font-size: 17px;
+        font-size: 18px;
         transition: all 0.3s ease-in-out;
         text-transform: capitalize;
         font-family: "Poppins", sans-serif;
