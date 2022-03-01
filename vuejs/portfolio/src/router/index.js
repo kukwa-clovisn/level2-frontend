@@ -73,6 +73,10 @@ const routes = [{
         path: '/Projects',
         name: 'Projects',
         component: () => import('../components/Projects.vue')
+    }, {
+        path: '/chatBox',
+        name: 'chatBox',
+        component: () => import('../components/chatBox.vue')
     }
 ]
 

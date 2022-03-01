@@ -142,7 +142,7 @@ export default {
     };
   },
   created() {
-    fetch("http://localhost:3000/Database")
+    fetch("http://localhost:5000/Database")
       .then((res) => res.json())
       .then((res) => {
         console.log(res[0]);
@@ -202,7 +202,7 @@ export default {
         this.confirm = true;
         this.error = false;
 
-        fetch("http://localhost:3000/Database", {
+        fetch("http://localhost:5000/Database", {
           method: "Post",
           body: JSON.stringify({
             name: this.username,

@@ -129,7 +129,7 @@ export default {
     let getFromLocalStorage = localStorage.getItem("new todo");
 
     function validate() {
-      fetch("http://localhost:3000/Database")
+      fetch("http://localhost:5000/Database")
         .then((res) => res.json())
         .then((res) => {
           console.log(res);

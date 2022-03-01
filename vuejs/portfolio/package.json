@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve --port 9000",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "json": "json-server users.json --port 5000"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -14,6 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/vue-fontawesome": "^2.0.6",
     "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
     "bootstrap": "^5.1.3",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
