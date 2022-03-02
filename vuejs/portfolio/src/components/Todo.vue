@@ -68,13 +68,26 @@
         </p>
         <div class="todoItems">
           <ul>
-            <li v-for="(todo, index) in todoItems" :key="index">
+            <li
+              :class="{ done: todo.done }"
+              v-for="(todo, index) in todoItems"
+              :key="index"
+            >
               <p>
                 <i class="fa fa-calendar-alt" id="calendar"></i>
                 {{ todo.date }}
               </p>
 
-              <p>{{ todo.name }}</p>
+              <p id="content">
+                <input
+                  type="checkbox"
+                  name="done"
+                  v-model="todo.done"
+                  id="tastStatus"
+                  @change="addStatus(index)"
+                />
+                {{ todo.name }}
+              </p>
               <span @click="removeTask(index)">
                 <i
                   class="fa fa-trash"
@@ -117,6 +130,7 @@ export default {
     const parseData = ref({
       name: "",
       date: ``,
+      done: false,
     });
     const username = ref("");
     const password = ref("");
@@ -126,6 +140,9 @@ export default {
     const invalid = ref(false);
     const todoItems = ref([]);
     const showItems = ref([]);
+    let isDone = ref(false);
+    let status = ref(false);
+    // let statusResponses = ref([])
     let getFromLocalStorage = localStorage.getItem("new todo");
 
     function validate() {
@@ -153,6 +170,7 @@ export default {
           }
         });
     }
+
     function displayTodo() {
       items.value = [];
       todo.value = "";
@@ -175,6 +193,7 @@ export default {
     function addTodo() {
       parseData.value.name = userData.value;
       parseData.value.date = new Date();
+      parseData.value.done = false;
 
       if (userData.value.trim().length !== 0 && userData.value !== "") {
         if (getFromLocalStorage == null) {
@@ -215,14 +234,31 @@ export default {
       }
     }
 
+    function addStatus(index) {
+      getFromLocalStorage = localStorage.getItem("new todo");
+      todoItems.value = JSON.parse(getFromLocalStorage);
+
+      todoItems.value[index].done = true;
+
+      localStorage.setItem("new todo", JSON.stringify(todoItems.value));
+      isDone.value = true;
+      displayTodo();
+      console.log(todoItems.value[index]);
+      console.log(todoItems.value);
+      console.log(index);
+    }
+
     return {
       next,
       valid,
+      isDone,
       invalid,
       username,
       password,
       invalidTask,
       userData,
+      addStatus,
+      status,
       todoCount,
       showItems,
       todoItems,
@@ -488,7 +524,7 @@ Header {
 
 .main {
   width: 100%;
-  height: 95vh;
+  height: 100vh;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
@@ -578,10 +614,11 @@ Header {
 
   .todo-body {
     width: 35vw;
-    max-height: 105vh;
+    max-height: fit-content;
     background-color: white;
     border-radius: 10px;
     padding: 10px 0;
+    margin-bottom: 20px;
     position: absolute;
     top: 0;
     left: 27%;
@@ -742,7 +779,7 @@ Header {
 
         li {
           width: 100%;
-          // height: 60px;
+          height: fit-content;
           padding: 2px;
           margin: 1% auto;
           list-style-type: none;
@@ -804,18 +841,27 @@ Header {
             cursor: pointer;
             font-size: 15px;
             width: 90%;
+            height: 25px;
             padding: 5px 0 0 30px;
             line-height: 23px;
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
-
+            transition: all 0.3s ease;
             &:nth-child(odd) {
               font-size: 10px;
               padding: -10px;
             }
 
-            #calendar {
+            #taskStatus {
+              width: 40px;
+              height: 40px;
+              border: 2px solid gray;
+              outline: none;
+              cursor: pointer;
+            }
+
+            p#calendar {
               position: absolute;
               left: 1vw;
               top: 13px;
@@ -823,6 +869,31 @@ Header {
               color: rgb(74, 127, 231);
               cursor: pointer;
             }
+          }
+
+          &:hover {
+            height: fit-content;
+
+            p#content {
+              width: 81%;
+              height: fit-content;
+              overflow: scroll;
+              display: block;
+              position: relative;
+              overflow-x: hidden;
+              white-space: pre-wrap;
+              text-overflow: unset;
+              word-break: break-all;
+              font-size: 0.8em;
+            }
+          }
+        }
+
+        li.done {
+          background: rgb(193, 248, 193);
+
+          #content {
+            text-decoration: line-through;
           }
         }
       }
