@@ -307,6 +307,7 @@ export default {
           font-size: 0.8em;
           color: rgb(11, 95, 11);
           cursor: pointer;
+          color: rgb(208, 207, 207);
         }
       }
 

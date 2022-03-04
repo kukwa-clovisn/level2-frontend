@@ -110,12 +110,9 @@ button {
 main {
   width: 100vw;
   height: fit-content;
-  //   background: white;
-
   .landing-page {
     width: 100vw;
     height: 100vh;
-    //     background: white;
     padding: 10px 20px;
 
     header {
@@ -192,7 +189,6 @@ main {
         h2 {
           width: fit-content;
           padding: 10px 35px;
-          // border: 1px solid rgb(20, 20, 56);
           border-radius: 5px;
           margin: 20px auto;
           font-size: 20px;

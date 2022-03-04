@@ -72,7 +72,7 @@
           
       </div>
       <button class="explore">
-        <router-link to="/Todo" class="route">explore</router-link>
+        <router-link to="/Currency" class="route">explore</router-link>
       </button>
     </div>
     <div class="project exchange">
