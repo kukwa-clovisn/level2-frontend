@@ -77,6 +77,10 @@ const routes = [{
         path: '/chatBox',
         name: 'chatBox',
         component: () => import('../components/chatBox.vue')
+    }, {
+        path: '/online',
+        name: 'online',
+        component: () => import('../components/online.vue')
     }
 ]
 

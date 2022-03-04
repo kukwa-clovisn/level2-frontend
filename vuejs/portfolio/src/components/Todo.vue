@@ -2,7 +2,7 @@
   <div class="todo">
     <Header v-if="valid" />
     <div class="showcase" v-if="next">
-      <h1>welcome to <span id="welcome">KCN'S diary</span></h1>
+      <h1>welcome to <span id="welcome">KCN'S dairy</span></h1>
       <div>
         <label for="name">name</label>
         <input
@@ -10,7 +10,7 @@
           name="name"
           id="name"
           v-model="username"
-          placeholder="Enter your Diary name..."
+          placeholder="Enter your Dairy name..."
           required
         />
       </div>
@@ -51,7 +51,7 @@
       </div>
       <div class="todo-body">
         <h1 id="text-run">
-          KCN's Diary<i class="far fa-user" style="color: rgb(16, 16, 121)"></i>
+          KCN's Dairy<i class="far fa-user" style="color: rgb(16, 16, 121)"></i>
         </h1>
         <input
           type="text"

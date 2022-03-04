@@ -166,6 +166,28 @@ export default {
         this.stepTwo = true;
         this.stepThree = false;
         this.error = false;
+
+        fetch("http://localhost:8000/user/signup", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+          },
+          credentials: "include",
+          body: {
+            username: this.username,
+            email: this.username + "@gmail.com",
+            password: this.username + "passcode",
+          },
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            // Handle response
+            console.log("Response: ", res);
+          })
+          .catch((err) => {
+            // Handle error
+            console.log("Error message: ", err);
+          });
       } else if (this.names.includes(this.username) == true) {
         this.error = true;
         this.errormsg =
