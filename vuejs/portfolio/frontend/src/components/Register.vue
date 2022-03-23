@@ -24,7 +24,7 @@
         >
         or <router-link to="/Todo" class="link">Todo app</router-link>
       </h2>
-      <form v-if="stepOne">
+      <form @submit.prevent="next" v-if="stepOne">
         <label for="username">username:</label>
         <input
           type="text"
@@ -32,22 +32,21 @@
           id="username"
           placeholder="What should we call you?"
           required
-          class="text-capitalize"
           v-model="username"
         />
         <p class="lead error" v-if="error">{{ errormsg }}</p>
-        <button class="registerBtn" @click="next()">next</button>
+        <button class="registerBtn" type="submit">next</button>
 
         <p class="d-flex justify-content-between align-items-center">
           <router-link to="/">already have an account?sign in</router-link>
-          <button>
+          <button type="button">
             <router-link to="/" class="link"
               ><i class="fa fa-home"></i>home</router-link
             >
           </button>
         </p>
       </form>
-      <form v-if="stepTwo">
+      <form @submit.prevent="nextStep" v-if="stepTwo">
         <label for="useremail">user email:</label>
         <input
           type="email"
@@ -58,11 +57,12 @@
           v-model="email"
         />
         <p class="lead error" v-if="error">{{ errormsg }}</p>
-        <button class="registerBtn" @click="nextStep()">next</button>
+        <button class="registerBtn" type="submit">next</button>
 
         <p class="d-flex justify-content-between align-items-center">
           <router-link to="/">already have an account?sign in</router-link>
           <button
+            type="button"
             @click="
               this.stepOne = true;
               this.stepTwo = false;
@@ -75,7 +75,7 @@
           </button>
         </p>
       </form>
-      <form v-if="stepThree">
+      <form @submit.prevent="sign" v-if="stepThree">
         <label for="userpassword">user password:</label>
         <input
           type="password"
@@ -96,11 +96,12 @@
         <p class="lead error" v-if="error">
           {{ errormsg }}
         </p>
-        <button class="registerBtn" @click="sign()">sign up</button>
+        <button class="registerBtn" type="submit">sign up</button>
 
         <p class="d-flex justify-content-between align-items-center">
           <router-link to="/">already have an account?sign in</router-link>
           <button
+            type="button"
             @click="
               this.stepOne = false;
               this.stepTwo = true;
@@ -141,58 +142,49 @@ export default {
       emails: [],
     };
   },
-  created() {
-    fetch("http://localhost:5000/Database")
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res[0]);
+  // created() {
+  //   fetch("http://localhost:5000/Database")
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       console.log(res[0]);
 
-        for (let i = 0; i < res.length; i++) {
-          this.names.push(res[i].name);
-          this.emails.push(res[i].email);
-        }
-        console.log(this.names);
-        console.log(this.names.includes("Kukwa Clovis Ngong"));
-      });
-  },
+  //       for (let i = 0; i < res.length; i++) {
+  //         this.names.push(res[i].name);
+  //         this.emails.push(res[i].email);
+  //       }
+  //       console.log(this.names);
+  //       console.log(this.names.includes("Kukwa Clovis Ngong"));
+  //     });
+  // },
   methods: {
     next() {
-      if (
-        this.username !== "" &&
-        this.username.length > 5 &&
-        this.names.includes(this.username) == false
-      ) {
+      if (this.username !== "" && this.username.length > 5) {
         this.stepOne = false;
         this.stepTwo = true;
         this.stepThree = false;
         this.error = false;
 
-        fetch("http://localhost:8000/user/signup", {
-          method: "POST",
-          headers: {
-            "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-          },
-          credentials: "include",
-          body: {
-            username: this.username,
-            email: this.username + "@gmail.com",
-            password: this.username + "passcode",
-          },
-        })
-          .then((res) => res.json())
-          .then((res) => {
-            // Handle response
-            console.log("Response: ", res);
-          })
-          .catch((err) => {
-            // Handle error
-            console.log("Error message: ", err);
-          });
-      } else if (this.names.includes(this.username) == true) {
-        this.error = true;
-        this.errormsg =
-          "Sorry " + this.username + " already exist as a user...";
-        this.username = "";
+        // fetch("http://localhost:8000/user/signup", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+        //   },
+        //   credentials: "include",
+        //   body: {
+        //     username: this.username,
+        //     email: this.username + "@gmail.com",
+        //     password: this.username + "passcode",
+        //   },
+        // })
+        //   .then((res) => res.json())
+        //   .then((res) => {
+        //     // Handle response
+        //     console.log("Response: ", res);
+        //   })
+        //   .catch((err) => {
+        // Handle error
+        //   console.log("Error message: ", err);
+        // });
       } else {
         this.error = true;
         this.errormsg = " please fill in your username...";
@@ -200,15 +192,11 @@ export default {
       }
     },
     nextStep() {
-      if (this.email !== "" && this.emails.includes(this.email) == false) {
+      if (this.email !== "") {
         this.stepOne = false;
         this.stepTwo = false;
         this.stepThree = true;
         this.error = false;
-      } else if (this.emails.includes(this.email) == true) {
-        this.error = true;
-        this.errormsg = "Sorry, " + this.email + " is already in use.";
-        this.email = "";
       } else {
         this.error = true;
         this.errormsg = "please fill in a valid email address";
@@ -218,25 +206,36 @@ export default {
     },
     sign() {
       if (this.password.length > 6 && this.password === this.confirmPassword) {
-        this.stepOne = false;
-        this.stepTwo = false;
-        this.stepThree = false;
-        this.confirm = true;
-        this.error = false;
-
-        fetch("http://localhost:5000/Database", {
+        fetch("http://localhost:9001/register", {
           method: "Post",
           body: JSON.stringify({
-            name: this.username,
+            username: this.username,
             email: this.email,
             password: this.password,
           }),
           headers: {
-            "Content-type": "application/json; charset=UTF-8",
+            "Content-type": "application/json",
           },
         })
           .then((res) => res.json())
-          .then((res) => console.log(res));
+          .then((res) => {
+            if (res.data.username === this.username) {
+              this.stepOne = true;
+              this.stepTwo = false;
+              this.stepThree = false;
+              this.confirm = false;
+              this.error = true;
+              this.errormsg = res.msg;
+              console.log(res);
+            } else {
+              this.stepOne = false;
+              this.stepTwo = false;
+              this.stepThree = false;
+              this.confirm = true;
+              this.error = false;
+              console.log(res);
+            }
+          });
       } else if (this.password !== this.confirmPassword) {
         this.error = true;
         this.errormsg = "confirm failed. the passwords don't match!";

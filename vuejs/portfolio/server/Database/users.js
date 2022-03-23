@@ -19,7 +19,8 @@ const userSchema = new mongoose.Schema({
      },
      userImage: String,
      profileImage: String,
-     todos: Array
+     todos: Array,
+     BMI: Array
 }, {
      collection: 'users'
 })
