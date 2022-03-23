@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
      todos: Array,
      BMI: Array
 }, {
-     collection: 'users'
+     collection: 'clients'
 })
 
 

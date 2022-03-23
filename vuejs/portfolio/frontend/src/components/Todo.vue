@@ -10,6 +10,7 @@
           name="name"
           id="name"
           v-model="username"
+          class="text-capitalize"
           placeholder="Enter your Dairy name..."
           required
         />
@@ -146,28 +147,44 @@ export default {
     let getFromLocalStorage = localStorage.getItem("new todo");
 
     function validate() {
-      fetch("http://localhost:5000/Database")
+      fetch("http://localhost:9001/login", {
+        method: "Post",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+          username: username.value,
+          password: password.value,
+        }),
+      })
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
 
-          for (let i = 0; i < res.length; i++) {
-            if (
-              res[i].name.includes(username.value) == true &&
-              res[i].password.includes(password.value) == true &&
-              username.value.length > 4 &&
-              password.value.length > 4
-            ) {
-              console.log(username.value);
-              console.log(res[i].name.includes(username.value));
-              next.value = false;
-              app.value = true;
-              valid.value = true;
-              invalid.value = false;
-            } else {
-              invalid.value = true;
-            }
+          if (!res.data) {
+            return (invalid.value = true);
           }
+
+          next.value = false;
+          app.value = true;
+          valid.value = true;
+          invalid.value = false;
+
+          // for (let i = 0; i < res.length; i++) {
+          //   if (
+          //     res[i].name.includes(username.value) == true &&
+          //     res[i].password.includes(password.value) == true &&
+          //     username.value.length > 4 &&
+          //     password.value.length > 4
+          //   ) {
+          //     console.log(username.value);
+          //     console.log(res[i].name.includes(username.value));
+          //     next.value = false;
+          //     app.value = true;
+          //     valid.value = true;
+          //     invalid.value = false;
+          //   } else {
+          //     invalid.value = true;
+          //   }
+          // }
         });
     }
 
@@ -196,6 +213,14 @@ export default {
       parseData.value.done = false;
 
       if (userData.value.trim().length !== 0 && userData.value !== "") {
+        // fetch('http://localhost:9001/user/addTodo', {
+        //   method: 'Post',
+        //   headers: {
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: JSON.stringify(userData.value)
+        // })
+
         if (getFromLocalStorage == null) {
           todoItems.value = [];
         } else {

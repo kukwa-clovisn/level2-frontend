@@ -32,6 +32,7 @@
           id="username"
           placeholder="What should we call you?"
           required
+          class="text-capitalize"
           v-model="username"
         />
         <p class="lead error" v-if="error">{{ errormsg }}</p>
@@ -219,9 +220,17 @@ export default {
         })
           .then((res) => res.json())
           .then((res) => {
-            if (res.data.username === this.username) {
+            if (res.data.username && res.data.username === this.username) {
               this.stepOne = true;
               this.stepTwo = false;
+              this.stepThree = false;
+              this.confirm = false;
+              this.error = true;
+              this.errormsg = res.msg;
+              console.log(res);
+            } else if (res.data.email && res.data.email === this.email) {
+              this.stepOne = false;
+              this.stepTwo = true;
               this.stepThree = false;
               this.confirm = false;
               this.error = true;
