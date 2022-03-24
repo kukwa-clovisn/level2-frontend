@@ -3,7 +3,6 @@
  */
 
 const capitalizeUserName = (username) => {
-
      let nameArr = username.split(" ");
 
      let capitalizedName = "";

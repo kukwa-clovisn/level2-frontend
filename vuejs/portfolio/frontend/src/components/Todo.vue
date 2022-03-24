@@ -27,7 +27,7 @@
         />
       </div>
       <p class="errormsg text-danger text-center" v-if="invalid">
-        invalid log in info
+        {{ invalidMsg }}
       </p>
       <button id="log-in" class="btn" @click="validate()">
         log in <i class="fa fa-arrow-right"></i>
@@ -62,8 +62,10 @@
           placeholder="input new todo item"
           required
         />
-        <span><i class="far fa-laugh laugh"></i></span>
-        <button @click="addTodo()">add todo item</button>
+        <div class="addItem">
+          <span><i class="far fa-laugh laugh"></i></span>
+          <button @click="addTodo()">add todo item</button>
+        </div>
         <p id="error" class="py-3" v-if="invalidTask">
           please add a valid task ❣️KCN❣️
         </p>
@@ -115,6 +117,7 @@
 import Footer from "./Footer.vue";
 import Header from "./Header.vue";
 import { ref } from "vue";
+import axios from "axios";
 export default {
   name: "Todo",
   components: {
@@ -127,6 +130,7 @@ export default {
     let app = ref(false);
     let valid = ref(false);
     const invalidTask = ref(false);
+    let invalidMsg = ref("");
     const userData = ref("");
     const parseData = ref({
       name: "",
@@ -135,143 +139,250 @@ export default {
     });
     const username = ref("");
     const password = ref("");
-    const items = ref([]);
     const todo = ref("");
     const todoCount = ref(0);
     const invalid = ref(false);
-    const todoItems = ref([]);
-    const showItems = ref([]);
+    let todoItems = ref([]);
     let isDone = ref(false);
     let status = ref(false);
-    // let statusResponses = ref([])
-    let getFromLocalStorage = localStorage.getItem("new todo");
+    // let getFromLocalStorage = localStorage.getItem("new todo");
 
-    function validate() {
-      fetch("http://localhost:9001/login", {
-        method: "Post",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({
-          username: username.value,
-          password: password.value,
-        }),
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
+    const validate = async () => {
+      try {
+        await fetch("http://localhost:9001/login", {
+          method: "Post",
+          // mode: "no-cors",
+          headers: {
+            // "Access-Control-Request-Headers": "Authorization",
+            // Authorization: "Bearer secretToken",
+            "Content-type": "application/json",
+          },
+          // credentials: "include",
+          body: JSON.stringify({
+            username: username.value,
+            password: password.value,
+          }),
+        })
+          .then((res) => res.json())
+          .then(async (res) => {
+            console.log(res);
 
-          if (!res.data) {
-            return (invalid.value = true);
-          }
+            if (!res.data) {
+              invalidMsg.value = res.msg;
+              return (invalid.value = true);
+            }
 
-          next.value = false;
-          app.value = true;
-          valid.value = true;
-          invalid.value = false;
-
-          // for (let i = 0; i < res.length; i++) {
-          //   if (
-          //     res[i].name.includes(username.value) == true &&
-          //     res[i].password.includes(password.value) == true &&
-          //     username.value.length > 4 &&
-          //     password.value.length > 4
-          //   ) {
-          //     console.log(username.value);
-          //     console.log(res[i].name.includes(username.value));
-          //     next.value = false;
-          //     app.value = true;
-          //     valid.value = true;
-          //     invalid.value = false;
-          //   } else {
-          //     invalid.value = true;
-          //   }
-          // }
-        });
-    }
-
-    function displayTodo() {
-      items.value = [];
-      todo.value = "";
-      getFromLocalStorage = localStorage.getItem("new todo");
-      if (getFromLocalStorage == null) {
-        todoItems.value = [];
-      } else {
-        todoItems.value = JSON.parse(getFromLocalStorage);
+            next.value = false;
+            app.value = true;
+            valid.value = true;
+            invalid.value = false;
+            displayTodo(res.data.id);
+          });
+      } catch (err) {
+        console.log(err);
       }
-      items.value.push(parseData.value);
-      showItems.value = items.value;
-      todoCount.value = todoItems.value.length;
-      console.log(showItems.value);
+    };
 
-      console.log(todoItems.value);
-    }
+    const displayTodo = async (id) => {
+      try {
+        await axios("http://localhost:9001/login/data/" + `${id}`)
+          .then(async (res) => {
+            console.log(res);
 
-    displayTodo();
+            todoItems.value = await res.data.todos;
+            console.log(todoItems.value);
+            console.log(todoItems.value[1]);
+            todoCount.value = todoItems.value.length;
+          })
+          .catch((err) => console.log(err));
+      } catch (err) {
+        console.log(err);
+      }
 
-    function addTodo() {
-      parseData.value.name = userData.value;
-      parseData.value.date = new Date();
-      parseData.value.done = false;
+      // getFromLocalStorage = localStorage.getItem("new todo");
+      // if (getFromLocalStorage == null) {
+      //   todoItems.value = [];
+      // } else {
+      //   todoItems.value = JSON.parse(getFromLocalStorage);
+      // }
+      // todoCount.value = todoItems.value.length;
+    };
 
-      if (userData.value.trim().length !== 0 && userData.value !== "") {
-        // fetch('http://localhost:9001/user/addTodo', {
-        //   method: 'Post',
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify(userData.value)
-        // })
+    const updateData = async (data, id) => {
+      try {
+        await axios
+          .post(
+            "http://localhost:9001/login/data/" + `${id}`,
+            {
+              data,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          )
+          .then(async (res) => {
+            await displayTodo(res.data._id);
+          })
+          .catch((err) => console.log(err));
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-        if (getFromLocalStorage == null) {
-          todoItems.value = [];
+    const addTodo = async () => {
+      console.log(username.value);
+      try {
+        parseData.value.name = userData.value;
+        parseData.value.date = new Date();
+        parseData.value.done = false;
+
+        if (userData.value.trim().length !== 0 && userData.value !== "") {
+          // if (getFromLocalStorage == null) {
+          //   todoItems.value = [];
+          // } else {
+          //   todoItems.value = JSON.parse(getFromLocalStorage); //coverting the string into json object
+          // }
+
+          await axios(
+            "http://localhost:9001/login/data/name/" + `${username.value}`
+          ).then(async (res) => {
+            console.log(res);
+
+            todoItems.value.push(parseData.value);
+            await updateData(todoItems.value, res.data._id);
+          });
+
+          // localStorage.setItem("new todo", JSON.stringify(todoItems.value)); //transforming the json object into string
+
+          // axios
+          //   .post(
+          //     "http://localhost:9001/login/data/" + "623b80a685b4097d966cfac5",
+          //     {
+          //       todoItems,
+          //     },
+          //     {
+          //       headers: {
+          //         "Content-Type": "application/json",
+          //       },
+          //     }
+          //   )
+          //   .then((res) => {
+          //     console.log(res);
+          //   })
+          //   .catch((err) => console.log(err));
+
+          userData.value = "";
+          invalidTask.value = false;
         } else {
-          todoItems.value = JSON.parse(getFromLocalStorage); //coverting the string into json object
+          invalidTask.value = true;
         }
 
-        todoItems.value.push(parseData.value);
-        localStorage.setItem("new todo", JSON.stringify(todoItems.value)); //transforming the json object into string
-        displayTodo();
-        userData.value = "";
-        invalidTask.value = false;
-      } else {
-        invalidTask.value = true;
+        todoCount.value = todoItems.value.length;
+      } catch (err) {
+        console.log(err);
       }
+    };
 
-      todoCount.value = todoItems.value.length;
-    }
+    const removeAllTodos = async () => {
+      try {
+        // todoItems.value = JSON.parse(getFromLocalStorage);
+        // todoItems.value = [];
+        // localStorage.setItem("new todo", JSON.stringify(todoItems.value)); //updating the local storage
+        // todoItems = await getData().todos;
+        // let id = await getData().id;
 
-    function removeAllTodos() {
-      todoItems.value = JSON.parse(getFromLocalStorage);
-      todoItems.value = [];
-      localStorage.setItem("new todo", JSON.stringify(todoItems.value)); //updating the local storage
-      displayTodo();
-    }
-
-    function removeTask(index) {
-      console.log(index);
-
-      if (window.confirm("Are you sure you want to delete this item?")) {
-        getFromLocalStorage = localStorage.getItem("new todo");
-        todoItems.value = JSON.parse(getFromLocalStorage);
-        todoItems.value.splice(index, 1); //detete that item you've choosen
-        console.log(todoItems.value.indexOf(index));
-        localStorage.setItem("new todo", JSON.stringify(todoItems.value)); //updating the local storage after deleting as item
-        displayTodo();
+        await axios(
+          "http://localhost:9001/login/data/name/" + `${username.value}`
+        ).then(async (res) => {
+          console.log(res);
+          if (window.confirm("Are you sure you want to delete all items??")) {
+            todoItems.value = [];
+            await updateData(todoItems.value, res.data._id);
+            return;
+          }
+          await displayTodo(res.data._id);
+        });
+      } catch (err) {
+        console.log(err);
       }
-    }
+    };
 
-    function addStatus(index) {
-      getFromLocalStorage = localStorage.getItem("new todo");
-      todoItems.value = JSON.parse(getFromLocalStorage);
+    const removeTask = async (index) => {
+      try {
+        console.log(index);
+        // getFromLocalStorage = localStorage.getItem("new todo");
+        // todoItems.value = JSON.parse(getFromLocalStorage);
+        // await getData();
+        // localStorage.setItem("new todo", JSON.stringify(todoItems.value)); //updating the local storage after deleting as item
 
-      todoItems.value[index].done = true;
+        await axios(
+          "http://localhost:9001/login/data/name/" + `${username.value}`
+        ).then(async (res) => {
+          console.log(res);
 
-      localStorage.setItem("new todo", JSON.stringify(todoItems.value));
-      isDone.value = true;
-      displayTodo();
-      console.log(todoItems.value[index]);
-      console.log(todoItems.value);
-      console.log(index);
-    }
+          if (!todoItems.value[index].done) {
+            if (
+              window.confirm(
+                `Are you sure you want to delete item ${
+                  index + 1
+                }? You're not done with it yet`
+              )
+            ) {
+              todoItems.value = await res.data.todos;
+              todoItems.value.splice(index, 1); //detete that item you've choosen
+              console.log(todoItems.value.indexOf(index));
+
+              await updateData(todoItems.value, res.data._id);
+              return;
+            }
+            await displayTodo(res.data._id);
+            return;
+          }
+          if (
+            window.confirm(`Are you sure you want to delete item ${index + 1}?`)
+          ) {
+            todoItems.value = await res.data.todos;
+            todoItems.value.splice(index, 1); //detete that item you've choosen
+            console.log(todoItems.value.indexOf(index));
+
+            await updateData(todoItems.value, res.data._id);
+            return;
+          }
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    const addStatus = async (index) => {
+      try {
+        // getFromLocalStorage = localStorage.getItem("new todo");
+        // todoItems.value = JSON.parse(getFromLocalStorage);
+        await axios(
+          "http://localhost:9001/login/data/name/" + `${username.value}`
+        ).then(async (res) => {
+          console.log(res);
+          todoItems.value = res.data.todos;
+          if (!todoItems.value[index].done) {
+            if (window.confirm(`Are you done with with item ${index + 1}`)) {
+              todoItems.value[index].done = true;
+              isDone.value = true;
+
+              await updateData(todoItems.value, res.data._id);
+              return;
+            }
+            await displayTodo(res.data._id);
+            return;
+          }
+
+          // localStorage.setItem("new todo", JSON.stringify(todoItems.value));
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
     return {
       next,
@@ -280,12 +391,12 @@ export default {
       invalid,
       username,
       password,
+      invalidMsg,
       invalidTask,
       userData,
       addStatus,
       status,
       todoCount,
-      showItems,
       todoItems,
       todo,
       removeTask,
@@ -299,7 +410,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$primaryCol: rgba(238, 238, 238, 0.979);
 $white: white;
+$whiteBorder: rgb(238, 238, 238);
+
 Header {
   background: transparent;
 }
@@ -638,17 +752,16 @@ Header {
   }
 
   .todo-body {
-    width: 35vw;
-    max-height: fit-content;
-    background-color: white;
-    border-radius: 10px;
-    padding: 10px 0;
+    width: 40vw;
+    height: fit-content;
+    background: $white;
+    box-shadow: 0 0 1px 2px $white;
+    border-radius: 5px;
+    padding: 20px;
     margin-bottom: 20px;
     position: absolute;
     top: 0;
     left: 27%;
-    // overflow: hidden;
-    // overflow-y: scroll;
 
     @media screen and (max-width: 1000px) {
       width: 60vw;
@@ -665,16 +778,16 @@ Header {
 
     h1 {
       text-transform: capitalize;
-      font-size: 23px;
-      font-weight: 500;
-      padding: 10px;
+      font-size: 25px;
+      font-weight: 600;
+      padding: 12px 3px;
       color: #224272;
-      margin-left: 4%;
+      margin: auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      min-height: 80px;
-      width: 90%;
+      height: fit-content;
+      width: 100%;
       position: relative;
 
       &::before {
@@ -701,57 +814,71 @@ Header {
     }
 
     #inputItem {
-      width: 90%;
-      height: 100px;
+      width: 100%;
+      height: 70px;
       margin: auto;
       display: block;
       padding: 10px;
       outline: none;
-      border: 2px solid #f9f9f9;
+      border: 2px solid $whiteBorder;
       border-radius: 3px;
-      background-color: #e6e6e6;
+      background: rgba(240, 239, 239, 0.938);
+      box-shadow: 0 0 3px 1px $whiteBorder;
     }
 
-    span {
-      .laugh {
-        font-size: 40px;
-        margin: 1% 10%;
-        color: #497be8;
-        cursor: pointer;
-        transition: all 0.3s ease;
+    .addItem {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
 
-        @media screen and (max-width: 768px) {
-          position: relative;
-          left: 35%;
-        }
+      span {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 20%;
+        height: 45px;
+        .laugh {
+          font-size: 35px;
+          margin: 10px 10%;
+          color: #497be8;
+          cursor: pointer;
+          transition: all 0.3s ease;
 
-        &:hover {
-          color: teal;
-        }
-
-        &:active {
-          animation: laugh 2s infinite linear alternate forwards;
-        }
-
-        @keyframes laugh {
-          0% {
-            opacity: 0;
+          @media screen and (max-width: 768px) {
+            position: relative;
+            left: 35%;
           }
 
-          100% {
-            opacity: 1;
+          &:hover {
+            color: teal;
+          }
+
+          &:active {
+            animation: laugh 2s infinite linear alternate forwards;
+          }
+
+          @keyframes laugh {
+            0% {
+              opacity: 0;
+            }
+
+            100% {
+              opacity: 1;
+            }
           }
         }
       }
     }
-
     button {
       width: 40%;
-      height: 35px;
+      height: 45px;
       float: right;
       padding: 5px;
-      margin: 2% 5%;
-      border-radius: 10px;
+      margin: 10px 0;
+      border-radius: 3px;
       border: none;
       background-color: rgb(74, 127, 231);
       color: white;
@@ -760,7 +887,7 @@ Header {
       cursor: pointer;
 
       @media screen and (max-width: 768px) {
-        width: 90%;
+        width: 100%;
         display: block;
         margin: 1% 5%;
       }
@@ -791,33 +918,38 @@ Header {
 
     .todoItems {
       width: 100%;
-      height: auto;
+      height: 200px;
       margin: 3% auto;
-      margin-bottom: 2%;
+      margin-bottom: 0;
       border-radius: 10px;
 
       ul {
         width: 100%;
-        height: 35vh;
+        height: 200px;
+        padding: 0;
+        margin: 0 auto;
         overflow: hidden;
         overflow-y: scroll;
+        background: $primaryCol;
+        border: 3px solid $primaryCol;
+        border-right: none;
+        border-left: none;
 
         li {
-          width: 100%;
+          width: 98%;
           height: fit-content;
-          padding: 2px;
-          margin: 1% auto;
+          margin: 5px auto;
+          margin-top: 0;
+          padding: 4px 0;
           list-style-type: none;
           font-size: 15px;
-          line-height: 23px;
-          border-radius: 5px;
-          display: inline-block;
+          border-radius: 2px;
+          display: block;
           text-transform: capitalize;
           position: relative;
-          left: -10px;
-          background-color: #e9e7e7;
-          border: 1px solid rgb(231, 229, 229);
           transition: all 0.3s ease;
+          background: $white;
+          box-shadow: 0 0 2px 2px $whiteBorder;
 
           span {
             width: 15%;
@@ -866,16 +998,14 @@ Header {
             cursor: pointer;
             font-size: 15px;
             width: 90%;
-            height: 25px;
-            padding: 5px 0 0 30px;
-            line-height: 23px;
+            padding: 2px 0 2px 10px;
+            margin: 5px 0;
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
             transition: all 0.3s ease;
             &:nth-child(odd) {
               font-size: 10px;
-              padding: -10px;
             }
 
             #taskStatus {
@@ -927,6 +1057,7 @@ Header {
     #pending {
       text-align: center;
       padding: 3px;
+      margin: 0 auto;
       text-transform: capitalize;
 
       #count {
@@ -936,10 +1067,9 @@ Header {
     }
 
     #reset {
-      width: 90%;
-      height: 35px;
-      float: left;
-      margin: 1% 5%;
+      width: 100%;
+      height: 45px;
+      margin: 1% auto;
       text-align: center;
     }
   }

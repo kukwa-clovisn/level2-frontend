@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const registerRoute = require('./routes/register')
 const loginRoute = require('./routes/login')
 const userRoute = require('./routes/user')
+const dataRoute = require('./routes/data')
 const cors = require("cors");
 const logger = require("morgan");
 const mongoose = require('mongoose');
@@ -27,7 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
      cors({
-          origin: ["http://localhost:9000"]
+          origin: "*"
      })
 );
 mongo_uri = process.env.MONGO_URI;
@@ -43,7 +44,8 @@ mongoose.connect(mongo_uri, {
 // })
 app.use('/login', loginRoute);
 app.use('/register', registerRoute);
-app.use('/user', userRoute)
+app.use('/user', userRoute);
+app.use('/data', dataRoute);
 
 app.get("/", (req, res) => {
      res.json({
