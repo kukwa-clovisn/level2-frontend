@@ -1,6 +1,6 @@
 <template>
   <div class="todo">
-    <Header v-if="valid" />
+    <!-- <Header v-if="valid" /> -->
     <div class="showcase" v-if="next">
       <h1>welcome to <span id="welcome">KCN'S dairy</span></h1>
       <div>
@@ -26,6 +26,7 @@
           required
         />
       </div>
+
       <p class="errormsg text-danger text-center" v-if="invalid">
         {{ invalidMsg }}
       </p>
@@ -43,32 +44,55 @@
         <div>
           <img src="../assets/list.svg" alt="DAIRY" />
         </div>
-        <h1>kukwa clovis ngong</h1>
-        <h2>student at <span>seven advance academy</span></h2>
+        <h1>
+          welcome <br />
+          {{ profile.profileName }}
+        </h1>
+        <h2>
+          you Have<span>{{ todoCount }}</span
+          >pending task(s)
+        </h2>
         <h2>fullstack web developer</h2>
-        <h2>kcn.123.com@gmail.com</h2>
-        <h2>kukwaclovisngong3@gmail.com</h2>
+        <h2>{{ profile.profileEmail }}</h2>
         <h3>💔 in Christ alone❣️</h3>
       </div>
       <div class="todo-body">
-        <h1 id="text-run">
-          KCN's Dairy<i class="far fa-user" style="color: rgb(16, 16, 121)"></i>
-        </h1>
-        <input
+        <h1 id="text-run">KCN's Dairy<i class="far fa-heart"></i></h1>
+        <textarea
           type="text"
           id="inputItem"
           v-model="userData"
           name="text"
           placeholder="input new todo item"
           required
-        />
+        ></textarea>
         <div class="addItem">
           <span><i class="far fa-laugh laugh"></i></span>
           <button @click="addTodo()">add todo item</button>
         </div>
-        <p id="error" class="py-3" v-if="invalidTask">
-          please add a valid task ❣️KCN❣️
-        </p>
+        <div class="errorDiv">
+          <form
+            @submit.prevent="updateTask(index)"
+            class="edit-form"
+            v-if="edit.val"
+          >
+            <input type="hidden" v-model="edit.task_id" class="task-id" />
+            <textarea
+              type="text"
+              name="edit"
+              id="edit"
+              placeholder="Edit task here...."
+              v-model="edit.task"
+            ></textarea>
+            <button type="submit">
+              <i class="far fa-edit edit" title="Edit task..."></i>
+            </button>
+          </form>
+          <p id="error" class="py-3" v-if="invalidTask">
+            please add a valid task ❣️KCN❣️
+          </p>
+        </div>
+
         <div class="todoItems">
           <ul>
             <li
@@ -77,21 +101,25 @@
               :key="index"
             >
               <p>
-                <i class="fa fa-calendar-alt" id="calendar"></i>
+                <button @click="editTask(index, todo.name)">
+                  <i class="far fa-edit edit" title="Edit task!"></i>
+                </button>
+
                 {{ todo.date }}
               </p>
 
-              <p id="content">
+              <p class="content" :title="todo.name">
                 <input
                   type="checkbox"
                   name="done"
                   v-model="todo.done"
-                  id="tastStatus"
+                  class="taskStatus"
                   @change="addStatus(index)"
+                  title="check task!"
                 />
                 {{ todo.name }}
               </p>
-              <span @click="removeTask(index)">
+              <span @click="removeTask(index)" title="Delete task">
                 <i
                   class="fa fa-trash"
                   style="color: white; font-size: 1.2em"
@@ -115,17 +143,21 @@
 
 <script>
 import Footer from "./Footer.vue";
-import Header from "./Header.vue";
-import { ref } from "vue";
+// import Header from "./Header.vue";
+import { ref, reactive } from "vue";
 import axios from "axios";
 export default {
   name: "Todo",
   components: {
     Footer,
-    Header,
+    // Header,
   },
 
   setup() {
+    let profile = reactive({
+      profileName: "",
+      profileEmail: "",
+    });
     let next = ref(true);
     let app = ref(false);
     let valid = ref(false);
@@ -147,6 +179,9 @@ export default {
     let status = ref(false);
     // let getFromLocalStorage = localStorage.getItem("new todo");
 
+    /**
+     * creating a log in validation and authentication
+     */
     const validate = async () => {
       try {
         await fetch("http://localhost:9001/login", {
@@ -183,6 +218,9 @@ export default {
       }
     };
 
+    /**
+     * creating a funtion that will display the todo items
+     */
     const displayTodo = async (id) => {
       try {
         await axios("http://localhost:9001/login/data/" + `${id}`)
@@ -193,6 +231,8 @@ export default {
             console.log(todoItems.value);
             console.log(todoItems.value[1]);
             todoCount.value = todoItems.value.length;
+            profile.profileName = res.data.username;
+            profile.profileEmail = res.data.email;
           })
           .catch((err) => console.log(err));
       } catch (err) {
@@ -208,6 +248,9 @@ export default {
       // todoCount.value = todoItems.value.length;
     };
 
+    /**
+     * function that updates the todos
+     */
     const updateData = async (data, id) => {
       try {
         await axios
@@ -231,6 +274,9 @@ export default {
       }
     };
 
+    /**
+     * creating a function that adds a new todo item
+     */
     const addTodo = async () => {
       console.log(username.value);
       try {
@@ -285,6 +331,9 @@ export default {
       }
     };
 
+    /**
+     * function that deletes all todo tasks
+     */
     const removeAllTodos = async () => {
       try {
         // todoItems.value = JSON.parse(getFromLocalStorage);
@@ -309,6 +358,9 @@ export default {
       }
     };
 
+    /**
+     * function that removes a single task
+     */
     const removeTask = async (index) => {
       try {
         console.log(index);
@@ -356,6 +408,9 @@ export default {
       }
     };
 
+    /**
+     * funtion that adds the status done to a todo task
+     */
     const addStatus = async (index) => {
       try {
         // getFromLocalStorage = localStorage.getItem("new todo");
@@ -384,7 +439,34 @@ export default {
       }
     };
 
+    /**
+     * creating a function that will edit a todo task
+     */
+    let edit = reactive({
+      task: "",
+      val: false,
+    });
+
+    const editTask = (index, taskToEdit) => {
+      edit.task = `T${index + 1}` + ":" + taskToEdit;
+      edit.val = true;
+      console.log(index);
+      console.log(taskToEdit);
+      console.log(edit.task);
+    };
+
+    /**
+     * function that edits a single task
+     */
+    const updateTask = async () => {
+      let numAt = edit.task;
+      let task_id = parseInt(numAt.charAt(1)) - 1;
+      alert(task_id);
+      edit.val = false;
+    };
+
     return {
+      edit,
       next,
       valid,
       isDone,
@@ -398,7 +480,10 @@ export default {
       status,
       todoCount,
       todoItems,
+      profile,
       todo,
+      updateTask,
+      editTask,
       removeTask,
       removeAllTodos,
       addTodo,
@@ -410,9 +495,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$primaryCol: rgba(238, 238, 238, 0.979);
+$primaryCol: rgb(201, 219, 253);
 $white: white;
 $whiteBorder: rgb(238, 238, 238);
+$secondaryCol: teal;
+$tertiaryCol: rgb(193, 248, 193);
 
 Header {
   background: transparent;
@@ -548,7 +635,7 @@ Header {
   }
 
   &:hover {
-    border: 2px solid teal;
+    border: 2px solid $secondaryCol;
   }
 
   &:active {
@@ -663,10 +750,10 @@ Header {
 
 .main {
   width: 100%;
-  height: 100vh;
-  justify-content: space-evenly;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   padding: 20px;
   background: transparent;
   background-attachment: fixed;
@@ -716,6 +803,11 @@ Header {
       padding: 6px;
       text-transform: capitalize;
       font-weight: 300;
+      span {
+        color: red;
+        padding: 0 4px;
+        font: 600 17px "Russo One", sans-serif;
+      }
 
       @media screen and (max-width: 768px) {
         font-size: 12px;
@@ -752,36 +844,36 @@ Header {
   }
 
   .todo-body {
-    width: 40vw;
+    width: 480px;
     height: fit-content;
     background: $white;
     box-shadow: 0 0 1px 2px $white;
     border-radius: 5px;
     padding: 20px;
-    margin-bottom: 20px;
-    position: absolute;
-    top: 0;
-    left: 27%;
+    // margin-bottom: 20px;
+    // position: absolute;
+    // top: 0;
+    // left: 27%;
 
-    @media screen and (max-width: 1000px) {
-      width: 60vw;
-    }
+    // @media screen and (max-width: 1000px) {
+    //   width: 60vw;
+    // }
 
-    @media screen and (max-width: 768px) {
-      width: 70vw;
-      left: 15%;
-    }
+    // @media screen and (max-width: 768px) {
+    //   width: 70vw;
+    //   left: 15%;
+    // }
 
-    @media screen and (max-width: 430px) {
-      border-radius: 10px;
-    }
+    // @media screen and (max-width: 430px) {
+    //   border-radius: 10px;
+    // }
 
     h1 {
       text-transform: capitalize;
       font-size: 25px;
       font-weight: 600;
       padding: 12px 3px;
-      color: #224272;
+      color: $secondaryCol;
       margin: auto;
       display: flex;
       justify-content: space-between;
@@ -802,7 +894,7 @@ Header {
 
       i {
         margin-right: 6%;
-        color: #497be8;
+        color: $secondaryCol;
         cursor: progress;
       }
     }
@@ -815,20 +907,20 @@ Header {
 
     #inputItem {
       width: 100%;
-      height: 70px;
+      height: 85px;
       margin: auto;
       display: block;
       padding: 10px;
       outline: none;
-      border: 2px solid $whiteBorder;
+      border: none;
       border-radius: 3px;
-      background: rgba(240, 239, 239, 0.938);
-      box-shadow: 0 0 3px 1px $whiteBorder;
+      background: rgb(240, 239, 239);
+      box-shadow: 0 0 2px 0.3px $whiteBorder;
     }
 
     .addItem {
       width: 100%;
-      height: 50px;
+      height: fit-content;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -843,17 +935,18 @@ Header {
         .laugh {
           font-size: 35px;
           margin: 10px 10%;
-          color: #497be8;
+          color: $secondaryCol;
           cursor: pointer;
           transition: all 0.3s ease;
 
           @media screen and (max-width: 768px) {
             position: relative;
-            left: 35%;
+            left: 100%;
+            justify-content: center;
           }
 
           &:hover {
-            color: teal;
+            color: $secondaryCol;
           }
 
           &:active {
@@ -880,7 +973,7 @@ Header {
       margin: 10px 0;
       border-radius: 3px;
       border: none;
-      background-color: rgb(74, 127, 231);
+      background-color: $secondaryCol;
       color: white;
       text-transform: capitalize;
       transition: all 0.4s ease;
@@ -893,7 +986,7 @@ Header {
       }
 
       &:hover {
-        background: teal;
+        background: rgb(2, 155, 155);
       }
 
       &:active {
@@ -901,18 +994,65 @@ Header {
       }
     }
 
-    #error {
-      font-size: 12px;
-      color: rgba(231, 16, 16, 0.938);
-      text-align: center;
-      margin: 1% auto;
-      cursor: pointer;
+    .errorDiv {
+      width: 100%;
+      height: fit-content;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 2px;
 
-      @media screen and (max-width: 768px) {
-        position: relative;
-        margin: 3% 0 -2% 0;
-        height: 40px;
-        width: 90%;
+      form {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+        box-shadow: 0 0 2px 1px $whiteBorder;
+
+        #edit {
+          width: 90%;
+          height: fit-content;
+          padding: 2px 10px 2px 16px;
+          outline: none;
+          border: none;
+          background: transparent;
+          // box-shadow: 0 0 2px 1px $whiteBorder;
+          border-radius: 3px 0 0 3px;
+        }
+        button {
+          width: 10%;
+          height: 100%;
+          // box-shadow: 0 0 2px 1px $whiteBorder;
+          padding: 2px 0;
+          border: none;
+          display: block;
+          border-radius: 0 3px 3px 0;
+          background: $primaryCol;
+          cursor: pointer;
+
+          .edit {
+            color: $secondaryCol;
+            font-size: 16px;
+          }
+        }
+      }
+      #error {
+        font-size: 12px;
+        color: rgba(231, 16, 16, 0.938);
+        text-align: center;
+        margin: 0 auto;
+        cursor: pointer;
+
+        // @media screen and (max-width: 768px) {
+        //   position: relative;
+        //   margin: 3% 0 -2% 0;
+        //   height: 40px;
+        //   width: 90%;
+        // }
       }
     }
 
@@ -935,12 +1075,21 @@ Header {
         border-right: none;
         border-left: none;
 
+        &::-webkit-scrollbar {
+          background: $primaryCol;
+          width: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: $secondaryCol;
+        }
+
         li {
           width: 98%;
           height: fit-content;
           margin: 5px auto;
           margin-top: 0;
-          padding: 4px 0;
+          padding: 2px 0;
           list-style-type: none;
           font-size: 15px;
           border-radius: 2px;
@@ -949,7 +1098,11 @@ Header {
           position: relative;
           transition: all 0.3s ease;
           background: $white;
-          box-shadow: 0 0 2px 2px $whiteBorder;
+          box-shadow: 0 0 1px 1px $whiteBorder;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
 
           span {
             width: 15%;
@@ -998,8 +1151,12 @@ Header {
             cursor: pointer;
             font-size: 15px;
             width: 90%;
-            padding: 2px 0 2px 10px;
-            margin: 5px 0;
+            height: fit-content;
+            padding: 2px 10px;
+            margin: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
@@ -1008,28 +1165,49 @@ Header {
               font-size: 10px;
             }
 
-            #taskStatus {
-              width: 40px;
-              height: 40px;
-              border: 2px solid gray;
+            .taskStatus {
+              width: 20px;
+              height: 20px;
+              border: none;
+              display: block;
+              margin: 0 5px;
+              margin-left: 0;
+              box-shadow: 0 0 1px 1px $primaryCol;
               outline: none;
               cursor: pointer;
-            }
+              transition: all 0.3s ease;
+              &:hover {
+                border-radius: 100%;
+              }
 
-            p#calendar {
-              position: absolute;
-              left: 1vw;
-              top: 13px;
-              font-size: 17px;
-              color: rgb(74, 127, 231);
+              &:checked {
+                display: block;
+              }
+            }
+            button {
+              background: none;
+              width: fit-content;
+              height: fit-content;
               cursor: pointer;
+              outline: none;
+              margin: 0;
+
+              .edit {
+                font-size: 13px;
+                color: $secondaryCol;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                &:hover {
+                  transform: scale(0.8);
+                }
+              }
             }
           }
 
           &:hover {
             height: fit-content;
 
-            p#content {
+            .content {
               width: 81%;
               height: fit-content;
               overflow: scroll;
@@ -1038,6 +1216,9 @@ Header {
               overflow-x: hidden;
               white-space: pre-wrap;
               text-overflow: unset;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
               word-break: break-all;
               font-size: 0.8em;
             }
@@ -1045,9 +1226,9 @@ Header {
         }
 
         li.done {
-          background: rgb(193, 248, 193);
+          background: $tertiaryCol;
 
-          #content {
+          .content {
             text-decoration: line-through;
           }
         }
