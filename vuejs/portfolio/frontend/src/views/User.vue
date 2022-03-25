@@ -117,8 +117,8 @@
 
 <script>
 import axios from "axios";
-import Footer from "./Footer.vue";
-import Header from "./Header.vue";
+import Footer from "../components/Footer.vue";
+import Header from "../components/Header.vue";
 
 export default {
   name: "User",
@@ -457,4 +457,3 @@ button:active {
   border-radius: 3px;
 }
 </style>
-

@@ -1,7 +1,7 @@
 const express = require("express");
-const userModel = require("../Database/users");
+const userModel = require("../models/users");
 const bcrypt = require("bcrypt");
-const hashFunc = require('../middlewares/hash');
+const hashFunc = require('../middlewares/custom/hash');
 const capitalizeUserName = require('../middlewares/services/capitalize');
 const {
      check,

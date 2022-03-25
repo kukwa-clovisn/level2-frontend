@@ -19,8 +19,8 @@
           type="text"
           name="name"
           id="name"
-          v-model="data.username"
           class="text-capitalize"
+          v-model="user.username"
           placeholder="Enter your Dairy name..."
           required
         />
@@ -31,12 +31,12 @@
           type="password"
           name="password"
           id="password"
-          v-model="data.password"
+          v-model="user.password"
           placeholder="Enter password..."
           required
         />
       </div>
-      <p class="errormsg text-danger text-center" v-if="invalid">
+      <p class="errormsg text-danger text-center" v-if="valid">
         invalid log in info
       </p>
       <button id="log-in" class="btn" type="submit">
@@ -54,47 +54,57 @@
 
 <script>
 import { reactive } from "vue";
-import axios from "axios";
+import { useRouter } from "vue-router";
 export default {
   name: "Login",
   setup() {
-    const data = reactive({
+    const router = useRouter();
+
+    let user = reactive({
       username: "",
       password: "",
     });
 
+    let errormsg = reactive({
+      invalidMsg: "",
+      valid: false,
+    });
+
+    /**
+     * creating a log in validation and authentication
+     */
     const login = async () => {
       try {
-        await axios
-          .post(
-            "http://localhost:9001/login",
-            {
-              username: data.username,
-              password: data.password,
-            },
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-              credentials: "include",
-            }
-          )
-          .then((res) => {
+        await fetch("http://localhost:9001/login", {
+          method: "Post",
+          // mode: "no-cors",
+          headers: {
+            // "Access-Control-Request-Headers": "Authorization",
+            // Authorization: "Bearer secretToken",
+            "Content-type": "application/json",
+          },
+          // credentials: "include",
+          body: JSON.stringify({
+            username: user.username,
+            password: user.password,
+          }),
+        })
+          .then((res) => res.json())
+          .then(async (res) => {
             console.log(res);
-            if (res.statusText === "OK") {
-              console.log("status is ok");
+
+            if (!res.data) {
+              errormsg.invalidMsg = res.msg;
+              return (errormsg.valid = true);
             }
-          })
-          .catch((err) => console.log(err));
+            router.push("/todo");
+          });
       } catch (err) {
         console.log(err);
       }
     };
 
-    return {
-      data,
-      login,
-    };
+    return { user, errormsg, login };
   },
 };
 </script>
