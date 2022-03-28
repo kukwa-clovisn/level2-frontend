@@ -1,6 +1,5 @@
 <template>
   <div class="main" :class="{ bg: report }">
-    <Header />
     <div class="weather container">
       <div
         class="search_field d-flex justify-content-center align-items-center"
@@ -53,19 +52,13 @@
         </div>
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
-import Header from "../components/Header.vue";
-import Footer from "../components/Footer.vue";
 export default {
   name: "Weather",
-  components: {
-    Header,
-    Footer,
-  },
+
   data() {
     return {
       val: "",

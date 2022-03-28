@@ -13,13 +13,49 @@ const routes = [{
         name: 'Login',
         component: () => import( /* webpackChunkName: "Login" */ '../components/login.vue')
     }, {
+        path: '/overview',
+        name: 'Client',
+        component: () => import('../components/client.vue'),
+        children: [{
+                path: '/overview/Currency',
+                name: 'Currency',
+                component: () => import( /* webpackChunkName: "Currency" */ '../views/Currency.vue')
+            }, {
+                path: '/overview/Todo',
+                name: 'Todo',
+                component: () => import( /* webpackChunkName: "Todo" */ '../views/Todo.vue')
+            }, {
+                path: '/overview/User',
+                name: 'User',
+                component: () => import( /* webpackChunkName: "User" */ '../views/User.vue')
+            },
+            {
+                path: '/overview/Watch',
+                name: 'Stop Watch',
+                component: () => import( /* webpackChunkName: "Watch" */ '../views/Watch.vue')
+            },
+            {
+                path: '/overview/Weather',
+                name: 'Weather',
+                component: () => import( /* webpackChunkName: "Weather" */ '../views/Weather.vue')
+            },
+            {
+                path: '/overview/Exchange',
+                name: 'Exchange',
+                component: () => import( /* webpackChunkName: "Exchange" */ '../views/Exchange.vue')
+            },
+            {
+                path: '/BMI',
+                name: 'BMI',
+                component: () => import( /* webpackChunkName: "BMI" */ '../views/BMI.vue')
+            }
+        ]
+    },
+
+    {
         path: '/Register',
         name: 'Register',
         component: () => import( /* webpackChunkName: "Register" */ '../components/Register.vue')
-    }, {
-        path: '/overview',
-        name: 'Client',
-        component: () => import('../components/client.vue')
     }, {
         path: '/Page',
         name: 'Page',

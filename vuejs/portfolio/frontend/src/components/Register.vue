@@ -39,7 +39,7 @@
         <button class="registerBtn" type="submit">next</button>
 
         <p class="d-flex justify-content-between align-items-center">
-          <router-link to="/">already have an account?sign in</router-link>
+          <router-link to="/login">already have an account?sign in</router-link>
           <button type="button">
             <router-link to="/" class="link"
               ><i class="fa fa-home"></i>home</router-link
@@ -227,6 +227,7 @@ export default {
               this.confirm = false;
               this.error = true;
               this.errormsg = res.msg;
+              this.$route.push("/login");
               console.log(res);
             } else if (res.data.email && res.data.email === this.email) {
               this.stepOne = false;

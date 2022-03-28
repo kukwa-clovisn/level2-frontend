@@ -1,6 +1,5 @@
 <template>
   <div class="content">
-    <Header />
     <div
       class="main d-flex justify-content-between align-items-center flex-column"
     >
@@ -101,19 +100,13 @@
         </div>
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
-import Header from "../components/Header.vue";
-import Footer from "../components/Footer.vue";
 export default {
   name: "Exchange",
-  components: {
-    Header,
-    Footer,
-  },
+
   data() {
     return {
       val: 1,

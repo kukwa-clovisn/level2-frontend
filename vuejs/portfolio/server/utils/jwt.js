@@ -17,4 +17,22 @@ const createUserToken = (data) => {
 }
 
 
-module.exports = createUserToken;
+const verifyUserToken = async (userToken) => {
+     try {
+          jwt.verify(userToken, process.env.user_login_token, (err, data) => {
+               if (err) {
+                    return res.status(500).json(err)
+               }
+               console.log(data)
+               return data;
+          })
+
+     } catch (err) {
+          console.log(err);
+     }
+}
+
+module.exports = {
+     createUserToken,
+     verifyUserToken
+};

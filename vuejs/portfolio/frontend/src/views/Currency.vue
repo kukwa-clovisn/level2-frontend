@@ -211,22 +211,20 @@
       </div>
     </div>
   </div>
-  <Footer />
 </template>
 
 <script>
-import Cheader from "./Cheader.vue";
-import Nav from "./nav.vue";
-import Button from "./Button.vue";
+import Cheader from "../components/Cheader.vue";
+import Nav from "../components/nav.vue";
+import Button from "../components/Button.vue";
 import axios from "axios";
-import Footer from "./Footer.vue";
+
 export default {
   name: "Currency",
   components: {
     Cheader,
     Nav,
     Button,
-    Footer,
   },
   data() {
     return {

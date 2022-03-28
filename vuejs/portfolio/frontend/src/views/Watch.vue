@@ -1,5 +1,4 @@
 <template>
-  <Header />
   <div class="content">
     <button class="start {clock : begin }" @click="start()">
       <i class="fa fa-play"></i>
@@ -16,18 +15,12 @@
     </div>
     <img src="../assets/watch.jpg" alt="" />
   </div>
-  <Footer />
 </template>
 
 <script>
-import Header from "../components/Header.vue";
-import Footer from "../components/Footer.vue";
 export default {
   name: "Watch",
-  components: {
-    Header,
-    Footer,
-  },
+
   data() {
     return {
       begin: false,

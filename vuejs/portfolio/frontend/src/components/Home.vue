@@ -25,7 +25,7 @@
   </div>
   <div class="bn d-flex justify-content-evenly align-items-center">
     <button class="start" title="sign up to use our apps and products">
-      <router-link to="/Page" class="route">get started</router-link>
+      <router-link to="/login" class="route">get started</router-link>
     </button>
     <button class="demo" title="Get to know more about ACTA...">
       <router-link to="/Demo" id="demo">ACTA</router-link>

@@ -1,6 +1,5 @@
 <template>
   <div class="user">
-    <Header />
     <div
       class="
         wrapper
@@ -111,21 +110,14 @@
       </div>
     </div>
   </div>
-
-  <Footer />
 </template>
 
 <script>
 import axios from "axios";
-import Footer from "../components/Footer.vue";
-import Header from "../components/Header.vue";
 
 export default {
   name: "User",
-  components: {
-    Header,
-    Footer,
-  },
+
   data() {
     return {
       btnName: "random user",

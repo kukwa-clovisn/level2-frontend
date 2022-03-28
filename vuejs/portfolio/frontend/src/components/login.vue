@@ -11,7 +11,7 @@
         <router-link to="/Register" class="route">sign up</router-link>
       </nav>
     </header>
-    <form @submit.prevent="login" class="showcase">
+    <form @submit.prevent="login" class="log-in">
       <h1>welcome to <span id="welcome">KCN'S dairy</span></h1>
       <div>
         <label for="name">name</label>
@@ -36,8 +36,8 @@
           required
         />
       </div>
-      <p class="errormsg text-danger text-center" v-if="valid">
-        invalid log in info
+      <p class="errormsg text-danger text-center" v-if="errormsg.valid">
+        {{ errormsg.invalidMsg }}
       </p>
       <button id="log-in" class="btn" type="submit">
         log in <i class="fa fa-arrow-right"></i>
@@ -55,6 +55,7 @@
 <script>
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
+import axios from "axios";
 export default {
   name: "Login",
   setup() {
@@ -77,7 +78,6 @@ export default {
       try {
         await fetch("http://localhost:9001/login", {
           method: "Post",
-          // mode: "no-cors",
           headers: {
             // "Access-Control-Request-Headers": "Authorization",
             // Authorization: "Bearer secretToken",
@@ -93,11 +93,28 @@ export default {
           .then(async (res) => {
             console.log(res);
 
-            if (!res.data) {
+            if (!res.token) {
               errormsg.invalidMsg = res.msg;
-              return (errormsg.valid = true);
+              errormsg.valid = true;
+              return;
             }
-            router.push("/todo");
+
+            let config = {
+              headers: {
+                Authorization: `Bearer ${res.token}`,
+              },
+            };
+            // await fetch('http://localhost:9001/login/token/' + `${req.id}`)
+            await axios("http://localhost:9001/login", config).then((res) => {
+              console.log(res);
+
+              localStorage.setItem("token", JSON.stringify(res.data._id));
+
+              router.push({
+                name: "Client",
+                // params: { id: `${res.data._id}` },
+              });
+            });
           });
       } catch (err) {
         console.log(err);
@@ -180,19 +197,16 @@ export default {
     }
   }
 
-  .showcase {
-    width: 35vw;
-    height: 70vh;
+  .log-in {
+    width: 500px;
+    height: fit-content;
     margin: 0 auto;
     margin-top: 6vh;
     background: white;
     border-radius: 5px;
-    padding: 20px 10px 5px 10px;
-
+    padding: 25px 20px;
     position: relative;
     z-index: 1;
-    //     left: -10%;
-    //     top: 5vh;
 
     h1 {
       text-align: center;
@@ -241,8 +255,9 @@ export default {
 
     div {
       width: 90%;
-      height: 25%;
-      margin: auto;
+      height: fit-content;
+      margin: 10px auto;
+      margin-bottom: 20px;
       display: block;
 
       label {
@@ -250,10 +265,6 @@ export default {
         padding: 3px 30px;
         text-transform: capitalize;
         cursor: pointer;
-
-        @media screen and (max-width: 500px) {
-          text-align: center;
-        }
       }
 
       input {
@@ -267,10 +278,6 @@ export default {
         border-radius: 60px;
         color: #224272;
         transition: all 0.3s ease;
-
-        @media screen and (max-width: 500px) {
-          font-size: 10px;
-        }
 
         &:hover {
           border: 2px solid teal;
@@ -288,9 +295,10 @@ export default {
 
     button {
       width: 90%;
-      height: 40px;
+      height: 45px;
       display: block;
-      margin: 2% auto;
+      margin: 20px auto;
+      margin-bottom: 10px;
       border: none;
       border-radius: 60px;
       outline: none;
@@ -302,10 +310,11 @@ export default {
       i {
         position: relative;
         left: 2%;
-        animation: arrow 1s infinite linear reverse forwards;
+        opacity: 1;
+        animation: kick 1s infinite linear reverse forwards;
       }
 
-      @keyframes arrow {
+      @keyframes kick {
         0% {
           opacity: 1;
         }
@@ -325,7 +334,6 @@ export default {
 
     .errormsg {
       text-align: center;
-      margin-top: -3%;
       color: rgb(247, 34, 76);
       text-transform: capitalize;
       padding: 0 10px;
@@ -346,26 +354,6 @@ export default {
         float: right;
         margin-right: 5%;
       }
-
-      @media screen and (max-width: 1090px) {
-        font-size: 12px;
-      }
-
-      @media screen and (max-width: 500px) {
-        font-size: 13px;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-direction: column;
-      }
-    }
-    @media screen and (max-width: 1000px) {
-      width: 60%;
-      border-radius: 10px;
-    }
-
-    @media screen and (max-width: 500px) {
-      width: 75%;
     }
   }
 

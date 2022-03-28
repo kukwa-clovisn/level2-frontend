@@ -36,7 +36,7 @@ app.use(
 //  Route paths
 const registerRoute = require('./routes/register')
 const loginRoute = require('./routes/login')
-const dataRoute = require('./routes/data')
+const dataRoute = require('./routes/userData')
 
 // getting Routes
 app.use('/login', loginRoute);

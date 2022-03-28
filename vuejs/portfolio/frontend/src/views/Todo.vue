@@ -1,6 +1,5 @@
 <template>
   <div class="main">
-    <img src="../assets/list.svg" id="pic" alt="" />
     <!-- <div class="todo-head">
       <div>
         <img src="../assets/list.svg" alt="DAIRY" />
@@ -97,28 +96,37 @@
         <button id="reset" @click="removeAllTodos()">clear all todos</button>
       </div>
     </div>
+    <img src="../assets/list.svg" id="pic" alt="" />
   </div>
 </template>
 
 <script>
+// import { useRoute } from "vue-router";
+import { onMounted } from "vue";
 import { ref, reactive } from "vue";
 import axios from "axios";
 export default {
   name: "Todo",
 
   setup() {
+    // const router = useRouter();
+    // const route = useRoute();
+
     let profile = reactive({
       profileName: "",
       profileEmail: "",
     });
+
     let valid = ref(false);
     const invalidTask = ref(false);
     const userData = ref("");
+
     const parseData = ref({
       name: "",
       date: ``,
       done: false,
     });
+
     const todo = ref("");
     const todoCount = ref(0);
     const invalid = ref(false);
@@ -127,20 +135,38 @@ export default {
     let status = ref(false);
     let username = ref("");
     let password = ref("");
-    // let getFromLocalStorage = localStorage.getItem("new todo");
+    let getFromLocalStorage = ref(localStorage.getItem("token"));
+    let token_id = ref("");
 
     /**
      * creating a funtion that will display the todo items
+     *
      */
+
+    onMounted(() => {
+      if (getFromLocalStorage.value == null) {
+        token_id.value = "";
+      } else {
+        token_id.value = JSON.parse(getFromLocalStorage.value);
+        console.log(token_id.value);
+      }
+
+      displayTodo(token_id.value);
+      console.log("this page has just been mounted with an id...", token_id);
+    });
+
     const displayTodo = async (id) => {
       try {
-        await axios("http://localhost:9001/user/data/" + `${id}`)
+        await axios("http://localhost:9001/user/" + `${id}`, {
+          headers: {
+            Authorization: `Bearer ${res.token}`,
+          },
+        })
           .then(async (res) => {
             console.log(res);
 
             todoItems.value = await res.data.todos;
-            console.log(todoItems.value);
-            console.log(todoItems.value[1]);
+
             todoCount.value = todoItems.value.length;
             profile.profileName = res.data.username;
             profile.profileEmail = res.data.email;
@@ -166,7 +192,7 @@ export default {
       try {
         await axios
           .post(
-            "http://localhost:9001/user/data/" + `${id}`,
+            "http://localhost:9001/user/" + `${id}`,
             {
               data,
             },
@@ -201,9 +227,11 @@ export default {
           //   todoItems.value = JSON.parse(getFromLocalStorage); //coverting the string into json object
           // }
 
-          await axios(
-            "http://localhost:9001/user/data/name/" + `${username.value}`
-          ).then(async (res) => {
+          await axios("http://localhost:9001/user/" + `${token_id.value}`, {
+            headers: {
+              Authorization: `Bearer ${res.token}`,
+            },
+          }).then(async (res) => {
             console.log(res);
 
             todoItems.value.push(parseData.value);
@@ -252,9 +280,11 @@ export default {
         // todoItems = await getData().todos;
         // let id = await getData().id;
 
-        await axios(
-          "http://localhost:9001/user/data/name/" + `${username.value}`
-        ).then(async (res) => {
+        await axios("http://localhost:9001/user/" + `${token_id.value}`, {
+          headers: {
+            Authorization: `Bearer ${res.token}`,
+          },
+        }).then(async (res) => {
           console.log(res);
           if (window.confirm("Are you sure you want to delete all items??")) {
             todoItems.value = [];
@@ -279,9 +309,11 @@ export default {
         // await getData();
         // localStorage.setItem("new todo", JSON.stringify(todoItems.value)); //updating the local storage after deleting as item
 
-        await axios(
-          "http://localhost:9001/user/data/name/" + `${username.value}`
-        ).then(async (res) => {
+        await axios("http://localhost:9001/user/" + `${token_id.value}`, {
+          headers: {
+            Authorization: `Bearer ${res.token}`,
+          },
+        }).then(async (res) => {
           console.log(res);
 
           if (!todoItems.value[index].done) {
@@ -325,9 +357,11 @@ export default {
       try {
         // getFromLocalStorage = localStorage.getItem("new todo");
         // todoItems.value = JSON.parse(getFromLocalStorage);
-        await axios(
-          "http://localhost:9001/user/data/name/" + `${username.value}`
-        ).then(async (res) => {
+        await axios("http://localhost:9001/user/" + `${token_id.value}`, {
+          headers: {
+            Authorization: `Bearer ${res.token}`,
+          },
+        }).then(async (res) => {
           console.log(res);
           todoItems.value = res.data.todos;
           if (!todoItems.value[index].done) {
@@ -409,17 +443,14 @@ $secondaryCol: teal;
 $tertiaryCol: rgb(193, 248, 193);
 
 #pic {
-  position: fixed;
-  top: 10vh;
-  right: 0;
   width: 500px;
   z-index: 0.6;
 }
 
 .main {
-  width: 75vw;
+  width: 94vw;
   min-height: 100vh;
-  padding: 20px;
+  padding-top: 10vh;
   float: right;
   background: linear-gradient(
     to top,
@@ -432,6 +463,9 @@ $tertiaryCol: rgb(193, 248, 193);
   position: relative;
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   // .todo-head {
   //   width: 25vw;
@@ -495,7 +529,7 @@ $tertiaryCol: rgb(193, 248, 193);
   // }
 
   .content {
-    width: 100%;
+    width: fit-content;
     height: fit-content;
     display: flex;
     justify-content: flex-start;
@@ -503,7 +537,8 @@ $tertiaryCol: rgb(193, 248, 193);
     padding: 20px;
     .todo-container {
       position: relative;
-      left: 60px;
+      z-index: 0.9;
+      left: 100px;
       width: 480px;
       height: fit-content;
       background: $white;
