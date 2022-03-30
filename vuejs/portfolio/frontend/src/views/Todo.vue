@@ -138,6 +138,12 @@ export default {
     let getFromLocalStorage = ref(localStorage.getItem("token"));
     let token_id = ref("");
 
+    let config = {
+      headers: {
+        Authorization: `Bearer ${res.token}`,
+      },
+    };
+
     /**
      * creating a funtion that will display the todo items
      *
@@ -157,11 +163,7 @@ export default {
 
     const displayTodo = async (id) => {
       try {
-        await axios("http://localhost:9001/user/" + `${id}`, {
-          headers: {
-            Authorization: `Bearer ${res.token}`,
-          },
-        })
+        await axios("http://localhost:9001/user/" + `${id}`, config)
           .then(async (res) => {
             console.log(res);
 
@@ -280,11 +282,10 @@ export default {
         // todoItems = await getData().todos;
         // let id = await getData().id;
 
-        await axios("http://localhost:9001/user/" + `${token_id.value}`, {
-          headers: {
-            Authorization: `Bearer ${res.token}`,
-          },
-        }).then(async (res) => {
+        await axios(
+          "http://localhost:9001/user/" + `${token_id.value}`,
+          config
+        ).then(async (res) => {
           console.log(res);
           if (window.confirm("Are you sure you want to delete all items??")) {
             todoItems.value = [];
@@ -309,11 +310,10 @@ export default {
         // await getData();
         // localStorage.setItem("new todo", JSON.stringify(todoItems.value)); //updating the local storage after deleting as item
 
-        await axios("http://localhost:9001/user/" + `${token_id.value}`, {
-          headers: {
-            Authorization: `Bearer ${res.token}`,
-          },
-        }).then(async (res) => {
+        await axios(
+          "http://localhost:9001/user/" + `${token_id.value}`,
+          config
+        ).then(async (res) => {
           console.log(res);
 
           if (!todoItems.value[index].done) {
@@ -357,11 +357,10 @@ export default {
       try {
         // getFromLocalStorage = localStorage.getItem("new todo");
         // todoItems.value = JSON.parse(getFromLocalStorage);
-        await axios("http://localhost:9001/user/" + `${token_id.value}`, {
-          headers: {
-            Authorization: `Bearer ${res.token}`,
-          },
-        }).then(async (res) => {
+        await axios(
+          "http://localhost:9001/user/" + `${token_id.value}`,
+          config
+        ).then(async (res) => {
           console.log(res);
           todoItems.value = res.data.todos;
           if (!todoItems.value[index].done) {
