@@ -8,54 +8,8 @@
       <router-link to="/overview/weather" class="route">weather</router-link>
       <router-link to="/overview/user" class="route">random user</router-link>
     </div>
-    <!-- <div class="content">
-      <div class="top">
-        <h1 class="text-capitalize text-bold text-center">top content here!</h1>
-      </div>
-      <div class="bottom">
-        <div class="item">
-          <img src="../assets/auth.png" alt="todo list " />
-          <h2>todo app</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Consectetur, enim!
-          </p>
-        </div>
-        <div class="item">
-          <img src="../assets/auth.png" alt="" />
-          <h2>crypto exchange</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse,
-            aliquam.
-          </p>
-        </div>
-        <div class="item">
-          <img src="../assets/auth.png" alt="" />
-          <h2>currency exchange</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, a.
-          </p>
-        </div>
-        <div class="item">
-          <img src="../assets/auth.png" alt="" />
-          <h2>weather forcast</h2>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente,
-            assumenda.
-          </p>
-        </div>
-        <div class="item">
-          <img src="../assets/auth.png" alt="" />
-          <h2>random user</h2>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero,
-            neque.
-          </p>
-        </div>
-      </div>
-    </div> -->
+    <router-view />
   </main>
-  <router-view />
 </template>
 
 <script>
