@@ -45,7 +45,7 @@ const routes = [{
                 component: () => import( /* webpackChunkName: "Exchange" */ '../views/Exchange.vue')
             },
             {
-                path: '/BMI',
+                path: '/overview/BMI',
                 name: 'BMI',
                 component: () => import( /* webpackChunkName: "BMI" */ '../views/BMI.vue')
             }

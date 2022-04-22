@@ -1,14 +1,14 @@
 <template>
   <main>
-    <header></header>
+    <!-- <header></header> -->
     <div class="menu">
-      <router-link to="/overview/todo">todo app</router-link>
-      <router-link to="/overview/currency">crypto</router-link>
-      <router-link to="/overview/Exchange">exchange</router-link>
-      <router-link to="/overview/weather">weather</router-link>
-      <router-link to="/overview/user">random user</router-link>
+      <router-link to="/overview/todo" class="route">todo app</router-link>
+      <router-link to="/overview/currency" class="route">crypto</router-link>
+      <router-link to="/overview/Exchange" class="route">exchange</router-link>
+      <router-link to="/overview/weather" class="route">weather</router-link>
+      <router-link to="/overview/user" class="route">random user</router-link>
     </div>
-    <div class="content">
+    <!-- <div class="content">
       <div class="top">
         <h1 class="text-capitalize text-bold text-center">top content here!</h1>
       </div>
@@ -53,7 +53,7 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
   </main>
   <router-view />
 </template>
@@ -84,7 +84,9 @@ main {
   width: 100vw;
   height: fit-content;
   background: white;
-  padding-bottom: 30px;
+  padding: 0;
+  // padding-bottom: 30px;
+  margin: 0;
 
   header {
     width: 94vw;
@@ -98,7 +100,7 @@ main {
   }
 
   .menu {
-    width: 6vw;
+    width: 15vw;
     height: 100vh;
     position: fixed;
     top: 0;
@@ -107,6 +109,28 @@ main {
     background: $secondCol;
     background-attachment: fixed;
     background-size: cover;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .route {
+      text-decoration: none;
+      color: white;
+      font: 500 21px "Poppins", sans-serif;
+      cursor: pointer;
+
+      padding: 20px 10px;
+      text-transform: capitalize;
+
+      &.router-link-exact-active {
+        color: #f5ce23;
+        background: linear-gradient(to bottom, rgb(206, 5, 163), gold);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
   }
 
   .content {

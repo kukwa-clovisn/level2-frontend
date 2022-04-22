@@ -45,7 +45,6 @@ module.exports = {
 
      },
      post: (req, res) => {
-
           let findUser = capitalizeUserName(req.body.username);
 
           userModel.findOne({

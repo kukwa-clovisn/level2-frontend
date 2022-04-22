@@ -31,6 +31,7 @@ module.exports = {
 
      },
      post: (req, res) => {
+          todoItems = req.body.data;
 
           userModel.findByIdAndUpdate(req.params.id, {
                todos: todoItems

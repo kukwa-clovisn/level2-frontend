@@ -16,8 +16,6 @@ const capitalizeUserName = (username) => {
           registeredName = capitalizedName.slice(0, -1);
 
      }
-     console.log(registeredName)
      return registeredName;
 }
-
 module.exports = capitalizeUserName;
